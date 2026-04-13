@@ -1,0 +1,30 @@
+@startuml
+skinparam shadowing false
+
+autonumber
+actor Utilisateur as User
+participant "UI Web" as UI
+participant "MovieController" as C
+participant "MovieService" as S
+participant "MovieValidator" as V
+participant "MovieRepository" as R
+
+User -> UI: Saisit formulaire + clique Enregistrer
+UI -> C: POST /movies (payload)
+C -> S: addMovie(payload)
+S -> V: validateCreate(payload)
+
+alt Payload invalide
+  V --> S: erreurs validation
+  S --> C: BadRequest(error)
+  C --> UI: 400 + message erreur
+else Payload valide
+  V --> S: ok
+  S -> R: create(movie)
+  R --> S: movie cree
+  S --> C: movie cree
+  C --> UI: 201 + movie
+  UI --> User: Film ajoute dans la liste
+end
+
+@enduml

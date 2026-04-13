@@ -1,0 +1,19 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor Utilisateur as User
+
+component "Frontend\n(HTML/CSS/JS)" as FE
+component "API Express\n(routes + controllers)" as API
+component "Service metier\n(MovieService)" as SVC
+component "Validation\n(MovieValidator)" as VAL
+component "Store memoire\n(MovieRepository)" as STORE
+
+User --> FE : interaction UI
+FE --> API : HTTP JSON
+API --> SVC
+SVC --> VAL
+SVC --> STORE
+
+@enduml

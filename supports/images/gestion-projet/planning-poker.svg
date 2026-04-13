@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#0f172a"/>
+  <text x="600" y="60" fill="#e2e8f0" font-size="34" text-anchor="middle" font-family="Arial">Planning Poker</text>
+
+  <g fill="#1e293b" stroke="#38bdf8" stroke-width="2">
+    <rect x="80" y="120" width="260" height="460" rx="14"/>
+    <rect x="370" y="120" width="260" height="460" rx="14"/>
+    <rect x="660" y="120" width="260" height="460" rx="14"/>
+    <rect x="950" y="120" width="170" height="460" rx="14"/>
+  </g>
+
+  <g fill="#f8fafc" font-size="22" text-anchor="middle" font-family="Arial">
+    <text x="210" y="165">Story</text>
+    <text x="500" y="165">Vote 1</text>
+    <text x="790" y="165">Discussion</text>
+    <text x="1035" y="165">Consensus</text>
+  </g>
+
+  <g fill="#cbd5e1" font-size="18" font-family="Arial">
+    <text x="100" y="220">US-03 Rechercher un film</text>
+    <text x="100" y="250">par titre, genre et annee</text>
+
+    <text x="390" y="220">Dev A: 3</text>
+    <text x="390" y="250">Dev B: 8</text>
+    <text x="390" y="280">Dev C: 5</text>
+    <text x="390" y="310">Dev D: 5</text>
+
+    <text x="680" y="220">Ecart 3 vs 8</text>
+    <text x="680" y="250">Cause: index BDD manquant</text>
+    <text x="680" y="280">Cause: filtre multi-criteres</text>
+    <text x="680" y="310">Action: preciser criteres</text>
+
+    <text x="965" y="220">5 SP</text>
+    <text x="965" y="250">en backlog</text>
+  </g>
+
+  <g fill="#334155" stroke="#64748b" stroke-width="1.5">
+    <rect x="390" y="370" width="65" height="90" rx="8"/>
+    <rect x="465" y="370" width="65" height="90" rx="8"/>
+    <rect x="540" y="370" width="65" height="90" rx="8"/>
+    <rect x="615" y="370" width="65" height="90" rx="8"/>
+    <rect x="690" y="370" width="65" height="90" rx="8"/>
+  </g>
+
+  <g fill="#f59e0b" font-size="28" text-anchor="middle" font-family="Arial" font-weight="bold">
+    <text x="422" y="425">1</text>
+    <text x="497" y="425">2</text>
+    <text x="572" y="425">3</text>
+    <text x="647" y="425">5</text>
+    <text x="722" y="425">8</text>
+  </g>
+</svg>

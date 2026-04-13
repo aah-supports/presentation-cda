@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">
+  <rect width="1200" height="650" fill="#111827"/>
+  <text x="600" y="55" fill="#e5e7eb" font-size="34" text-anchor="middle" font-family="Arial">Ou ecrire quoi ? (Scrum)</text>
+
+  <g fill="#1f2937" stroke="#38bdf8" stroke-width="2">
+    <rect x="80" y="130" width="300" height="440" rx="14"/>
+    <rect x="450" y="130" width="300" height="440" rx="14"/>
+    <rect x="820" y="130" width="300" height="440" rx="14"/>
+  </g>
+
+  <g fill="#f8fafc" font-size="23" text-anchor="middle" font-family="Arial">
+    <text x="230" y="175">Product Backlog</text>
+    <text x="600" y="175">Sprint Backlog</text>
+    <text x="970" y="175">Documentation</text>
+  </g>
+
+  <g fill="#cbd5e1" font-size="18" font-family="Arial">
+    <text x="105" y="225">- User story</text>
+    <text x="105" y="255">- Critere acceptance</text>
+    <text x="105" y="285">- Story points</text>
+    <text x="105" y="315">- Priorite</text>
+
+    <text x="475" y="225">- Stories selectionnees</text>
+    <text x="475" y="255">- Taches techniques</text>
+    <text x="475" y="285">- Estimation en heures</text>
+    <text x="475" y="315">- Responsable</text>
+
+    <text x="845" y="225">- Decision d'estimation</text>
+    <text x="845" y="255">- Definition of Done</text>
+    <text x="845" y="285">- Retrospective</text>
+    <text x="845" y="315">- Risques/Actions</text>
+  </g>
+
+  <g stroke="#f59e0b" stroke-width="4" marker-end="url(#arrow)">
+    <line x1="380" y1="350" x2="450" y2="350"/>
+    <line x1="750" y1="350" x2="820" y2="350"/>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA - Support 07 - Outils gestion projet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <style>
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--cyan); font-size: 0.62em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .lead { font-size: .95em; color: var(--text); }
+    .muted { color: var(--muted); }
+    .small { font-size: .72em; }
+    .xsmall { font-size: .62em; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .card h3 { font-size: .8em; margin: 0 0 8px; color: var(--cyan); }
+    .card p { margin: 0; font-size: .72em; }
+
+    .img-wrap { background: #0f1720; border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+    .img-wrap img { width: 100%; height: auto; display: block; border-radius: 6px; }
+
+    .table { width: 100%; border-collapse: collapse; font-size: .6em; }
+    .table th, .table td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: top; }
+    .table th { color: var(--cyan); font-weight: 700; }
+
+    .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    .term { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; }
+    .term b { color: var(--cyan); display: block; margin-bottom: 4px; font-size: .9em; }
+    .term span { font-size: .76em; color: var(--body); }
+
+    .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
+    .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .term-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="global-progress" aria-hidden="true"><div class="global-progress-fill" id="globalProgressFill"></div></div>
+  <div class="reveal">
+    <div class="slides" id="slidesRoot">
+      <section>
+        <span class="badge">Support 07</span>
+        <h1>Support 07 - Outils gestion projet</h1>
+        <p class="lead">Source: <code>supports/07_chap-outils-gestion-projet.md</code></p>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+<section>
+        <h2>Outils de gestion de projet (07)</h2>
+        <p class="lead">Fil rouge appliqué: mini application de gestion de films.</p>
+        <ul class="bullet-list small">
+          <li>Cahier des charges → epics/US → refinement → planning poker → sprint planning.</li>
+          <li>Le cahier des charges reste le cadre de référence du projet Agile.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Cycle Scrum</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/scrum-cycle.svg" alt="Cycle Scrum" /></div>
+      </section>
+<section>
+        <h2>Refinement: méthode opérationnelle</h2>
+        <ol class="small">
+          <li>Préparer les US candidates avec contexte et critères initiaux.</li>
+          <li>Clarifier avec l'équipe: questions, risques, dépendances.</li>
+          <li>Découper les US trop volumineuses.</li>
+          <li>Vérifier la Definition of Ready.</li>
+          <li>Mettre à jour le Product Backlog avant estimation.</li>
+        </ol>
+      </section>
+<section>
+        <h2>Exemple US (films)</h2>
+        <pre><code class="language-md">### US-01 - Ajouter un film
+En tant qu'administrateur
+Je veux ajouter un film (titre, realisateur, annee, genre)
+Afin d'enrichir le catalogue
+
+Critere d'acceptation:
+- champs valides => film enregistre
+- titre vide => erreur explicite</code></pre>
+      </section>
+<section>
+        <h2>Kanban</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/kanban-board.svg" alt="Tableau Kanban" /></div>
+      </section>
+<section>
+        <h2>Planning Poker</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/planning-poker.svg" alt="Planning poker" /></div>
+        <p class="small">Estimation relative (story points) selon complexité, volume, incertitude, risque.</p>
+      </section>
+<section>
+        <h2>Estimation backlog (films)</h2>
+        <table class="table">
+          <thead><tr><th>ID</th><th>Story</th><th>Points</th><th>Pourquoi</th></tr></thead>
+          <tbody>
+            <tr><td>US-01</td><td>Créer un film</td><td>3</td><td>CRUD simple + validation</td></tr>
+            <tr><td>US-02</td><td>Lister films paginés</td><td>5</td><td>Pagination + tri + perfs</td></tr>
+            <tr><td>US-03</td><td>Recherche multi-critères</td><td>8</td><td>Filtres combinés + index BDD</td></tr>
+            <tr><td>US-04</td><td>Modifier / Supprimer</td><td>3</td><td>Logique standard</td></tr>
+            <tr><td>US-05</td><td>Auth admin</td><td>8</td><td>Sécurité + rôles + tests</td></tr>
+            <tr><td>US-06</td><td>Upload affiche</td><td>5</td><td>Stockage fichier + format</td></tr>
+          </tbody>
+        </table>
+      </section>
+<section>
+        <h2>Où documenter quoi ?</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/backlog-writing-locations.svg" alt="Backlog writing locations" /></div>
+      </section>
+<section>
+        <h2>Atelier interactif conseillé</h2>
+        <ol class="small">
+          <li>Groupes de 4 sur 6 stories films.</li>
+          <li>2 tours max de planning poker / story.</li>
+          <li>Comparer les écarts inter-groupes.</li>
+          <li>Converger vers un backlog commun argumenté.</li>
+        </ol>
+      </section>
+<section>
+        <h2>Planification Gantt</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/gantt-example.svg" alt="Gantt" /></div>
+      </section>
+<section>
+        <h2>Roadmap</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/roadmap.svg" alt="Roadmap" /></div>
+      </section>
+<section>
+        <h2>Collaboration: Jira/Trello + Notion/Confluence</h2>
+        <ul class="bullet-list small">
+          <li>Tickets courts, critères d'acceptation, responsable, priorité.</li>
+          <li>Documentation des décisions techniques, conventions, tests.</li>
+          <li>Cycle ticket → dev → PR → doc → validation.</li>
+        </ul>
+        <pre><code class="language-json">{
+  "fields": {
+    "project": { "key": "CDA" },
+    "summary": "US-03 - Rechercher un film",
+    "description": "API + recherche multi-criteres + tests",
+    "issuetype": { "name": "Story" },
+    "priority": { "name": "High" }
+  }
+}</code></pre>
+      </section>
+<section>
+        <h2>Git workflow</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/git-workflow.svg" alt="Git workflow" /></div>
+        <pre><code class="language-bash">git checkout develop
+ git pull origin develop
+ git checkout -b feature/catalog
+ git commit -m "feat(catalog): create movie search endpoint"
+ git push -u origin feature/catalog</code></pre>
+      </section>
+<section>
+        <h2>Pipeline CI/CD</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/cicd-pipeline.svg" alt="pipeline" /></div>
+        <pre><code class="language-yaml">name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test</code></pre>
+      </section>
+<section>
+        <h2>Qualité et tests</h2>
+        <div class="img-wrap"><img src="assets/images/gestion-projet/test-pyramid.svg" alt="Pyramide des tests" /></div>
+        <div class="grid-2 small" style="margin-top:12px;">
+          <div class="card"><h3>Jest</h3><p>Tests unitaires JS (filtrage films, validations).</p></div>
+          <div class="card"><h3>PHPUnit</h3><p>Exemple équivalent côté PHP/Symfony.</p></div>
+        </div>
+      </section>
+<section>
+        <h2>Suivi qualité et sécurité</h2>
+        <ul class="bullet-list small">
+          <li>Objectif de couverture élevé sur modules critiques.</li>
+          <li>0 vulnérabilité bloquante avant livraison.</li>
+          <li>Suivi duplications / dette technique sprint par sprint.</li>
+        </ul>
+        <pre><code class="language-properties">sonar.projectKey=cda-films
+sonar.projectName=CDA Films
+sonar.sources=src
+sonar.tests=tests</code></pre>
+      </section>
+<section>
+        <h2>Rétrospectives</h2>
+        <div class="grid-2 small">
+          <div class="card"><h3>Start</h3><p>Formaliser les critères d'acceptation avant dev.</p></div>
+          <div class="card"><h3>Stop</h3><p>Fusionner des PR non relues.</p></div>
+          <div class="card"><h3>Continue</h3><p>Daily court et focalisé blocages.</p></div>
+          <div class="card"><h3>Pilotage</h3><p>Actions mesurables avec responsable + échéance.</p></div>
+        </div>
+      </section>
+<section>
+        <h2>Cas complet de soutenance (chaîne de valeur)</h2>
+        <ol class="small">
+          <li>Besoin métier → backlog priorisé.</li>
+          <li>Estimation planning poker.</li>
+          <li>Planification roadmap + Gantt.</li>
+          <li>Tickets + documentation.</li>
+          <li>Branches Git + revues.</li>
+          <li>Pipeline CI/CD + tests + Sonar.</li>
+          <li>Rétro et amélioration continue.</li>
+        </ol>
+      </section>
+<section>
+        <h2>Niveau de précision attendu dans le dossier</h2>
+        <ul class="bullet-list small">
+          <li>Preuves planning (initial / réel / écarts).</li>
+          <li>Preuves agiles (backlog, votes, consensus).</li>
+          <li>Preuves qualité (tests, pipeline, métriques).</li>
+          <li>Preuves sécurité (risque → mesure → preuve).</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    const deck = new Reveal();
+    deck.initialize({ hash:true, controls:true, progress:false, slideNumber:true, center:false, transition:'fade', backgroundTransition:'fade' });
+    const fill = document.getElementById('globalProgressFill');
+    const update = () => {
+      const total = Math.max(1, deck.getTotalSlides() - 1);
+      const index = deck.getSlidePastCount();
+      fill.style.width = `${(index/total)*100}%`;
+    };
+    deck.on('ready', update);
+    deck.on('slidechanged', update);
+  </script>
+
+</body>
+</html>

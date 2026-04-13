@@ -1,0 +1,20 @@
+@startuml
+skinparam shadowing false
+start
+
+:Lire la saisie utilisateur (q);
+:Normaliser q (trim + lowerCase);
+
+if (q est vide ?) then (oui)
+  :Retourner la liste complete;
+else (non)
+  :Filtrer movies sur title contains q;
+  if (resultat vide ?) then (oui)
+    :Afficher "Aucun film trouve";
+  else (non)
+    :Afficher la liste filtree;
+  endif
+endif
+
+stop
+@enduml

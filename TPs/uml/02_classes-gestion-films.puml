@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class Movie {
+  +id: number
+  +title: string
+  +director: string
+  +year: number
+  +genre: string
+}
+
+class MovieValidator {
+  +validateCreate(payload): ValidationResult
+}
+
+class MovieRepository {
+  -movies: Movie[]
+  +create(movie: Movie): Movie
+  +findAll(): Movie[]
+  +searchByTitle(query: string): Movie[]
+  +deleteById(id: number): boolean
+}
+
+class MovieService {
+  +addMovie(payload): Movie
+  +listMovies(): Movie[]
+  +searchMovies(query: string): Movie[]
+  +removeMovie(id: number): boolean
+}
+
+class MovieController {
+  +postMovies(req, res)
+  +getMovies(req, res)
+  +deleteMovie(req, res)
+}
+
+MovieController --> MovieService
+MovieService --> MovieValidator
+MovieService --> MovieRepository
+MovieRepository "1" o-- "*" Movie
+
+@enduml

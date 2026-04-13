@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA - Support 02 - Abstract</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <style>
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--cyan); font-size: 0.62em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .lead { font-size: .95em; color: var(--text); }
+    .muted { color: var(--muted); }
+    .small { font-size: .72em; }
+    .xsmall { font-size: .62em; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .card h3 { font-size: .8em; margin: 0 0 8px; color: var(--cyan); }
+    .card p { margin: 0; font-size: .72em; }
+
+    .img-wrap { background: #0f1720; border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+    .img-wrap img { width: 100%; height: auto; display: block; border-radius: 6px; }
+
+    .table { width: 100%; border-collapse: collapse; font-size: .6em; }
+    .table th, .table td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: top; }
+    .table th { color: var(--cyan); font-weight: 700; }
+
+    .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    .term { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; }
+    .term b { color: var(--cyan); display: block; margin-bottom: 4px; font-size: .9em; }
+    .term span { font-size: .76em; color: var(--body); }
+
+    .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
+    .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .term-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="global-progress" aria-hidden="true"><div class="global-progress-fill" id="globalProgressFill"></div></div>
+  <div class="reveal">
+    <div class="slides" id="slidesRoot">
+      <section>
+        <span class="badge">Support 02</span>
+        <h1>Support 02 - Abstract</h1>
+        <p class="lead">Source: <code>supports/02_abstract.md</code></p>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+<section>
+        <h2>Abstract: rôle central du support</h2>
+        <p class="lead">Le fichier <code>02_abstract.md</code> structure la certification: livrables, méthodologie attendue, épreuve orale.</p>
+        <ul class="bullet-list small">
+          <li>Le jury attend une démarche complète, pas une simple démo.</li>
+          <li>Sécurité et qualité doivent traverser tout le projet.</li>
+          <li>Le dossier projet est le document principal de certification.</li>
+        </ul>
+      </section>
+<section>
+        <h2>3 activités du titre CDA</h2>
+        <ul class="bullet-list small">
+          <li>Concevoir/développer des composants d'interface sécurisés.</li>
+          <li>Concevoir/développer la persistance des données sécurisée.</li>
+          <li>Concevoir/développer une application multicouche répartie sécurisée.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Livrables attendus</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Dossier professionnel (DP)</h3>
+            <p>Document ministériel alimenté régulièrement avec des expériences réelles.</p>
+          </div>
+          <div class="card">
+            <h3>Dossier projet</h3>
+            <p>Document principal de certification (volumétrie conséquente, démarche complète).</p>
+          </div>
+        </div>
+      </section>
+<section>
+        <h2>Dossier projet: plan type (1/2)</h2>
+        <ul class="bullet-list small">
+          <li>Compétences du référentiel couvertes.</li>
+          <li>Résumé du projet en anglais (200-250 mots).</li>
+          <li>Cahier des charges / expression des besoins.</li>
+          <li>Gestion de projet (planning, suivi, environnement humain/technique, qualité).</li>
+          <li>Spécifications fonctionnelles.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Dossier projet: plan type (2/2)</h2>
+        <ul class="bullet-list small">
+          <li>Spécifications techniques (dont sécurité).</li>
+          <li>Réalisations argumentées avec extraits de code significatifs.</li>
+          <li>Jeu d'essai d'une fonctionnalité représentative.</li>
+          <li>Veille sécurité menée pendant le projet.</li>
+          <li>Description d'une situation de recherche technique.</li>
+        </ul>
+      </section>
+<section>
+        <h2>UML recommandé dans le dossier</h2>
+        <div class="grid-2 small">
+          <div class="card">
+            <h3>Spécifications fonctionnelles</h3>
+            <p>Use Case + Activité</p>
+          </div>
+          <div class="card">
+            <h3>Spécifications techniques</h3>
+            <p>Classes + Séquence + Composants (+ MCD/MLD côté données)</p>
+          </div>
+        </div>
+      </section>
+<section>
+        <h2>Gestion de projet attendue (abstract)</h2>
+        <ol class="small">
+          <li>Créer le Product Backlog priorisé.</li>
+          <li>Estimer en story points (planning poker).</li>
+          <li>Construire roadmap et jalons.</li>
+          <li>Préparer sprint backlog (tâches + estimations).</li>
+          <li>Suivre les écarts et replanifier.</li>
+          <li>Conserver les preuves (board, Gantt, commits).</li>
+        </ol>
+      </section>
+<section>
+        <h2>Spécifications fonctionnelles attendues</h2>
+        <ul class="bullet-list small">
+          <li>Cas d'usage / user stories.</li>
+          <li>Entrées / sorties attendues.</li>
+          <li>Critères d'acceptation.</li>
+          <li>Gestion des erreurs côté métier.</li>
+          <li>Matrice de traçabilité exigence → US → test.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Spécifications techniques attendues</h2>
+        <ul class="bullet-list small">
+          <li>Périmètre technique et stack.</li>
+          <li>Architecture et flux principaux.</li>
+          <li>Modèle de données, API et erreurs.</li>
+          <li>Sécurité: validation, secrets, anti-injection, traces.</li>
+          <li>Qualité, performance, déploiement, traçabilité.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Jeu d'essai: format attendu</h2>
+        <div class="grid-3">
+          <div class="card"><h3>Données en entrée</h3><p class="small">Payload/API ou actions UI.</p></div>
+          <div class="card"><h3>Données attendues</h3><p class="small">Résultat théorique prévu.</p></div>
+          <div class="card"><h3>Données obtenues</h3><p class="small">Résultat réel observé + analyse des écarts.</p></div>
+        </div>
+        <p class="xsmall muted">Vocabulaire: test fonctionnel/E2E, test intégration API, test unitaire.</p>
+      </section>
+<section>
+        <h2>Veille sécurité et recherche technique</h2>
+        <div class="grid-2 small">
+          <div class="card">
+            <h3>Veille sécurité</h3>
+            <p>Objectif, périmètre, méthode, journal daté, actions correctives, bilan.</p>
+          </div>
+          <div class="card">
+            <h3>Situation de recherche</h3>
+            <p>Contexte, blocage, démarche, options, mise en œuvre, résultat, capitalisation.</p>
+          </div>
+        </div>
+      </section>
+<section>
+        <h2>Projet perso (fil rouge)</h2>
+        <ul class="bullet-list small">
+          <li>Initiative personnelle démarrée tôt dans l'année.</li>
+          <li>Traité comme une demande professionnelle complète.</li>
+          <li>Permet de combler des manques éventuels côté entreprise.</li>
+          <li>Renforce l'employabilité en fin de formation.</li>
+        </ul>
+      </section>
+<section>
+        <h2>Épreuve orale: structure</h2>
+        <div class="grid-3">
+          <div class="card"><h3>40 min</h3><p class="small">Présentation projet (incluant résumé anglais).</p></div>
+          <div class="card"><h3>45 min</h3><p class="small">Entretien technique avec le jury.</p></div>
+          <div class="card"><h3>20 min</h3><p class="small">Entretien final (posture et enjeux métier).</p></div>
+        </div>
+      </section>
+<section>
+        <h2>Canevas attendu en présentation projet</h2>
+        <ul class="bullet-list small">
+          <li>Entreprise/service et contexte du projet.</li>
+          <li>Contraintes, livrables et analyse du besoin.</li>
+          <li>Gestion de projet et qualité.</li>
+          <li>Conception, codage, interface et jeu d'essai.</li>
+          <li>Exemple de recherche depuis source anglophone.</li>
+          <li>Synthèse: difficultés et satisfactions.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    const deck = new Reveal();
+    deck.initialize({ hash:true, controls:true, progress:false, slideNumber:true, center:false, transition:'fade', backgroundTransition:'fade' });
+    const fill = document.getElementById('globalProgressFill');
+    const update = () => {
+      const total = Math.max(1, deck.getTotalSlides() - 1);
+      const index = deck.getSlidePastCount();
+      fill.style.width = `${(index/total)*100}%`;
+    };
+    deck.on('ready', update);
+    deck.on('slidechanged', update);
+  </script>
+
+</body>
+</html>

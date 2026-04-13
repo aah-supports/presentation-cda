@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <rect width="1200" height="700" fill="#111827"/>
+  <text x="600" y="55" fill="#e5e7eb" font-size="34" text-anchor="middle" font-family="Arial">Git Workflow (main / develop / feature)</text>
+
+  <line x1="80" y1="140" x2="1120" y2="140" stroke="#22d3ee" stroke-width="4"/>
+  <line x1="80" y1="300" x2="1120" y2="300" stroke="#38bdf8" stroke-width="4"/>
+  <line x1="220" y1="460" x2="480" y2="460" stroke="#f59e0b" stroke-width="4"/>
+  <line x1="620" y1="560" x2="910" y2="560" stroke="#f59e0b" stroke-width="4"/>
+
+  <g fill="#e5e7eb" font-size="22" font-family="Arial">
+    <text x="20" y="146">main</text>
+    <text x="20" y="306">develop</text>
+    <text x="20" y="466">feature/auth</text>
+    <text x="20" y="566">feature/booking</text>
+  </g>
+
+  <g fill="#22d3ee"><circle cx="120" cy="140" r="8"/><circle cx="320" cy="140" r="8"/><circle cx="600" cy="140" r="8"/><circle cx="980" cy="140" r="8"/></g>
+  <g fill="#38bdf8"><circle cx="120" cy="300" r="8"/><circle cx="260" cy="300" r="8"/><circle cx="520" cy="300" r="8"/><circle cx="760" cy="300" r="8"/><circle cx="980" cy="300" r="8"/></g>
+  <g fill="#f59e0b"><circle cx="240" cy="460" r="8"/><circle cx="400" cy="460" r="8"/><circle cx="660" cy="560" r="8"/><circle cx="820" cy="560" r="8"/></g>
+
+  <g stroke="#9ca3af" stroke-width="3" marker-end="url(#arrow)">
+    <line x1="480" y1="460" x2="520" y2="300"/>
+    <line x1="910" y1="560" x2="980" y2="300"/>
+    <line x1="980" y1="300" x2="980" y2="140"/>
+  </g>
+
+  <g fill="#d1d5db" font-size="17" font-family="Arial">
+    <text x="520" y="420">merge feature/auth</text>
+    <text x="900" y="500">merge feature/booking</text>
+    <text x="990" y="220">release</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" fill="#0f172a"/>
+  <text x="600" y="50" fill="#e2e8f0" font-size="34" text-anchor="middle" font-family="Arial">CI/CD Pipeline</text>
+
+  <g fill="#1e293b" stroke="#38bdf8" stroke-width="2">
+    <rect x="40" y="160" width="140" height="80" rx="10"/>
+    <rect x="220" y="160" width="140" height="80" rx="10"/>
+    <rect x="400" y="160" width="140" height="80" rx="10"/>
+    <rect x="580" y="160" width="140" height="80" rx="10"/>
+    <rect x="760" y="160" width="140" height="80" rx="10"/>
+    <rect x="940" y="160" width="140" height="80" rx="10"/>
+  </g>
+
+  <g fill="#f8fafc" font-size="20" text-anchor="middle" font-family="Arial">
+    <text x="110" y="205">Push</text>
+    <text x="290" y="205">Lint</text>
+    <text x="470" y="205">Tests</text>
+    <text x="650" y="205">Build</text>
+    <text x="830" y="205">Deploy QA</text>
+    <text x="1010" y="205">Production</text>
+  </g>
+
+  <g stroke="#f59e0b" stroke-width="4" fill="none" marker-end="url(#arrow)">
+    <line x1="180" y1="200" x2="220" y2="200"/>
+    <line x1="360" y1="200" x2="400" y2="200"/>
+    <line x1="540" y1="200" x2="580" y2="200"/>
+    <line x1="720" y1="200" x2="760" y2="200"/>
+    <line x1="900" y1="200" x2="940" y2="200"/>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+</svg>
