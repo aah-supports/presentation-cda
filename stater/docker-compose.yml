@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tp-starter-hello-world
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - PORT=3000
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev
+    restart: unless-stopped

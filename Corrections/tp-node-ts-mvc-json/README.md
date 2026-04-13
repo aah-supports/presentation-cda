@@ -32,7 +32,7 @@ docker compose up --build -d
 Verifier:
 
 ```bash
-curl http://localhost:3000/api/health
+curl http://localhost:3001/api/health
 ```
 
 Arreter:
@@ -49,6 +49,14 @@ docker compose down
 - `DELETE /api/movies/:id`
 - `GET /api/pages/home`
 - `GET /api/pages/catalog?q=para`
+
+En Docker, la base URL est:
+
+- `http://localhost:3001/api`
+
+En local (`npm run dev`), la base URL reste:
+
+- `http://localhost:3000/api`
 
 ## 5. Architecture intermediaire (MVC)
 
