@@ -44,7 +44,29 @@
   color: #fff;
   margin-bottom: 0.2em;
 }
-.reveal p, .reveal li { color: var(--body); line-height: 1.5; }
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: var(--text) !important;
+}
+
+.reveal p,
+.reveal li,
+.reveal td,
+.reveal th,
+.reveal span,
+.reveal small {
+  color: var(--body);
+  line-height: 1.5;
+}
+
+.reveal strong,
+.reveal b {
+  color: var(--text);
+}
 .subtitle { font-size: 1.05em; color: var(--muted); }
 .slide-subtitle { font-size: 0.85em; font-weight: 600; margin-bottom: 0.8em; }
 .slide-header { margin-bottom: 1em; }
