@@ -16,7 +16,8 @@ Point de depart code:
 
 Reference formateur:
 
-- `Corrections/tp-node-ts-mvc-json/` (a reserver au formateur)
+- `Corrections/tp-mvc-pur-typescript-2h/` (correction du sujet 2h)
+- `Corrections/tp-node-ts-mvc-json/` (version complete plus etoffee)
 
 ## Ordre conseille
 
@@ -43,6 +44,9 @@ Reference formateur:
 
 8. [07_diagrammes-uml-mini-app-gestion-films.md](./07_diagrammes-uml-mini-app-gestion-films.md)
    - Diagrammes UML a joindre au dossier
+
+9. [08_sujet-mvc-pur-typescript-2h.md](./08_sujet-mvc-pur-typescript-2h.md)
+   - Sujet court 2h en architecture en couches (Router/Controller/Service/Repository)
 
 ## Annexes UML
 
