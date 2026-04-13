@@ -163,15 +163,18 @@ code { font-family: 'JetBrains Mono', monospace !important; line-height: 1.6 !im
   font-weight: 700;
   font-size: 0.68em;
   letter-spacing: 0.02em;
-  color: #0b0b0b;
-  background: linear-gradient(90deg, var(--cyan), var(--green));
+  color: var(--cyan);
+  background: rgba(8, 8, 8, 0.78);
   padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid #0f172a;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 243, 255, 0.45);
+  backdrop-filter: blur(4px);
 }
 
 .menu-button:hover {
-  filter: brightness(1.05);
+  background: rgba(0, 243, 255, 0.12);
+  border-color: rgba(0, 243, 255, 0.9);
+  color: #ffffff;
 }
 
 .glossary-term {

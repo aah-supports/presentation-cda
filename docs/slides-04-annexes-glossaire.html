@@ -32,20 +32,19 @@
     .table th, .table td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: top; }
     .table th { color: var(--cyan); font-weight: 700; }
 
-    .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
-    .term { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; }
-    .term b { color: var(--cyan); display: block; margin-bottom: 4px; font-size: .9em; }
-    .term span { font-size: .76em; color: var(--body); }
+    .glossary-list { margin: 0; padding-left: 20px; }
+    .glossary-list li { margin-bottom: 10px; font-size: .72em; line-height: 1.45; color: var(--body); }
+    .glossary-list b { color: var(--cyan); }
 
     .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
     .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
 
     @media (max-width: 980px) {
-      .grid-2, .grid-3, .term-grid { grid-template-columns: 1fr; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
   
-    .home-link { position: fixed; top: 10px; right: 14px; z-index: 120; text-decoration: none; font-weight: 700; font-size: 0.62em; color: #0b0b0b; background: linear-gradient(90deg, var(--cyan), var(--green)); padding: 8px 12px; border-radius: 999px; border: 1px solid #0f172a; }
-    .home-link:hover { filter: brightness(1.05); }
+    .home-link { position: fixed; top: 12px; right: 16px; z-index: 120; text-decoration: none; font-weight: 700; font-size: 0.62em; color: var(--cyan); background: rgba(8, 8, 8, 0.78); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.45); backdrop-filter: blur(4px); }
+    .home-link:hover { background: rgba(0, 243, 255, 0.12); border-color: rgba(0, 243, 255, 0.9); color: #ffffff; }
   </style>
 </head>
 <body>
@@ -61,8 +60,8 @@
       </section>
 <section>
         <h2>Glossaire CDA</h2>
-        <p class="lead">Annexe complète intégrée: 69 termes du support original.</p>
-        <p class="small muted">Les slides suivantes sont générées automatiquement à partir du glossaire source.</p>
+        <p class="lead">Annexe intégrée sous forme de listes courtes pour faciliter la lecture.</p>
+        <p class="small muted">Chaque slide contient quelques termes seulement.</p>
       </section>
 <section>
         <h2>Conclusion</h2>
@@ -83,26 +82,20 @@
     function buildGlossarySlides(entries) {
       if (!Array.isArray(entries) || !entries.length) return;
       const root = document.getElementById('slidesRoot');
-      const chunkSize = 8;
+      const chunkSize = 6;
       let page = 1;
       for (let i = 0; i < entries.length; i += chunkSize) {
         const chunk = entries.slice(i, i + chunkSize);
         const section = document.createElement('section');
         section.innerHTML = `
-          <h2>Glossaire CDA (${page})</h2>
-          <div class="term-grid"></div>
+          <h2>Glossaire CDA - Liste ${page}</h2>
+          <ul class="glossary-list"></ul>
         `;
-        const grid = section.querySelector('.term-grid');
+        const list = section.querySelector('.glossary-list');
         chunk.forEach(({ term, definition }) => {
-          const item = document.createElement('div');
-          item.className = 'term';
-          const title = document.createElement('b');
-          title.textContent = term;
-          const body = document.createElement('span');
-          body.textContent = definition;
-          item.appendChild(title);
-          item.appendChild(body);
-          grid.appendChild(item);
+          const item = document.createElement('li');
+          item.innerHTML = `<b>${term}:</b> ${definition}`;
+          list.appendChild(item);
         });
         root.appendChild(section);
         page += 1;
