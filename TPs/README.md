@@ -56,6 +56,12 @@ Reference formateur:
 - [04_activite-rechercher-film.puml](./uml/04_activite-rechercher-film.puml)
 - [05_composants-architecture.puml](./uml/05_composants-architecture.puml)
 
+## Exercices TypeScript (courts)
+
+- [TPs/exercices/README.md](./exercices/README.md)
+  - Exo 1: MVC minimal (liste de films)
+  - Exo 2: Panier SOLID
+
 ## Critere de reussite TP
 
 En fin de TP, l'etudiant doit pouvoir montrer:
