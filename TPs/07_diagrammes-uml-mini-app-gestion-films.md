@@ -1,7 +1,8 @@
-# Diagrammes UML - Mini application Gestion de films
+# Diagrammes UML - Mini API Gestion de films
 
 ## 1. Objectif
-Ce document centralise les diagrammes UML a fournir dans un dossier CDA pour prouver la conception.
+
+Montrer une conception simple, coherent avec le code et le dossier CDA.
 
 ## 2. Fichiers UML fournis
 
@@ -11,35 +12,19 @@ Ce document centralise les diagrammes UML a fournir dans un dossier CDA pour pro
 - `TPs/uml/04_activite-rechercher-film.puml`
 - `TPs/uml/05_composants-architecture.puml`
 
-## 3. Comment les utiliser dans le dossier CDA
+## 3. Ou les mettre dans le dossier
 
-### 3.1 Partie "Specifications fonctionnelles"
-- Inserer le diagramme de cas d'utilisation
-- Inserer le diagramme d'activite (parcours de recherche)
+- Partie specs fonctionnelles: use case + activite
+- Partie specs techniques: classes + sequence + composants
 
-### 3.2 Partie "Specifications techniques"
-- Inserer le diagramme de classes
-- Inserer le diagramme de sequence (ajout film)
-- Inserer le diagramme de composants (architecture)
-
-### 3.3 Lien avec les autres documents du TP
-- `01_cahier-des-charges-...` : besoin et perimetre
-- `03_specifications-fonctionnelles-...` : fonctionnalites
-- `04_specifications-techniques-...` : choix techniques et securite
-
-## 4. Export en image (PNG/SVG)
-PlantUML n'etant pas installe dans cet environnement, les sources `.puml` sont fournies pretes a exporter.
-
-Exemple de commande locale (si PlantUML est installe):
+## 4. Export image
 
 ```bash
 plantuml -tsvg TPs/uml/*.puml
 ```
 
-Les images generees peuvent ensuite etre ajoutees dans le dossier CDA final.
+## 5. Conseil oral
 
-## 5. Conseils de presentation au jury
-- Montrer d'abord le cas d'utilisation (vue metier)
-- Enchainer avec sequence + classes (vue implementation)
-- Terminer par composants (vue architecture globale)
-- Rester coherent avec le code et les tests presentes
+- partir du use case (besoin)
+- expliquer ensuite sequence/classes (implementation)
+- finir par composants (vue globale)

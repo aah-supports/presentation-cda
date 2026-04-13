@@ -1,46 +1,55 @@
-# Dossier TPs
+# Dossier TPs - version guidee CDA
 
-## TP Mini Application Gestion de Films
+Objectif: realiser un mini projet CDA simple a partir du starter, en gardant une logique complete:
+
+- besoin
+- backlog
+- implementation
+- preuves
+- dossier
+
+Projet cible: **Mini API Gestion de films** (Node.js + TypeScript + Docker).
+
+Point de depart code:
+
+- `stater/` (starter etudiant)
+
+Reference formateur:
+
+- `Corrections/tp-node-ts-mvc-json/`
+
+## Ordre conseille
 
 1. `00_maquette-dossier-cda-mini-app-gestion-films.md`
-   - Trame complete du dossier CDA prete a remplir
+   - Trame finale du dossier CDA
 
 2. `01_cahier-des-charges-mini-app-gestion-films.md`
-   - Besoin, perimetre, exigences, criteres d'acceptation globaux, planning 3h.
+   - Cadrage simple du besoin et du scope
 
 3. `02_backlog-et-sprint-mini-app-gestion-films.md`
-   - User stories formalisees
-   - Refinement
-   - Planning poker
-   - Product backlog priorise
-   - Sprint backlog detaille
-   - Checklist de verification
+   - User Stories, backlog, sprint 3h
 
 4. `03_specifications-fonctionnelles-mini-app-gestion-films.md`
-   - Specification fonctionnelle complete (SF-01 a SF-04)
-   - Regles de gestion
-   - Exigences non fonctionnelles associees
-   - Matrice de tracabilite
+   - Ce que doit faire l'API (vue metier)
 
 5. `04_specifications-techniques-mini-app-gestion-films.md`
-   - Architecture technique
-   - Endpoints API
-   - Securite (risques, mesures, preuves)
-   - Qualite, tests et tracabilite
+   - Comment c'est implemente (vue technique + securite)
 
 6. `05_veille-securite-mini-app-gestion-films.md`
-   - Methode de veille securite
-   - Journal date des alertes et actions
-   - Application concrete au projet
-   - Indicateurs et pieces justificatives
+   - Trace de veille pendant le TP
 
 7. `06_situation-de-recherche-mini-app-gestion-films.md`
-   - Situation de travail reelle
-   - Demarche de recherche et analyse des options
-   - Solution retenue, resultat et capitalisation
+   - Exemple de probleme resolu par recherche
 
 8. `07_diagrammes-uml-mini-app-gestion-films.md`
-   - Pack UML (cas d'utilisation, classes, sequence, activite, composants)
-   - Emplacement conseille dans le dossier CDA
+   - Diagrammes UML a joindre au dossier
 
-Ces documents forment une chaine complete: besoin -> backlog -> sprint execution.
+## Critere de reussite TP
+
+En fin de TP, l'etudiant doit pouvoir montrer:
+
+- un projet demarrable avec Docker
+- endpoints principaux operationnels
+- backlog + sprint traces
+- specs fonctionnelles et techniques coherentes
+- preuves de tests et de securite
