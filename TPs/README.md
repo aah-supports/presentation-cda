@@ -12,37 +12,45 @@ Projet cible: **Mini API Gestion de films** (Node.js + TypeScript + Docker).
 
 Point de depart code:
 
-- `stater/` (starter etudiant)
+- [Starter etudiant](../stater/README.md)
 
 Reference formateur:
 
-- `Corrections/tp-node-ts-mvc-json/`
+- `Corrections/tp-node-ts-mvc-json/` (a reserver au formateur)
 
 ## Ordre conseille
 
-1. `00_maquette-dossier-cda-mini-app-gestion-films.md`
+1. [00_maquette-dossier-cda-mini-app-gestion-films.md](./00_maquette-dossier-cda-mini-app-gestion-films.md)
    - Trame finale du dossier CDA
 
-2. `01_cahier-des-charges-mini-app-gestion-films.md`
+2. [01_cahier-des-charges-mini-app-gestion-films.md](./01_cahier-des-charges-mini-app-gestion-films.md)
    - Cadrage simple du besoin et du scope
 
-3. `02_backlog-et-sprint-mini-app-gestion-films.md`
+3. [02_backlog-et-sprint-mini-app-gestion-films.md](./02_backlog-et-sprint-mini-app-gestion-films.md)
    - User Stories, backlog, sprint 3h
 
-4. `03_specifications-fonctionnelles-mini-app-gestion-films.md`
+4. [03_specifications-fonctionnelles-mini-app-gestion-films.md](./03_specifications-fonctionnelles-mini-app-gestion-films.md)
    - Ce que doit faire l'API (vue metier)
 
-5. `04_specifications-techniques-mini-app-gestion-films.md`
+5. [04_specifications-techniques-mini-app-gestion-films.md](./04_specifications-techniques-mini-app-gestion-films.md)
    - Comment c'est implemente (vue technique + securite)
 
-6. `05_veille-securite-mini-app-gestion-films.md`
+6. [05_veille-securite-mini-app-gestion-films.md](./05_veille-securite-mini-app-gestion-films.md)
    - Trace de veille pendant le TP
 
-7. `06_situation-de-recherche-mini-app-gestion-films.md`
+7. [06_situation-de-recherche-mini-app-gestion-films.md](./06_situation-de-recherche-mini-app-gestion-films.md)
    - Exemple de probleme resolu par recherche
 
-8. `07_diagrammes-uml-mini-app-gestion-films.md`
+8. [07_diagrammes-uml-mini-app-gestion-films.md](./07_diagrammes-uml-mini-app-gestion-films.md)
    - Diagrammes UML a joindre au dossier
+
+## Annexes UML
+
+- [01_use-case-gestion-films.puml](./uml/01_use-case-gestion-films.puml)
+- [02_classes-gestion-films.puml](./uml/02_classes-gestion-films.puml)
+- [03_sequence-ajouter-film.puml](./uml/03_sequence-ajouter-film.puml)
+- [04_activite-rechercher-film.puml](./uml/04_activite-rechercher-film.puml)
+- [05_composants-architecture.puml](./uml/05_composants-architecture.puml)
 
 ## Critere de reussite TP
 
