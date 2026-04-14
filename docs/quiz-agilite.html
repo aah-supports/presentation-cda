@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Agile - Questions/Reponses</title>
+  <style>
+    :root {
+      --bg: #080808;
+      --bg2: #111111;
+      --text: #ffffff;
+      --body: #d1d5db;
+      --muted: #8b8b8b;
+      --border: #222222;
+      --cyan: #00f3ff;
+      --purple: #a78bfa;
+      --green: #10b981;
+      --orange: #ff6b00;
+      --danger: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--body);
+      background:
+        radial-gradient(900px 500px at 10% 0%, #0d1f22 0%, transparent 55%),
+        radial-gradient(700px 500px at 90% 100%, #24121c 0%, transparent 55%),
+        var(--bg);
+      padding: 28px;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .home-link {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--cyan);
+      border: 1px solid #00f3ff66;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: rgba(0, 243, 255, 0.08);
+    }
+    .home-link:hover {
+      color: #fff;
+      border-color: #00f3ffcc;
+      background: rgba(0, 243, 255, 0.2);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--cyan);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+    .layout {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .card {
+      background: linear-gradient(180deg, #0f1112 0%, #0b0b0b 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+    }
+    .progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+    }
+    .theme {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: var(--purple);
+      background: rgba(167, 139, 250, 0.08);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .progress-bar {
+      height: 7px;
+      width: 100%;
+      background: #1a1a1a;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #1f1f1f;
+      margin-bottom: 16px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+      transition: width .25s ease;
+    }
+    .question {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--text);
+      line-height: 1.35;
+      margin: 0 0 14px;
+      min-height: 58px;
+    }
+    .answer {
+      margin: 0 0 16px;
+      border-left: 3px solid var(--cyan);
+      background: rgba(0, 243, 255, 0.08);
+      padding: 12px 12px 12px 14px;
+      border-radius: 8px;
+      display: none;
+      color: #cdeff2;
+      line-height: 1.45;
+    }
+    .answer.visible { display: block; }
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #121212;
+      color: var(--body);
+      border-radius: 10px;
+      font-weight: 700;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    button.primary {
+      color: #041013;
+      background: linear-gradient(90deg, var(--cyan), #63e6eb);
+      border-color: #00f3ff55;
+    }
+    button.good {
+      color: #032514;
+      background: linear-gradient(90deg, #34d399, #10b981);
+      border-color: #10b98177;
+    }
+    button.warn {
+      color: #fff3f6;
+      background: linear-gradient(90deg, #fb7185, #f43f5e);
+      border-color: #fb718577;
+    }
+    button:hover { filter: brightness(1.05); }
+    .stats {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .stat {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat b {
+      display: block;
+      color: var(--text);
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+    }
+    .stat small { color: var(--muted); }
+    .hint {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    @media (max-width: 720px) {
+      body { padding: 16px; }
+      .stats { grid-template-columns: 1fr; }
+      .top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="top">
+      <div>
+        <span class="badge">Atelier interactif</span>
+        <h1>Questions/Reponses - Agilite Scrum</h1>
+        <p class="subtitle">Utilisable en cours: affiche une question, revele la reponse, puis passe a la suivante.</p>
+      </div>
+      <a class="home-link" href="index.html">Retour accueil</a>
+    </div>
+
+    <section class="card">
+      <div class="progress-meta">
+        <span id="counter">Question 1/1</span>
+        <span class="theme" id="themeTag">-</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <p class="question" id="questionText"></p>
+      <p class="answer" id="answerText"></p>
+      <div class="controls">
+        <button class="primary" id="btnReveal">Afficher la reponse</button>
+        <button id="btnNext">Question suivante</button>
+        <button id="btnShuffle">Melanger</button>
+      </div>
+      <div class="controls" style="margin-top:10px;">
+        <button class="good" id="btnKnown">Je maitrise</button>
+        <button class="warn" id="btnReview">A revoir</button>
+        <button id="btnReset">Reinitialiser suivi</button>
+      </div>
+      <p class="hint">Raccourcis: <code>Espace</code> (reponse), <code>→</code> (suivante), <code>M</code> (melanger).</p>
+    </section>
+
+    <section class="card">
+      <div class="stats">
+        <div class="stat">
+          <b id="knownCount">0</b>
+          <small>Questions maitrisees</small>
+        </div>
+        <div class="stat">
+          <b id="reviewCount">0</b>
+          <small>Questions a revoir</small>
+        </div>
+        <div class="stat">
+          <b id="remainingCount">0</b>
+          <small>Questions non evaluees</small>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const questions = [
+      { theme: "Cadre Agile", q: "Qu'est-ce que l'agilite dans un projet logiciel ?", a: "Une approche iterative et collaborative qui livre de la valeur regulierement, s'adapte aux changements et s'appuie sur le feedback continu." },
+      { theme: "Cadre Agile", q: "Quelle difference entre Agile et Scrum ?", a: "Agile est une famille de principes. Scrum est un cadre de travail concret pour appliquer ces principes en equipe." },
+      { theme: "Scrum", q: "Qu'est-ce qu'un Sprint ?", a: "Une periode courte et time-boxee (souvent 1 a 4 semaines) pendant laquelle l'equipe construit un Increment potentiellement livrable." },
+      { theme: "Scrum", q: "A quoi sert le Sprint Planning ?", a: "A definir l'objectif du Sprint, selectionner les Product Backlog Items et planifier le travail pour les realiser." },
+      { theme: "Scrum", q: "Quel est le but du Daily Stand-up ?", a: "Synchroniser l'equipe, suivre l'avancement vers l'objectif du Sprint et identifier rapidement les blocages." },
+      { theme: "Scrum", q: "Que se passe-t-il en Sprint Review ?", a: "L'equipe presente l'increment aux parties prenantes, recueille du feedback et ajuste le backlog si necessaire." },
+      { theme: "Scrum", q: "A quoi sert la Retrospective ?", a: "A ameliorer la facon de travailler de l'equipe (process, collaboration, qualite) pour le Sprint suivant." },
+      { theme: "Roles", q: "Role principal du Product Owner ?", a: "Maximiser la valeur produite: il gere et priorise le Product Backlog en fonction des besoins metier." },
+      { theme: "Roles", q: "Role principal du Scrum Master ?", a: "Faciliter Scrum, lever les impediments, proteger l'equipe et faire progresser l'organisation sur l'agilite." },
+      { theme: "Artefacts", q: "Qu'est-ce qu'un Product Backlog ?", a: "Une liste ordonnee des besoins du produit (features, ameliorations, corrections), maintenue et priorisee par le Product Owner." },
+      { theme: "Artefacts", q: "Qu'est-ce que la Definition of Done (DoD) ?", a: "Un accord d'equipe sur les criteres de qualite minimum pour considerer un travail termine et presentable." },
+      { theme: "Estimation", q: "Pourquoi utiliser Planning Poker ?", a: "Pour estimer collectivement une User Story en points, reduire les biais et faire emerger les incertitudes." },
+      { theme: "Estimation", q: "Les points d'une User Story representent quoi ?", a: "Un melange de complexite, risque et incertitude relative. Ce n'est pas une duree en heures." },
+      { theme: "Estimation", q: "Quand faire le refinement ?", a: "Avant la planification du Sprint, de maniere reguliere, pour clarifier et decouper les US afin de mieux les estimer." },
+      { theme: "Priorisation", q: "A quoi sert la priorisation Must/Should/Could ?", a: "A trier les besoins selon leur valeur et leur urgence pour proteger le MVP et gerer le temps disponible." },
+      { theme: "Flux", q: "Difference rapide entre Scrum et Kanban ?", a: "Scrum cadence le travail par Sprints. Kanban optimise un flux continu avec limites de travail en cours." },
+      { theme: "Qualite", q: "Pourquoi la qualite est un sujet Agile central ?", a: "Parce que livrer souvent sans qualite cree de la dette technique et bloque la vitesse future." },
+      { theme: "Livrables", q: "Quel livrable simple prouve une bonne estimation d'equipe ?", a: "Un tableau avec US, criteres d'acceptation, votes initiaux, vote final, points retenus et justification." }
+    ];
+
+    let order = questions.map((_, i) => i);
+    let current = 0;
+    const tracking = new Map();
+
+    const counter = document.getElementById("counter");
+    const themeTag = document.getElementById("themeTag");
+    const questionText = document.getElementById("questionText");
+    const answerText = document.getElementById("answerText");
+    const progressFill = document.getElementById("progressFill");
+    const knownCount = document.getElementById("knownCount");
+    const reviewCount = document.getElementById("reviewCount");
+    const remainingCount = document.getElementById("remainingCount");
+
+    const btnReveal = document.getElementById("btnReveal");
+    const btnNext = document.getElementById("btnNext");
+    const btnShuffle = document.getElementById("btnShuffle");
+    const btnKnown = document.getElementById("btnKnown");
+    const btnReview = document.getElementById("btnReview");
+    const btnReset = document.getElementById("btnReset");
+
+    function render() {
+      const q = questions[order[current]];
+      counter.textContent = `Question ${current + 1}/${order.length}`;
+      themeTag.textContent = q.theme;
+      questionText.textContent = q.q;
+      answerText.textContent = q.a;
+      answerText.classList.remove("visible");
+      btnReveal.textContent = "Afficher la reponse";
+      progressFill.style.width = `${((current + 1) / order.length) * 100}%`;
+      updateStats();
+    }
+
+    function updateStats() {
+      let known = 0;
+      let review = 0;
+      for (const v of tracking.values()) {
+        if (v === "known") known += 1;
+        if (v === "review") review += 1;
+      }
+      knownCount.textContent = String(known);
+      reviewCount.textContent = String(review);
+      remainingCount.textContent = String(questions.length - known - review);
+    }
+
+    function revealToggle() {
+      const visible = answerText.classList.toggle("visible");
+      btnReveal.textContent = visible ? "Masquer la reponse" : "Afficher la reponse";
+    }
+
+    function nextQuestion() {
+      current = (current + 1) % order.length;
+      render();
+    }
+
+    function shuffleQuestions() {
+      for (let i = order.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = order[i];
+        order[i] = order[j];
+        order[j] = tmp;
+      }
+      current = 0;
+      render();
+    }
+
+    function mark(value) {
+      const idx = order[current];
+      tracking.set(idx, value);
+      nextQuestion();
+    }
+
+    function resetTracking() {
+      tracking.clear();
+      render();
+    }
+
+    btnReveal.addEventListener("click", revealToggle);
+    btnNext.addEventListener("click", nextQuestion);
+    btnShuffle.addEventListener("click", shuffleQuestions);
+    btnKnown.addEventListener("click", () => mark("known"));
+    btnReview.addEventListener("click", () => mark("review"));
+    btnReset.addEventListener("click", resetTracking);
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === " " || event.key === "Spacebar") {
+        event.preventDefault();
+        revealToggle();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        nextQuestion();
+      }
+      if (event.key.toLowerCase() === "m") {
+        event.preventDefault();
+        shuffleQuestions();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
