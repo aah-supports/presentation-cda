@@ -1,0 +1,213 @@
+DOSSIER PROJET CDA - MODELE PERSONNALISE
+Version: 2026-04-14
+
+Consigne generale
+- Ce document est une trame personnalisable pour la soutenance CDA.
+- Remplacer chaque zone [A COMPLETER] par vos informations reelles.
+- Joindre des preuves concretes (captures, extraits de code, liens Git, tests).
+
+================================================================
+0. PAGE DE GARDE
+================================================================
+Projet: [Nom du projet]
+Candidat: [Nom Prenom]
+Session: [Date de session]
+Entreprise / contexte: [Entreprise ou projet personnel]
+Stack principale: [Ex: Node.js, TypeScript, PostgreSQL, Docker]
+
+================================================================
+1. SYNTHÈSE EXECUTIVE DU PROJET
+================================================================
+1.1 Resume en francais (10 a 15 lignes)
+[A COMPLETER]
+
+1.2 Abstract en anglais (200 a 250 words)
+[A COMPLETER]
+
+1.3 Valeur du projet
+- Probleme adresse: [A COMPLETER]
+- Utilisateurs cibles: [A COMPLETER]
+- Resultat attendu: [A COMPLETER]
+
+================================================================
+2. EXPRESSION DU BESOIN ET PERIMETRE
+================================================================
+2.1 Contexte de depart
+[A COMPLETER]
+
+2.2 Objectifs mesurables
+- Objectif 1: [A COMPLETER]
+- Objectif 2: [A COMPLETER]
+
+2.3 Perimetre
+- In scope: [A COMPLETER]
+- Out of scope: [A COMPLETER]
+
+2.4 Contraintes
+- Delai: [A COMPLETER]
+- Technique: [A COMPLETER]
+- Budget / ressources: [A COMPLETER]
+
+================================================================
+3. ORGANISATION PROJET (GESTION ET SUIVI)
+================================================================
+3.1 Methode de travail choisie
+[A COMPLETER: Scrum, Kanban, cycle en V, hybride]
+
+3.2 Roles et interactions
+- Product owner / client: [A COMPLETER]
+- Developpement: [A COMPLETER]
+- Validation / recette: [A COMPLETER]
+
+3.3 Outils utilises
+- Suivi: [Trello / Jira / autre]
+- Documentation: [Notion / Confluence / autre]
+- Versionning: [GitHub / GitLab]
+
+3.4 Pilotage
+- Planning (jalons): [A COMPLETER]
+- Risques principaux + plan d'action: [A COMPLETER]
+
+================================================================
+4. CONCEPTION FONCTIONNELLE
+================================================================
+4.1 Acteurs et besoins
+[A COMPLETER]
+
+4.2 Parcours utilisateur principal
+[A COMPLETER]
+
+4.3 Backlog fonctionnel (vision)
+- Epic / User stories prioritaires: [A COMPLETER]
+- Criteres d'acceptation (Given/When/Then): [A COMPLETER]
+
+4.4 Diagrammes fonctionnels
+- Cas d'utilisation UML: [A COMPLETER]
+- Activite (workflow): [A COMPLETER]
+
+================================================================
+5. CONCEPTION TECHNIQUE ET SECURITE
+================================================================
+5.1 Architecture retenue
+[A COMPLETER: ex. MVC, API REST, separation en couches]
+
+5.2 Modele de donnees
+- MCD / MLD / MPD (si applicable): [A COMPLETER]
+- Diagramme de classes UML: [A COMPLETER]
+
+5.3 Contrats API / interfaces
+- Endpoints principaux: [A COMPLETER]
+- Formats d'entree/sortie JSON: [A COMPLETER]
+- Documentation API: [A COMPLETER]
+
+5.4 Securite integree
+- Authentification / autorisation: [A COMPLETER]
+- Validation des entrees: [A COMPLETER]
+- Protection des donnees: [A COMPLETER]
+
+================================================================
+6. REALISATIONS MAJEURES (3 A 5 EXEMPLES)
+================================================================
+Pour chaque realisation, utiliser le format:
+- Contexte
+- Action realisee
+- Resultat obtenu
+- Preuve (code, commit, capture, URL)
+
+Realisation 1: [Titre]
+[A COMPLETER]
+
+Realisation 2: [Titre]
+[A COMPLETER]
+
+Realisation 3: [Titre]
+[A COMPLETER]
+
+================================================================
+7. QUALITE ET VALIDATION
+================================================================
+7.1 Fonctionnalite representative testee
+[A COMPLETER]
+
+7.2 Jeu d'essai
+- Donnees en entree: [A COMPLETER]
+- Resultat attendu: [A COMPLETER]
+- Resultat obtenu: [A COMPLETER]
+
+7.3 Bilan des tests
+- Tests passes: [A COMPLETER]
+- Ecarts constates: [A COMPLETER]
+- Corrections effectuees: [A COMPLETER]
+
+================================================================
+8. MISE EN PRODUCTION / EXPLOITATION
+================================================================
+8.1 Environnements
+[A COMPLETER: dev, recette, prod]
+
+8.2 Deploiement
+[A COMPLETER: pipeline CI/CD, etapes manuelles, rollback]
+
+8.3 Supervision / monitoring
+[A COMPLETER: logs, indicateurs, alertes]
+
+================================================================
+9. VEILLE SECURITE DU CANDIDAT
+================================================================
+9.1 Organisation de la veille
+- Frequence: [A COMPLETER]
+- Sources: [A COMPLETER]
+- Methode de tri: [A COMPLETER]
+
+9.2 Application au projet
+- Vulnerabilite suivie: [A COMPLETER]
+- Impact potentiel: [A COMPLETER]
+- Mesure prise: [A COMPLETER]
+
+================================================================
+10. SITUATION DE RECHERCHE TECHNIQUE
+================================================================
+10.1 Probleme rencontre
+[A COMPLETER]
+
+10.2 Demarche de recherche
+- Mots-cles utilises: [A COMPLETER]
+- Sources retenues (FR/EN): [A COMPLETER]
+- Critere de selection: [A COMPLETER]
+
+10.3 Exploitation
+- Solution retenue: [A COMPLETER]
+- Adaptation au projet: [A COMPLETER]
+- Preuve (code, test, capture): [A COMPLETER]
+
+================================================================
+11. BILAN PROFESSIONNEL
+================================================================
+11.1 Ce que j'ai appris
+[A COMPLETER]
+
+11.2 Limites actuelles
+[A COMPLETER]
+
+11.3 Suite envisagee
+[A COMPLETER]
+
+================================================================
+12. ANNEXES
+================================================================
+- Liens depot Git
+- Diagrammes UML / MERISE
+- Captures d'ecrans
+- Extraits de code complementaires
+- Documents de pilotage
+
+================================================================
+CHECKLIST FINALE AVANT SOUTENANCE
+================================================================
+[ ] Le dossier est coherent de bout en bout.
+[ ] Chaque competence revendiquee est prouvee.
+[ ] Les sections vides ont ete supprimees ou completees.
+[ ] Les exemples de code sont relies a un besoin reel.
+[ ] Le jeu d'essai contient attendu + obtenu + analyse.
+[ ] La veille securite est datee et exploitee.
+[ ] La situation de recherche est argumentee.
