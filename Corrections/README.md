@@ -29,3 +29,9 @@ Ce dossier contient des corrections de TP.
   - Correction du sujet `TPs/10_tp-final-diagrammes-uml-gestion-films.md`
   - 5 diagrammes UML corriges (use case, classes, sequence, activite, composants)
   - Fichiers PlantUML prets a exporter
+
+- `tp-conception-merise-uml-films-art-essai/`
+  - Correction du sujet `TPs/13_tp-conception-merise-uml-films-art-essai.md`
+  - Distinction MCD / MLD / MPD sur le fil rouge films d'art et essai
+  - UML corrige: use case (include/extend/heritage), activite, sequence
+  - MPD SQL corrige avec contraintes et index

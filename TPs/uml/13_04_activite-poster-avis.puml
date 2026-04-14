@@ -1,0 +1,19 @@
+@startuml
+start
+:Utilisateur soumet un avis;
+:Vérifier authenticité utilisateur;
+if (Utilisateur authentifié ?) then (oui)
+  :Vérifier note/commentaire;
+  if (Données valides ?) then (oui)
+    :Enregistrer avis;
+    :Notifier modération;
+    stop
+  else (non)
+    :Retourner erreur 422;
+    stop
+  endif
+else (non)
+  :Retourner erreur 401;
+  stop
+endif
+@enduml

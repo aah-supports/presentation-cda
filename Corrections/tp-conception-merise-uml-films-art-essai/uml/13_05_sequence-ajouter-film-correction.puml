@@ -1,0 +1,31 @@
+@startuml
+actor Administrateur as Admin
+participant "FilmController" as Controller
+participant "FilmService" as Service
+participant "FilmRepository" as Repo
+database "PostgreSQL" as DB
+
+Admin -> Controller: POST /api/films
+Controller -> Service: createFilm(payload)
+Service -> Service: validate(payload)
+alt payload invalide
+  Service --> Controller: ValidationError
+  Controller --> Admin: 422 Unprocessable Entity
+else payload valide
+  Service -> Repo: existsByTitleAndYear(title, annee)
+  Repo -> DB: SELECT 1 FROM film ...
+  DB --> Repo: found / not found
+  Repo --> Service: boolean
+  alt deja existant
+    Service --> Controller: ConflictError
+    Controller --> Admin: 409 Conflict
+  else nouveau film
+    Service -> Repo: save(film)
+    Repo -> DB: INSERT INTO film ...
+    DB --> Repo: id_film
+    Repo --> Service: Film
+    Service --> Controller: FilmDTO
+    Controller --> Admin: 201 Created
+  end
+end
+@enduml

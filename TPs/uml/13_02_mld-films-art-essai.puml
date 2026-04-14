@@ -1,0 +1,51 @@
+@startuml
+' MLD - vocabulaire relationnel: Table, Clé primaire, Clé étrangère
+
+entity "film" as t_film {
+  * id_film : PK
+  --
+  titre
+  annee_sortie
+  synopsis
+  id_realisateur : FK
+}
+
+entity "realisateur" as t_director {
+  * id_realisateur : PK
+  --
+  nom
+}
+
+entity "genre" as t_genre {
+  * id_genre : PK
+  --
+  libelle
+}
+
+entity "film_genre" as t_film_genre {
+  * id_film : PK, FK
+  * id_genre : PK, FK
+}
+
+entity "utilisateur" as t_user {
+  * id_utilisateur : PK
+  --
+  pseudo
+}
+
+entity "avis" as t_review {
+  * id_avis : PK
+  --
+  note
+  commentaire
+  id_film : FK
+  id_utilisateur : FK
+}
+
+t_director ||--o{ t_film
+t_film ||--o{ t_review
+t_user ||--o{ t_review
+t_film ||--o{ t_film_genre
+t_genre ||--o{ t_film_genre
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+start
+:Utilisateur saisit note + commentaire;
+:Verifier authentification;
+if (Utilisateur connecte ?) then (oui)
+  :Verifier format et longueur;
+  if (Donnees valides ?) then (oui)
+    :Verifier si avis deja present;
+    if (Avis deja existant ?) then (oui)
+      :Retourner erreur 409;
+      stop
+    else (non)
+      :Enregistrer avis;
+      :Retourner 201 Created;
+      stop
+    endif
+  else (non)
+    :Retourner erreur 422;
+    stop
+  endif
+else (non)
+  :Retourner erreur 401;
+  stop
+endif
+@enduml

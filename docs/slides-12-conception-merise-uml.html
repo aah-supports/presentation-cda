@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA - Conception MERISE & UML</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <style>
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--cyan); font-size: 0.62em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .lead { font-size: .95em; color: var(--text); }
+    .small { font-size: .72em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .card h3 { font-size: .8em; margin: 0 0 8px; color: var(--cyan); }
+    .card p { margin: 0; font-size: .72em; }
+    .table { width: 100%; border-collapse: collapse; font-size: .6em; }
+    .table th, .table td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: top; }
+    .table th { color: var(--cyan); font-weight: 700; }
+    .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
+    .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
+    .home-link { position: fixed; top: 12px; right: 16px; z-index: 120; text-decoration: none; font-weight: 700; font-size: 0.62em; color: var(--cyan); background: rgba(8, 8, 8, 0.78); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.45); backdrop-filter: blur(4px); }
+    .home-link:hover { background: rgba(0, 243, 255, 0.12); border-color: rgba(0, 243, 255, 0.9); color: #ffffff; }
+    @media (max-width: 980px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="global-progress" aria-hidden="true"><div class="global-progress-fill" id="globalProgressFill"></div></div>
+  <a class="home-link" href="index.html">Accueil</a>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <span class="badge">Conception</span>
+        <h1>MERISE & UML (essentiel CDA)</h1>
+        <p class="lead">Distinguer les niveaux de modélisation et utiliser le bon vocabulaire.</p>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+
+      <section>
+        <h2>MCD / MLD / MPD</h2>
+        <div class="grid-3 small">
+          <div class="card"><h3>MCD</h3><p>Vision métier: entités, associations, cardinalités, identifiants, attributs.</p></div>
+          <div class="card"><h3>MLD</h3><p>Vision relationnelle: tables, clés primaires/étrangères, transformation des cardinalités.</p></div>
+          <div class="card"><h3>MPD</h3><p>Vision physique: SQL, types, contraintes, index, scripts de création.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Vocabulaire exact attendu</h2>
+        <table class="table">
+          <thead><tr><th>Niveau</th><th>Termes corrects</th><th>À éviter</th></tr></thead>
+          <tbody>
+            <tr><td>MCD</td><td>Entité, association, cardinalité, identifiant, attribut</td><td>Table, clé, champ</td></tr>
+            <tr><td>MLD</td><td>Table, clé primaire, clé étrangère</td><td>Mélanger avec le vocabulaire MCD</td></tr>
+            <tr><td>MPD</td><td>Types SQL, contraintes, index, DDL</td><td>Rester trop abstrait</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Cardinalités MCD</h2>
+        <ul class="bullet-list small">
+          <li><code>0,1</code> : participation optionnelle, au plus une occurrence.</li>
+          <li><code>1,1</code> : participation obligatoire, exactement une occurrence.</li>
+          <li><code>0,n</code> : participation optionnelle, plusieurs occurrences possibles.</li>
+          <li><code>1,n</code> : participation obligatoire, plusieurs occurrences possibles.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Passage MCD -&gt; MLD</h2>
+        <ul class="bullet-list small">
+          <li><code>0,1/1,1</code> vers <code>0,n/1,n</code> : clé étrangère du côté <code>n</code>.</li>
+          <li><code>0,n/1,n</code> vers <code>0,n/1,n</code> : table associative obligatoire.</li>
+          <li>Conserver la traçabilité: association MCD -> structure MLD.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>UML: quand utiliser quoi ?</h2>
+        <div class="grid-2 small">
+          <div class="card"><h3>Use Case</h3><p>Qui fait quoi ? Acteurs + services rendus.</p></div>
+          <div class="card"><h3>Activité</h3><p>Quel flux métier ? Étapes + décisions.</p></div>
+          <div class="card"><h3>Séquence</h3><p>Qui appelle qui dans le temps ?</p></div>
+          <div class="card"><h3>Classes</h3><p>Quelle structure métier (entités/relations) ?</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Use Case: include / extend / héritage</h2>
+        <ul class="bullet-list small">
+          <li><code>&lt;&lt;include&gt;&gt;</code> : comportement obligatoire réutilisé.</li>
+          <li><code>&lt;&lt;extend&gt;&gt;</code> : comportement optionnel/conditionnel.</li>
+          <li><code>Héritage</code> : acteur spécialisé qui reprend les cas d'un acteur parent.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Fil rouge films d'art et essai</h2>
+        <ul class="bullet-list small">
+          <li>MCD: entités <code>Film</code>, <code>Genre</code>, <code>Réalisateur</code>.</li>
+          <li>MLD: table associative <code>film_genre</code> pour le <code>n,n</code>.</li>
+          <li>UML Use Case: <code>Consulter catalogue</code>, <code>Noter film</code>, <code>Modérer avis</code>.</li>
+          <li>Objectif soutenance: montrer la cohérence MCD -> MLD -> SQL + UML justifié.</li>
+        </ul>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="assets/reveal-offline-stub.js"></script>
+  <script>
+    const deck = new Reveal();
+    deck.initialize({ hash:true, controls:true, progress:false, slideNumber:true, center:false, transition:'fade', backgroundTransition:'fade' });
+    const fill = document.getElementById('globalProgressFill');
+    const update = () => {
+      const total = Math.max(1, deck.getTotalSlides() - 1);
+      const index = deck.getSlidePastCount();
+      fill.style.width = `${(index/total)*100}%`;
+    };
+    deck.on('ready', update);
+    deck.on('slidechanged', update);
+  </script>
+</body>
+</html>

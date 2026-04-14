@@ -1,0 +1,42 @@
+@startuml
+' MCD - vocabulaire MERISE: Entité, Association, Cardinalité, Identifiant, Attribut
+
+entity "Film" as Film {
+  *id_film : Identifiant
+  --
+  titre : Attribut
+  annee_sortie : Attribut
+  synopsis : Attribut
+}
+
+entity "Réalisateur" as Director {
+  *id_realisateur : Identifiant
+  --
+  nom : Attribut
+}
+
+entity "Genre" as Genre {
+  *id_genre : Identifiant
+  --
+  libelle : Attribut
+}
+
+entity "Utilisateur" as User {
+  *id_utilisateur : Identifiant
+  --
+  pseudo : Attribut
+}
+
+entity "Avis" as Review {
+  *id_avis : Identifiant
+  --
+  note : Attribut
+  commentaire : Attribut
+}
+
+Film ||--o{ Review : "0,n"
+User ||--o{ Review : "0,n"
+Director ||--o{ Film : "0,n"
+Film }o--o{ Genre : "0,n - 0,n"
+
+@enduml

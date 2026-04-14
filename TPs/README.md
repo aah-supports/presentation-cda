@@ -34,6 +34,11 @@ Reference formateur:
 - [12_glossaire-technique-gestion-projet.md](./12_glossaire-technique-gestion-projet.md)
   - Definitions techniques (cadrage, backlog, agile, planification, risques, qualite)
 
+## Support de cours conception
+
+- [supports/12_chap-conception-merise-uml.md](../supports/12_chap-conception-merise-uml.md)
+  - Base theorique MERISE + UML pour preparer le TP 13
+
 ## Ordre conseille
 
 1. [00_documenter-api-mini-app-gestion-films.md](./00_documenter-api-mini-app-gestion-films.md)
@@ -73,6 +78,9 @@ Reference formateur:
 12. [10_tp-final-diagrammes-uml-gestion-films.md](./10_tp-final-diagrammes-uml-gestion-films.md)
    - Atelier final 100% UML (use case, classes, sequence, activite, composants)
 
+13. [13_tp-conception-merise-uml-films-art-essai.md](./13_tp-conception-merise-uml-films-art-essai.md)
+   - Atelier conception 2h: MCD, MLD, MPD et UML (use case, activite, sequence)
+
 ## Annexes UML
 
 - [01_use-case-gestion-films.puml](./uml/01_use-case-gestion-films.puml)
@@ -86,6 +94,12 @@ Reference formateur:
 - [10_04_activite-associer-acteur-tp-final.puml](./uml/10_04_activite-associer-acteur-tp-final.puml)
 - [10_05_composants-tp-final.puml](./uml/10_05_composants-tp-final.puml)
 - [11_01_use-case-j1-lms-cda.puml](./uml/11_01_use-case-j1-lms-cda.puml)
+- [13_01_mcd-films-art-essai.puml](./uml/13_01_mcd-films-art-essai.puml)
+- [13_02_mld-films-art-essai.puml](./uml/13_02_mld-films-art-essai.puml)
+- [13_03_usecase-films-art-essai.puml](./uml/13_03_usecase-films-art-essai.puml)
+- [13_04_activite-poster-avis.puml](./uml/13_04_activite-poster-avis.puml)
+- [13_05_sequence-ajouter-film.puml](./uml/13_05_sequence-ajouter-film.puml)
+- [13_06_mpd-films-art-essai.sql](./uml/13_06_mpd-films-art-essai.sql)
 
 ## Exercices TypeScript (courts)
 

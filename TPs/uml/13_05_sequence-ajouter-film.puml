@@ -1,0 +1,22 @@
+@startuml
+actor Administrateur as Admin
+participant "FilmController" as Controller
+participant "FilmService" as Service
+participant "FilmRepository" as Repo
+database "PostgreSQL" as DB
+
+Admin -> Controller: POST /api/films
+Controller -> Service: createFilm(payload)
+Service -> Service: validate(payload)
+alt payload invalide
+  Service --> Controller: ValidationError
+  Controller --> Admin: 422
+else payload valide
+  Service -> Repo: save(film)
+  Repo -> DB: INSERT film
+  DB --> Repo: id_film
+  Repo --> Service: Film
+  Service --> Controller: FilmDTO
+  Controller --> Admin: 201 Created
+end
+@enduml
