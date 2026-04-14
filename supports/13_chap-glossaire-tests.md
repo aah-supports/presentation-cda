@@ -44,6 +44,32 @@ Approche Red -> Green -> Refactor: ecrire le test avant le code de production.
 14. **Flaky test**
 Test instable qui passe ou echoue de facon aleatoire (a corriger rapidement).
 
+## 1.b Exemples concrets par type de test
+
+- **Test unitaire**
+  - Contexte: fonction `sum(a, b)`.
+  - Exemple: verifier que `sum(2, 3)` retourne `5`.
+
+- **Test d'integration**
+  - Contexte: `MovieService` + `MovieRepository`.
+  - Exemple: verifier que `MovieService.count()` retourne bien le nombre de films fournis par le repository.
+
+- **Test fonctionnel**
+  - Contexte: endpoint `POST /api/movies`.
+  - Exemple: envoyer un payload valide et verifier la reponse HTTP `201` + structure JSON attendue.
+
+- **Test E2E**
+  - Contexte: parcours utilisateur complet.
+  - Exemple: ouvrir l'application, rechercher un film, ouvrir la fiche, cliquer \"Ajouter a A voir\", verifier que le film apparait dans la liste.
+
+- **Test smoke**
+  - Contexte: verification rapide apres deploiement.
+  - Exemple: verifier que `GET /health` repond `200` et que `GET /api/movies` renvoie une liste non vide.
+
+- **Test de non-regression**
+  - Contexte: bug corrige sur les doublons de films.
+  - Exemple: rejouer le cas \"meme titre + meme annee\" et verifier que l'API renvoie `409 Conflict`.
+
 ## 2. Exemples JavaScript (Jest)
 
 ### 2.1 Test unitaire (fonction pure)

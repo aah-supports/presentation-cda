@@ -65,6 +65,18 @@
       </section>
 
       <section>
+        <h2>Exemples concrets par type</h2>
+        <ul class="glossary-list">
+          <li><b>Unitaire:</b> <code>sum(2,3) === 5</code>.</li>
+          <li><b>Integration:</b> <code>MovieService.count()</code> lit le repository et retourne le bon total.</li>
+          <li><b>Fonctionnel:</b> <code>POST /api/movies</code> avec donnees valides -> <code>201</code>.</li>
+          <li><b>E2E:</b> parcours complet recherche film -> ajout \"A voir\" -> verification liste.</li>
+          <li><b>Smoke:</b> <code>GET /health</code> retourne <code>200</code> apres deploiement.</li>
+          <li><b>Non-regression:</b> doublon titre+annee renvoie toujours <code>409</code>.</li>
+        </ul>
+      </section>
+
+      <section>
         <h2>Exemple JavaScript (Jest)</h2>
         <pre><code class="language-js">import { sum } from './sum.js';
 
