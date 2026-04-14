@@ -7,11 +7,32 @@ Objectif : transformer un texte d'expression des besoins en livrables projet exp
 Contexte : application web "Films d'art et essai" destinée à des passionnés de cinéma.
 La plateforme permet de découvrir des films, consulter des fiches, noter et commenter,
 suivre une programmation (séances/festivals) et recevoir des recommandations.
-Le projet est découpé en phases : MVP puis enrichissements.
+Le projet est découpé en phases : `MVP` puis enrichissements.
 
 ## 1. Ce que vous recevez
 
 Vous partez d'un texte d'expression des besoins brut (vision, cible, parcours utilisateur, rôles, fonctionnalités, contraintes, roadmap par phases).
+
+### Traduction des termes 
+
+- `Expression des besoins brut` : description initiale, encore non structurée.
+- `Vision` : idée globale du projet (pourquoi on le fait).
+- `Cible` : public visé (qui va utiliser l'application).
+- `Parcours utilisateur` : étapes vécues par l'utilisateur dans l'application.
+- `Rôles` : types d'utilisateurs et leurs droits (ex: admin, passionné, modérateur).
+- `Fonctionnalités` : actions que l'application permet de faire.
+- `Contraintes` : limites à respecter (temps, budget, technique, règles métier).
+- `Roadmap par phases` : plan du projet en plusieurs étapes (MVP puis évolutions).
+
+En résumé: votre travail J1 est de transformer ce texte "brut" en livrables clairs et utilisables par l'équipe.
+
+### Outil conseillé pour débuter
+
+- `Notion` (recommandé) : simple pour écrire la vision, les rôles, le backlog et partager avec l'équipe.
+- `Google Docs` : très bien pour co-rédiger rapidement en groupe.
+- `Trello` (option) : utile pour transformer ensuite vos user stories en backlog visuel.
+
+Conseil pratique: commencez dans un document texte (Notion/Google Docs), puis passez sur Trello pour la priorisation.
 
 ## 2. Ce que vous devez produire en fin de J1
 
