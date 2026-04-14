@@ -187,6 +187,33 @@ Exemple dans votre dossier de ce que vous devez faire
 
 - Réalisations du candidat comportant les extraits de code les plus significatifs et en les argumentant, y compris pour la sécurité.
 
+- Plan de tests minimal attendu (recommandé pour le dossier).
+
+```txt
+  Objectif: expliquer clairement comment vous validez votre solution.
+
+  1. Périmètre de test
+  - quelles user stories / endpoints sont testés
+
+  2. Types de tests
+  - unitaire
+  - intégration API
+  - fonctionnel / E2E (ou manuel guidé)
+
+  3. Jeux de données
+  - cas nominal
+  - cas limites
+  - cas d'erreur
+
+  4. Critères de réussite
+  - statut HTTP attendu
+  - résultat fonctionnel attendu
+  - message d'erreur attendu
+
+  5. Preuves
+  - capture, log, sortie de test, tableau attendu/réel
+```
+
 - Présentation du jeu d'essai élaboré par le candidat de la fonctionnalité la plus représentative (données en entrée, données attendues, données obtenues).
 
 ```txt
