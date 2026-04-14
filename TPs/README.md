@@ -81,6 +81,9 @@ Reference formateur:
 13. [13_tp-conception-merise-uml-films-art-essai.md](./13_tp-conception-merise-uml-films-art-essai.md)
    - Atelier conception 2h: MCD, MLD, MPD et UML (use case, activite, sequence)
 
+14. [14_tp-atelier-planning-poker-films.md](./14_tp-atelier-planning-poker-films.md)
+   - Atelier court 1h: transformation features -> US + estimation Planning Poker
+
 ## Annexes UML
 
 - [01_use-case-gestion-films.puml](./uml/01_use-case-gestion-films.puml)

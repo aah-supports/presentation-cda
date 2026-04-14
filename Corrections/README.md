@@ -40,3 +40,8 @@ Ce dossier contient des corrections de TP.
   - Correction du sujet `TPs/11_tp-j1-expression-besoin-lms-cda.md`
   - Rendu J1 scope CDC: contexte, objectifs, perimetre, contraintes, acteurs, parcours, risques
   - Niveau cadrage fonctionnel (amont CDC), sans backlog sprint ni detail technique
+
+- `tp-atelier-planning-poker-films/`
+  - Correction du sujet `TPs/14_tp-atelier-planning-poker-films.md`
+  - Atelier estimation: features -> user stories -> votes -> points -> priorisation
+  - Trace complete des arbitrages pour le dossier CDA
