@@ -1,0 +1,39 @@
+@startuml
+actor Admin
+participant "MovieController" as Controller
+participant "MovieService" as Service
+participant "MovieRepository" as Repo
+database "PostgreSQL" as DB
+
+Admin -> Controller: POST /api/movies\n(title, slug, releaseYear, durationMinutes)
+Controller -> Service: create(payload)
+Service -> Service: validate(payload)
+
+alt payload invalide
+  Service --> Controller: ValidationError
+  Controller --> Admin: 422 Unprocessable Entity
+else payload valide
+  Service -> Repo: existsBySlug(slug)
+  Repo -> DB: SELECT movie WHERE slug = ?
+  DB --> Repo: result
+  alt slug deja utilise
+    Repo --> Service: true
+    Service --> Controller: BusinessError("slug existe")
+    Controller --> Admin: 409 Conflict
+  else slug libre
+    Repo --> Service: false
+    Service -> Repo: save(movie)
+    Repo -> DB: INSERT movie
+    DB --> Repo: movie_id
+    Repo --> Service: Movie
+    Service --> Controller: MovieDTO
+    Controller --> Admin: 201 Created
+  end
+end
+
+note right of Service
+But: expliciter le chemin nominal + erreurs majeures
+Hypothese: acces DB disponible
+Limite: auth non detaillee
+end note
+@enduml

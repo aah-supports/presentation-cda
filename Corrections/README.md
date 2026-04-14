@@ -24,3 +24,8 @@ Ce dossier contient des corrections de TP.
   - Seeds Doctrine (fixtures) + seed SQL
   - API RESTful documentee (`/docs`, `/docs.jsonopenapi`)
   - Docker compose: PostgreSQL `localhost:5434`, Adminer `http://localhost:8084`
+
+- `tp-final-uml-gestion-films/`
+  - Correction du sujet `TPs/10_tp-final-diagrammes-uml-gestion-films.md`
+  - 5 diagrammes UML corriges (use case, classes, sequence, activite, composants)
+  - Fichiers PlantUML prets a exporter

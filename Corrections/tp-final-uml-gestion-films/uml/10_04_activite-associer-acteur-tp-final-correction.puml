@@ -1,0 +1,32 @@
+@startuml
+start
+:Recevoir demande\nassocier acteur a un film;
+:Verifier existence film;
+if (Film existe ?) then (oui)
+  :Verifier existence acteur;
+  if (Acteur existe ?) then (oui)
+    :Verifier role deja associe;
+    if (Role deja present ?) then (oui)
+      :Refuser (conflit metier);
+      stop
+    else (non)
+      :Verifier billingOrder > 0;
+      if (billingOrder valide ?) then (oui)
+        :Creer Casting;
+        :Sauvegarder relation;
+        :Retourner succes;
+        stop
+      else (non)
+        :Refuser (donnee invalide);
+        stop
+      endif
+    endif
+  else (non)
+    :Refuser (acteur introuvable);
+    stop
+  endif
+else (non)
+  :Refuser (film introuvable);
+  stop
+endif
+@enduml

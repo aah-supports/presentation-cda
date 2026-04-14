@@ -82,3 +82,7 @@ plantuml TPs/uml/10_05_composants-tp-final.puml
 - [ ] ils sont lisibles sans commentaire oral
 - [ ] ils sont coherents entre eux
 - [ ] ils couvrent US-01, US-02, US-03
+
+## 9. Reference correction
+
+- `Corrections/tp-final-uml-gestion-films/`

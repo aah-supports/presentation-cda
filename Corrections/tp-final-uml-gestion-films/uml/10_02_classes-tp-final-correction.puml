@@ -1,0 +1,40 @@
+@startuml
+hide methods
+hide stereotypes
+
+class Movie {
+  id: UUID
+  title: string
+  slug: string
+  releaseYear: int
+  durationMinutes: int
+}
+
+class Genre {
+  id: int
+  code: string
+  label: string
+}
+
+class Person {
+  id: UUID
+  fullName: string
+  birthDate: date
+}
+
+class Casting {
+  id: long
+  roleName: string
+  billingOrder: int
+}
+
+Movie "1" -- "0..*" Casting : contient
+Person "1" -- "0..*" Casting : participe
+Movie "0..*" -- "0..*" Genre : estClasseDans
+
+note bottom of Movie
+But: representer la structure metier
+Hypothese: un film a 0..* castings
+Limite: contraintes SQL non detaillees
+end note
+@enduml
