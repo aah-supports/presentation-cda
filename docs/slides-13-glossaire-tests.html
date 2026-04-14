@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CDA - Glossaire Tests</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <style>
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--cyan); font-size: 0.62em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .lead { font-size: .92em; color: var(--text); }
+    .small { font-size: .70em; }
+    .glossary-list { margin: 0; padding-left: 20px; }
+    .glossary-list li { margin-bottom: 10px; font-size: .68em; line-height: 1.42; color: var(--body); }
+    .glossary-list b { color: var(--cyan); }
+    pre { background: #0f1720; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: .55em; color: #e5e7eb; overflow: auto; }
+    code { font-family: 'JetBrains Mono', monospace; }
+
+    .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
+    .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
+
+    .home-link { position: fixed; top: 12px; right: 16px; z-index: 120; text-decoration: none; font-weight: 700; font-size: 0.62em; color: var(--cyan); background: rgba(8, 8, 8, 0.78); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.45); backdrop-filter: blur(4px); }
+    .home-link:hover { background: rgba(0, 243, 255, 0.12); border-color: rgba(0, 243, 255, 0.9); color: #ffffff; }
+  </style>
+</head>
+<body>
+  <div class="global-progress" aria-hidden="true"><div class="global-progress-fill" id="globalProgressFill"></div></div>
+  <a class="home-link" href="index.html">Accueil</a>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <span class="badge">Qualite</span>
+        <h1>Glossaire Tests</h1>
+        <p class="lead">Definitions essentielles + exemples JavaScript et PHP.</p>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+
+      <section>
+        <h2>Notions de base</h2>
+        <ul class="glossary-list">
+          <li><b>Test unitaire:</b> teste une unite de code isolee.</li>
+          <li><b>Test d'integration:</b> teste l'interaction entre composants.</li>
+          <li><b>Test fonctionnel:</b> valide un besoin metier observable.</li>
+          <li><b>E2E:</b> scenario complet utilisateur de bout en bout.</li>
+          <li><b>Assertion:</b> verification explicite du resultat attendu.</li>
+          <li><b>Non-regression:</b> garantit qu'une evol ancienne ne casse pas l'existant.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Doubles de test</h2>
+        <ul class="glossary-list">
+          <li><b>Mock:</b> objet simule avec comportement et verifications d'appels.</li>
+          <li><b>Stub:</b> objet qui renvoie une valeur fixe predefinie.</li>
+          <li><b>Fixture:</b> jeu de donnees stable pour tests reproductibles.</li>
+          <li><b>Flaky test:</b> test instable (resultat aleatoire), a corriger.</li>
+          <li><b>Pyramide des tests:</b> beaucoup d'unitaires, moins d'integration, peu de E2E.</li>
+          <li><b>Coverage:</b> part de code executee par les tests (indicateur, pas preuve absolue).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Exemple JavaScript (Jest)</h2>
+        <pre><code class="language-js">import { sum } from './sum.js';
+
+test('sum additionne deux nombres', () => {
+  expect(sum(2, 3)).toBe(5);
+});</code></pre>
+      </section>
+
+      <section>
+        <h2>Exemple JavaScript (mock)</h2>
+        <pre><code class="language-js">import { countMovies } from './movieService.js';
+
+test('countMovies utilise le repo', async () => {
+  const repoMock = { findAll: jest.fn().mockResolvedValue([{ id: 1 }, { id: 2 }]) };
+  await expect(countMovies(repoMock)).resolves.toBe(2);
+  expect(repoMock.findAll).toHaveBeenCalledTimes(1);
+});</code></pre>
+      </section>
+
+      <section>
+        <h2>Exemple PHP (PHPUnit)</h2>
+        <pre><code class="language-php">final class Calculator {
+    public function add(int $a, int $b): int {
+        return $a + $b;
+    }
+}
+
+final class CalculatorTest extends TestCase {
+    public function testAdd(): void {
+        $calculator = new Calculator();
+        $this->assertSame(5, $calculator->add(2, 3));
+    }
+}</code></pre>
+      </section>
+
+      <section>
+        <h2>Exemple PHP (service + mock)</h2>
+        <pre><code class="language-php">$repo = $this->createMock(MovieRepository::class);
+$repo->method('findAll')->willReturn([['id' => 1], ['id' => 2], ['id' => 3]]);
+
+$service = new MovieService($repo);
+$this->assertSame(3, $service->count());</code></pre>
+      </section>
+
+      <section>
+        <h2>Attendu CDA</h2>
+        <ul class="glossary-list small">
+          <li><b>Jeu d'essai:</b> entree, attendu, obtenu.</li>
+          <li><b>Trace:</b> test lie a une fonctionnalite du projet.</li>
+          <li><b>Lisibilite:</b> test simple, nom explicite, comportement verifiable.</li>
+          <li><b>Limites:</b> indiquer ce qui n'est pas teste.</li>
+        </ul>
+        <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="assets/reveal-offline-stub.js"></script>
+  <script>
+    const deck = new Reveal();
+    deck.initialize({ hash:true, controls:true, progress:false, slideNumber:true, center:false, transition:'fade', backgroundTransition:'fade' });
+    const fill = document.getElementById('globalProgressFill');
+    const update = () => {
+      const total = Math.max(1, deck.getTotalSlides() - 1);
+      const index = deck.getSlidePastCount();
+      fill.style.width = `${(index/total)*100}%`;
+    };
+    deck.on('ready', update);
+    deck.on('slidechanged', update);
+  </script>
+</body>
+</html>
