@@ -24,34 +24,37 @@ Reference formateur:
 
 ## Ordre conseille
 
-1. [00_maquette-dossier-cda-mini-app-gestion-films.md](./00_maquette-dossier-cda-mini-app-gestion-films.md)
+1. [00_documenter-api-mini-app-gestion-films.md](./00_documenter-api-mini-app-gestion-films.md)
+   - Guide pour documenter l'API (OpenAPI/Swagger) avant implementation
+
+2. [00_maquette-dossier-cda-mini-app-gestion-films.md](./00_maquette-dossier-cda-mini-app-gestion-films.md)
    - Trame finale du dossier CDA
 
-2. [01_cahier-des-charges-mini-app-gestion-films.md](./01_cahier-des-charges-mini-app-gestion-films.md)
+3. [01_cahier-des-charges-mini-app-gestion-films.md](./01_cahier-des-charges-mini-app-gestion-films.md)
    - Cadrage simple du besoin et du scope
 
-3. [02_backlog-et-sprint-mini-app-gestion-films.md](./02_backlog-et-sprint-mini-app-gestion-films.md)
+4. [02_backlog-et-sprint-mini-app-gestion-films.md](./02_backlog-et-sprint-mini-app-gestion-films.md)
    - User Stories, backlog, sprint 3h
 
-4. [03_specifications-fonctionnelles-mini-app-gestion-films.md](./03_specifications-fonctionnelles-mini-app-gestion-films.md)
+5. [03_specifications-fonctionnelles-mini-app-gestion-films.md](./03_specifications-fonctionnelles-mini-app-gestion-films.md)
    - Ce que doit faire l'API (vue metier)
 
-5. [04_specifications-techniques-mini-app-gestion-films.md](./04_specifications-techniques-mini-app-gestion-films.md)
+6. [04_specifications-techniques-mini-app-gestion-films.md](./04_specifications-techniques-mini-app-gestion-films.md)
    - Comment c'est implemente (vue technique + securite)
 
-6. [05_veille-securite-mini-app-gestion-films.md](./05_veille-securite-mini-app-gestion-films.md)
+7. [05_veille-securite-mini-app-gestion-films.md](./05_veille-securite-mini-app-gestion-films.md)
    - Trace de veille pendant le TP
 
-7. [06_situation-de-recherche-mini-app-gestion-films.md](./06_situation-de-recherche-mini-app-gestion-films.md)
+8. [06_situation-de-recherche-mini-app-gestion-films.md](./06_situation-de-recherche-mini-app-gestion-films.md)
    - Exemple de probleme resolu par recherche
 
-8. [07_diagrammes-uml-mini-app-gestion-films.md](./07_diagrammes-uml-mini-app-gestion-films.md)
+9. [07_diagrammes-uml-mini-app-gestion-films.md](./07_diagrammes-uml-mini-app-gestion-films.md)
    - Diagrammes UML a joindre au dossier
 
-9. [08_sujet-mvc-pur-typescript-2h.md](./08_sujet-mvc-pur-typescript-2h.md)
+10. [08_sujet-mvc-pur-typescript-2h.md](./08_sujet-mvc-pur-typescript-2h.md)
    - Sujet court 2h en architecture en couches (Router/Controller/Service/Repository)
 
-10. [09_sujet-postgresql-doctrine-apiplatform-3h.md](./09_sujet-postgresql-doctrine-apiplatform-3h.md)
+11. [09_sujet-postgresql-doctrine-apiplatform-3h.md](./09_sujet-postgresql-doctrine-apiplatform-3h.md)
    - Sujet 3h base de donnees relationnelle (PostgreSQL + Doctrine + API Platform RESTful)
    - Schema UML: [class-diagram-postgres-doctrine.svg](./class-diagram-postgres-doctrine.svg)
 

@@ -46,28 +46,31 @@ Le conteneur recharge automatiquement le code.
 
 La réalisation doit suivre **obligatoirement** les fichiers `00` à `07` du dossier `TPs`.
 
-1. Étape 00 - Maquette du dossier final  
+1. Pré-étape - Documenter l'API (OpenAPI/Swagger)  
+   [00_documenter-api-mini-app-gestion-films.md](../TPs/00_documenter-api-mini-app-gestion-films.md)
+
+2. Étape 00 - Maquette du dossier final  
    [00_maquette-dossier-cda-mini-app-gestion-films.md](../TPs/00_maquette-dossier-cda-mini-app-gestion-films.md)
 
-2. Étape 01 - Cahier des charges  
+3. Étape 01 - Cahier des charges  
    [01_cahier-des-charges-mini-app-gestion-films.md](../TPs/01_cahier-des-charges-mini-app-gestion-films.md)
 
-3. Étape 02 - Backlog et sprint  
+4. Étape 02 - Backlog et sprint  
    [02_backlog-et-sprint-mini-app-gestion-films.md](../TPs/02_backlog-et-sprint-mini-app-gestion-films.md)
 
-4. Étape 03 - Spécifications fonctionnelles  
+5. Étape 03 - Spécifications fonctionnelles  
    [03_specifications-fonctionnelles-mini-app-gestion-films.md](../TPs/03_specifications-fonctionnelles-mini-app-gestion-films.md)
 
-5. Étape 04 - Spécifications techniques  
+6. Étape 04 - Spécifications techniques  
    [04_specifications-techniques-mini-app-gestion-films.md](../TPs/04_specifications-techniques-mini-app-gestion-films.md)
 
-6. Étape 05 - Veille sécurité  
+7. Étape 05 - Veille sécurité  
    [05_veille-securite-mini-app-gestion-films.md](../TPs/05_veille-securite-mini-app-gestion-films.md)
 
-7. Étape 06 - Situation de recherche  
+8. Étape 06 - Situation de recherche  
    [06_situation-de-recherche-mini-app-gestion-films.md](../TPs/06_situation-de-recherche-mini-app-gestion-films.md)
 
-8. Étape 07 - Diagrammes UML  
+9. Étape 07 - Diagrammes UML  
    [07_diagrammes-uml-mini-app-gestion-films.md](../TPs/07_diagrammes-uml-mini-app-gestion-films.md)
 
 Critère attendu: chaque étape doit produire une preuve exploitable pour le dossier CDA (code, captures, tests, commits).
