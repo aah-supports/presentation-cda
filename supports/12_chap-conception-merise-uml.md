@@ -95,6 +95,20 @@ CREATE TABLE film_genre (
 
 ## 3. UML: quand utiliser quel diagramme
 
+### UML en théorie: combien de diagrammes ?
+
+UML 2.x contient `14` types de diagrammes au total:
+
+- `7` diagrammes structurels
+- `7` diagrammes comportementaux (dont les diagrammes d'interaction)
+
+Dans le cadre CDA, on mobilise surtout les plus utiles pour la soutenance:
+
+- cas d'utilisation
+- activité
+- séquence
+- classes
+
 ### Diagramme de cas d'utilisation (Use Case)
 
 Question à laquelle il répond: `Qui fait quoi ?`

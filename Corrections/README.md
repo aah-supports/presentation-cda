@@ -35,3 +35,8 @@ Ce dossier contient des corrections de TP.
   - Distinction MCD / MLD / MPD sur le fil rouge films d'art et essai
   - UML corrige: use case (include/extend/heritage), activite, sequence
   - MPD SQL corrige avec contraintes et index
+
+- `tp-expression-besoin/`
+  - Correction du sujet `TPs/11_tp-j1-expression-besoin-lms-cda.md`
+  - Rendu J1 scope CDC: contexte, objectifs, perimetre, contraintes, acteurs, parcours, risques
+  - Niveau cadrage fonctionnel (amont CDC), sans backlog sprint ni detail technique
