@@ -8,10 +8,19 @@ Ce dossier contient des corrections de TP.
   - Correction du sujet `TPs/08_sujet-mvc-pur-typescript-2h.md`
   - MVC pur TypeScript en couches
   - Endpoints: health, movies (GET/POST/DELETE), pages/home
-  - Docker compose sur `http://localhost:3004`
+  - Docker compose: API `http://localhost:3004`
 
 - `tp-node-ts-mvc-json/`
   - Correction complete (version plus etoffee)
   - Node.js + TypeScript
   - API 100% JSON
   - Architecture MVC en couches
+  - Docker compose: API `http://localhost:3001`
+
+- `tp-postgres-doctrine-apiplatform-3h/`
+  - Correction du sujet `TPs/09_sujet-postgresql-doctrine-apiplatform-3h.md`
+  - PostgreSQL + Doctrine ORM + API Platform
+  - Contraintes relationnelles (PK/FK/UNIQUE/CHECK/DEFAULT)
+  - Seeds Doctrine (fixtures) + seed SQL
+  - API RESTful documentee (`/docs`, `/docs.jsonopenapi`)
+  - Docker compose: PostgreSQL `localhost:5434`, Adminer `http://localhost:8084`

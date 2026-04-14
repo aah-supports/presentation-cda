@@ -12,12 +12,15 @@ Projet cible: **Mini API Gestion de films** (Node.js + TypeScript + Docker).
 
 Point de depart code:
 
-- [Starter etudiant](../stater/README.md)
+- [Starter principal (TP 00 a 07)](../stater/README.md)
+- [Starter MVC dedie TP 08](../stater-mvc/README.md)
+- [Starter ORM dedie TP 09](../stater-orm/README.md)
 
 Reference formateur:
 
 - `Corrections/tp-mvc-pur-typescript-2h/` (correction du sujet 2h)
 - `Corrections/tp-node-ts-mvc-json/` (version complete plus etoffee)
+- `Corrections/tp-postgres-doctrine-apiplatform-3h/` (correction du sujet BDD 3h)
 
 ## Ordre conseille
 
@@ -48,6 +51,10 @@ Reference formateur:
 9. [08_sujet-mvc-pur-typescript-2h.md](./08_sujet-mvc-pur-typescript-2h.md)
    - Sujet court 2h en architecture en couches (Router/Controller/Service/Repository)
 
+10. [09_sujet-postgresql-doctrine-apiplatform-3h.md](./09_sujet-postgresql-doctrine-apiplatform-3h.md)
+   - Sujet 3h base de donnees relationnelle (PostgreSQL + Doctrine + API Platform RESTful)
+   - Schema UML: [class-diagram-postgres-doctrine.svg](./class-diagram-postgres-doctrine.svg)
+
 ## Annexes UML
 
 - [01_use-case-gestion-films.puml](./uml/01_use-case-gestion-films.puml)
@@ -61,6 +68,7 @@ Reference formateur:
 - [TPs/exercices/README.md](./exercices/README.md)
   - Exo 1: MVC minimal (liste de films)
   - Exo 2: Panier SOLID
+  - Exo 3: PostgreSQL + Doctrine + API Platform (3h)
 
 ## Critere de reussite TP
 

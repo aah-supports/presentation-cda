@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: tp-correction-orm-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-moviesdb}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-app}
+    ports:
+      - "${POSTGRES_HOST_PORT:-5434}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-app} -d ${POSTGRES_DB:-moviesdb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: tp-correction-orm-adminer
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${ADMINER_HOST_PORT:-8084}:8080"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

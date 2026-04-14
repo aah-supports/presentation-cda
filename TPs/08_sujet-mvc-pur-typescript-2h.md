@@ -2,7 +2,8 @@
 
 ## 1. Contexte
 
-Vous partez du starter `stater/` et vous devez produire une mini API en couches.
+Vous partez du starter `stater-mvc/` et vous devez produire une mini API en couches.
+Reference de demarrage: `stater-mvc/README.md`.
 
 ## 2. Objectif
 
@@ -13,7 +14,6 @@ Construire une application simple avec separation claire:
 - Service
 - Repository
 - Model
-- Middleware d'erreur
 
 ## 3. Contraintes
 
@@ -21,7 +21,7 @@ Construire une application simple avec separation claire:
 - Langage: TypeScript
 - Framework: Express
 - Lancement: Docker Compose
-- Donnees: en memoire
+- Donnees: en memoire (fichiers)
 
 ## 4. Endpoints a livrer
 
@@ -45,9 +45,6 @@ src/
     movie.repository.ts
   pages/
     page.controller.ts
-  shared/
-    error-handler.ts
-    http-error.ts
 ```
 
 ## 6. Regles metier minimales
@@ -77,13 +74,13 @@ src/
 ## 9. Commandes de demarrage
 
 ```bash
-cd stater
+cd stater-mvc
 docker compose up --build
 ```
 
 URL de test (starter):
 
-- `http://localhost:3002/`
+- `http://localhost:3003/`
 
 ## 10. Preuves attendues pour le rendu CDA
 
