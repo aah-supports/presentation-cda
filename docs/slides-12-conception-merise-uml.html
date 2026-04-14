@@ -24,6 +24,9 @@
     .table { width: 100%; border-collapse: collapse; font-size: .6em; }
     .table th, .table td { border: 1px solid var(--border); padding: 6px 8px; vertical-align: top; }
     .table th { color: var(--cyan); font-weight: 700; }
+    .diagram-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+    .diagram { width: 100%; max-height: 530px; object-fit: contain; background: #ffffff; border-radius: 8px; }
+    .caption { margin-top: 10px; font-size: .58em; color: var(--muted); }
     .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
     .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
     .home-link { position: fixed; top: 12px; right: 16px; z-index: 120; text-decoration: none; font-weight: 700; font-size: 0.62em; color: var(--cyan); background: rgba(8, 8, 8, 0.78); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(0, 243, 255, 0.45); backdrop-filter: blur(4px); }
@@ -75,12 +78,28 @@
       </section>
 
       <section>
+        <h2>Exemple visuel MCD</h2>
+        <div class="diagram-panel">
+          <img class="diagram" src="assets/images/conception/mcd-films-art-essai.svg" alt="Schema MCD films art et essai" />
+        </div>
+        <p class="caption">Exemple fil rouge: entites, associations et cardinalites en vocabulaire MERISE.</p>
+      </section>
+
+      <section>
         <h2>Passage MCD -&gt; MLD</h2>
         <ul class="bullet-list small">
           <li><code>0,1/1,1</code> vers <code>0,n/1,n</code> : clé étrangère du côté <code>n</code>.</li>
           <li><code>0,n/1,n</code> vers <code>0,n/1,n</code> : table associative obligatoire.</li>
           <li>Conserver la traçabilité: association MCD -> structure MLD.</li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Exemple visuel MLD</h2>
+        <div class="diagram-panel">
+          <img class="diagram" src="assets/images/conception/mld-films-art-essai.svg" alt="Schema MLD films art et essai" />
+        </div>
+        <p class="caption">Traduction relationnelle: tables, PK/FK et table associative pour le n,n.</p>
       </section>
 
       <section>
@@ -100,6 +119,27 @@
           <li><code>&lt;&lt;extend&gt;&gt;</code> : comportement optionnel/conditionnel.</li>
           <li><code>Héritage</code> : acteur spécialisé qui reprend les cas d'un acteur parent.</li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Exemple UML - Use Case</h2>
+        <div class="diagram-panel">
+          <img class="diagram" src="assets/images/conception/uml-usecase-films-art-essai.svg" alt="Diagramme UML use case films art et essai" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Exemple UML - Activite</h2>
+        <div class="diagram-panel">
+          <img class="diagram" src="assets/images/conception/uml-activite-poster-avis.svg" alt="Diagramme UML activite poster avis" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Exemple UML - Sequence</h2>
+        <div class="diagram-panel">
+          <img class="diagram" src="assets/images/conception/uml-sequence-ajouter-film.svg" alt="Diagramme UML sequence ajouter film" />
+        </div>
       </section>
 
       <section>

@@ -76,3 +76,11 @@ Fichiers de travail:
 ## 7. Référence correction
 
 - `Corrections/tp-conception-merise-uml-films-art-essai/`
+
+## 8. Visuels de référence (cours)
+
+- `supports/images/conception/mcd-films-art-essai.svg`
+- `supports/images/conception/mld-films-art-essai.svg`
+- `supports/images/conception/uml-usecase-films-art-essai.svg`
+- `supports/images/conception/uml-activite-poster-avis.svg`
+- `supports/images/conception/uml-sequence-ajouter-film.svg`

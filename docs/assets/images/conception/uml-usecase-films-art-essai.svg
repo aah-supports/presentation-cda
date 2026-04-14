@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .frame { fill: #f8fafc; stroke: #0f172a; stroke-width: 2; }
+      .oval { fill: #eef2ff; stroke: #334155; stroke-width: 2; }
+      .line { stroke: #334155; stroke-width: 2; }
+      .title { font: 700 20px Arial, sans-serif; fill: #0f172a; }
+      .txt { font: 14px Arial, sans-serif; fill: #1f2937; }
+      .label { font: 700 14px Arial, sans-serif; fill: #0f172a; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="720"/>
+  <text x="40" y="46" class="title">UML - Diagramme de cas d'utilisation (exemple)</text>
+
+  <rect class="frame" x="250" y="90" width="760" height="560" rx="14"/>
+  <text x="510" y="122" class="title">Systeme Films d'art et essai</text>
+
+  <ellipse class="oval" cx="520" cy="210" rx="145" ry="38"/>
+  <text x="440" y="216" class="txt">Consulter catalogue</text>
+
+  <ellipse class="oval" cx="520" cy="305" rx="145" ry="38"/>
+  <text x="455" y="311" class="txt">Rechercher film</text>
+
+  <ellipse class="oval" cx="520" cy="400" rx="145" ry="38"/>
+  <text x="470" y="406" class="txt">Poster avis</text>
+
+  <ellipse class="oval" cx="770" cy="400" rx="160" ry="38"/>
+  <text x="675" y="406" class="txt">Verifier contenu avis</text>
+
+  <ellipse class="oval" cx="770" cy="500" rx="145" ry="38"/>
+  <text x="705" y="506" class="txt">Moderer avis</text>
+
+  <ellipse class="oval" cx="770" cy="210" rx="180" ry="38"/>
+  <text x="645" y="216" class="txt">Administrer fiches films</text>
+
+  <g transform="translate(90,180)">
+    <circle cx="20" cy="10" r="10" fill="none" stroke="#0f172a" stroke-width="2"/>
+    <line x1="20" y1="20" x2="20" y2="58" class="line"/>
+    <line x1="0" y1="34" x2="40" y2="34" class="line"/>
+    <line x1="20" y1="58" x2="4" y2="86" class="line"/>
+    <line x1="20" y1="58" x2="36" y2="86" class="line"/>
+    <text x="-6" y="110" class="label">Visiteur</text>
+  </g>
+
+  <g transform="translate(90,350)">
+    <circle cx="20" cy="10" r="10" fill="none" stroke="#0f172a" stroke-width="2"/>
+    <line x1="20" y1="20" x2="20" y2="58" class="line"/>
+    <line x1="0" y1="34" x2="40" y2="34" class="line"/>
+    <line x1="20" y1="58" x2="4" y2="86" class="line"/>
+    <line x1="20" y1="58" x2="36" y2="86" class="line"/>
+    <text x="-28" y="110" class="label">Utilisateur inscrit</text>
+  </g>
+
+  <g transform="translate(1100,180)">
+    <circle cx="20" cy="10" r="10" fill="none" stroke="#0f172a" stroke-width="2"/>
+    <line x1="20" y1="20" x2="20" y2="58" class="line"/>
+    <line x1="0" y1="34" x2="40" y2="34" class="line"/>
+    <line x1="20" y1="58" x2="4" y2="86" class="line"/>
+    <line x1="20" y1="58" x2="36" y2="86" class="line"/>
+    <text x="-8" y="110" class="label">Admin</text>
+  </g>
+
+  <g transform="translate(1100,470)">
+    <circle cx="20" cy="10" r="10" fill="none" stroke="#0f172a" stroke-width="2"/>
+    <line x1="20" y1="20" x2="20" y2="58" class="line"/>
+    <line x1="0" y1="34" x2="40" y2="34" class="line"/>
+    <line x1="20" y1="58" x2="4" y2="86" class="line"/>
+    <line x1="20" y1="58" x2="36" y2="86" class="line"/>
+    <text x="-22" y="110" class="label">Moderateur</text>
+  </g>
+
+  <line class="line" x1="130" y1="225" x2="375" y2="210"/>
+  <line class="line" x1="130" y1="255" x2="375" y2="305"/>
+  <line class="line" x1="130" y1="430" x2="375" y2="400"/>
+  <line class="line" x1="1100" y1="225" x2="950" y2="225"/>
+  <line class="line" x1="1100" y1="515" x2="915" y2="500"/>
+
+  <line class="line" x1="665" y1="400" x2="610" y2="400"/>
+  <text x="620" y="385" class="label">&lt;&lt;include&gt;&gt;</text>
+  <line class="line" x1="720" y1="465" x2="640" y2="430"/>
+  <text x="650" y="460" class="label">&lt;&lt;extend&gt;&gt;</text>
+</svg>
