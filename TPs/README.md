@@ -22,6 +22,18 @@ Reference formateur:
 - `Corrections/tp-node-ts-mvc-json/` (version complete plus etoffee)
 - `Corrections/tp-postgres-doctrine-apiplatform-3h/` (correction du sujet BDD 3h)
 
+## Atelier J1 (a faire en premier)
+
+- [11_tp-j1-expression-besoin-lms-cda.md](./11_tp-j1-expression-besoin-lms-cda.md)
+  - Atelier cadrage: transformer l'expression des besoins en livrables projet
+- [11_trame-rendu-j1-expression-besoin-lms-cda.md](./11_trame-rendu-j1-expression-besoin-lms-cda.md)
+  - Trame de rendu obligatoire (vision, MVP, backlog, risques)
+
+## Glossaire gestion de projet
+
+- [12_glossaire-technique-gestion-projet.md](./12_glossaire-technique-gestion-projet.md)
+  - Definitions techniques (cadrage, backlog, agile, planification, risques, qualite)
+
 ## Ordre conseille
 
 1. [00_documenter-api-mini-app-gestion-films.md](./00_documenter-api-mini-app-gestion-films.md)
@@ -73,6 +85,7 @@ Reference formateur:
 - [10_03_sequence-ajouter-film-tp-final.puml](./uml/10_03_sequence-ajouter-film-tp-final.puml)
 - [10_04_activite-associer-acteur-tp-final.puml](./uml/10_04_activite-associer-acteur-tp-final.puml)
 - [10_05_composants-tp-final.puml](./uml/10_05_composants-tp-final.puml)
+- [11_01_use-case-j1-lms-cda.puml](./uml/11_01_use-case-j1-lms-cda.puml)
 
 ## Exercices TypeScript (courts)
 

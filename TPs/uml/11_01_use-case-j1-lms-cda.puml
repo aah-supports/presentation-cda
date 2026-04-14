@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Administrateur" as Admin
+actor "Centre de formation" as Center
+actor "Formateur" as Trainer
+actor "Apprenant" as Learner
+
+rectangle "Plateforme LMS CDA" {
+  usecase "Administrer les contenus" as UC1
+  usecase "Administrer promotions\net apprenants" as UC2
+  usecase "Suivre progression" as UC3
+  usecase "Passer QCM" as UC4
+  usecase "Evaluer competences" as UC5
+}
+
+Admin --> UC1
+Center --> UC2
+Trainer --> UC3
+Trainer --> UC5
+Learner --> UC4
+Learner --> UC3
+
+note right of UC1
+But: cadrage macro J1
+Hypothese: perimetre MVP
+Limite: pas de details techniques
+end note
+@enduml
