@@ -30,10 +30,6 @@ Exemple fil rouge (films d'art et essai):
 - Association `Réaliser`
 - Cardinalité possible: un film a `1,1` réalisateur, un réalisateur a `0,n` films.
 
-Exemple visuel MCD:
-
-![Schema MCD - Films art et essai](./images/conception/mcd-films-art-essai.svg)
-
 ### MLD (Modèle Logique de Données)
 
 Le MLD traduit le MCD en structure relationnelle.
@@ -50,10 +46,6 @@ Règles de transformation importantes:
   - la clé étrangère se place du côté `n`.
 - Si relation de type `0,n`/`1,n` vers `0,n`/`1,n`:
   - créer une table associative.
-
-Exemple visuel MLD:
-
-![Schema MLD - Films art et essai](./images/conception/mld-films-art-essai.svg)
 
 ### MPD (Modèle Physique de Données)
 
@@ -133,20 +125,6 @@ Question: `Comment les composants interagissent dans le temps ?`
 À utiliser pour:
 
 - visualiser les appels entre acteur, contrôleur, service, base, etc.
-
-Exemples visuels UML:
-
-Use Case:
-
-![Diagramme UML Use Case - Films art et essai](./images/conception/uml-usecase-films-art-essai.svg)
-
-Activité:
-
-![Diagramme UML Activite - Poster un avis](./images/conception/uml-activite-poster-avis.svg)
-
-Séquence:
-
-![Diagramme UML Sequence - Ajouter un film](./images/conception/uml-sequence-ajouter-film.svg)
 
 ## 4. Erreurs fréquentes à éviter
 
