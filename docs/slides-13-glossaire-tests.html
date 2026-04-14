@@ -45,7 +45,7 @@
       </section>
 
       <section>
-        <h2>Types de tests (une definition claire)</h2>
+        <h2>Types de tests</h2>
         <ul class="glossary-list">
           <li><b>Test unitaire:</b> verifie une unite de code isolee (fonction, methode, service), sans dependances reelles.</li>
           <li><b>Test d'integration:</b> verifie la collaboration entre plusieurs composants (service + repository + base, par exemple).</li>
@@ -69,7 +69,7 @@
       </section>
 
       <section>
-        <h2>Exemple long JS - test unitaire (Jest/Vitest)</h2>
+        <h2>Exemple JS - test unitaire (Jest/Vitest)</h2>
         <pre><code class="language-js">export class MovieService {
   constructor(movieRepository) {
     this.movieRepository = movieRepository;
@@ -110,7 +110,7 @@ test("create rejette une annee invalide", async () => {
       </section>
 
       <section>
-        <h2>Exemple long JS - test fonctionnel API</h2>
+        <h2>Exemple JS - test fonctionnel API</h2>
         <pre><code class="language-js">import request from "supertest";
 import { createApp } from "../src/app.js";
 import { InMemoryMovieRepository } from "../src/repositories/in-memory.js";
@@ -149,7 +149,7 @@ describe("POST /api/movies", () => {
       </section>
 
       <section>
-        <h2>Exemple long PHP - unitaire et fonctionnel</h2>
+        <h2>Exemple PHP - unitaire et fonctionnel</h2>
         <pre><code class="language-php">final class MovieServiceTest extends TestCase
 {
     public function testCreateRejectsEmptyTitle(): void
