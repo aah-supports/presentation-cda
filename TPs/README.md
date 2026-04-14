@@ -58,6 +58,9 @@ Reference formateur:
    - Sujet 3h base de donnees relationnelle (PostgreSQL + Doctrine + API Platform RESTful)
    - Schema UML: [class-diagram-postgres-doctrine.svg](./class-diagram-postgres-doctrine.svg)
 
+12. [10_tp-final-diagrammes-uml-gestion-films.md](./10_tp-final-diagrammes-uml-gestion-films.md)
+   - Atelier final 100% UML (use case, classes, sequence, activite, composants)
+
 ## Annexes UML
 
 - [01_use-case-gestion-films.puml](./uml/01_use-case-gestion-films.puml)
@@ -65,6 +68,11 @@ Reference formateur:
 - [03_sequence-ajouter-film.puml](./uml/03_sequence-ajouter-film.puml)
 - [04_activite-rechercher-film.puml](./uml/04_activite-rechercher-film.puml)
 - [05_composants-architecture.puml](./uml/05_composants-architecture.puml)
+- [10_01_use-case-tp-final.puml](./uml/10_01_use-case-tp-final.puml)
+- [10_02_classes-tp-final.puml](./uml/10_02_classes-tp-final.puml)
+- [10_03_sequence-ajouter-film-tp-final.puml](./uml/10_03_sequence-ajouter-film-tp-final.puml)
+- [10_04_activite-associer-acteur-tp-final.puml](./uml/10_04_activite-associer-acteur-tp-final.puml)
+- [10_05_composants-tp-final.puml](./uml/10_05_composants-tp-final.puml)
 
 ## Exercices TypeScript (courts)
 

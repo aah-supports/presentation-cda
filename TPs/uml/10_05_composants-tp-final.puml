@@ -1,0 +1,22 @@
+@startuml
+skinparam componentStyle rectangle
+
+component "Client Web / Postman" as Client
+component "API REST\n(Symfony/API Platform)" as API
+component "Service metier" as Service
+component "Repository Doctrine" as Repo
+database "PostgreSQL" as DB
+component "Documentation OpenAPI" as Docs
+
+Client --> API : HTTP JSON
+API --> Service : appels metier
+Service --> Repo : acces donnees
+Repo --> DB : SQL
+API --> Docs : expose /docs et /docs.jsonopenapi
+
+note bottom of API
+But: montrer la vue architecture
+Hypothese: deployment monolithique
+Limite: securite et observabilite non detaillees
+end note
+@enduml

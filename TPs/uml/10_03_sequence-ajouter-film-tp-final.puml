@@ -1,0 +1,23 @@
+@startuml
+actor Admin
+participant "API Controller" as Controller
+participant "MovieService" as Service
+participant "MovieRepository" as Repo
+database "PostgreSQL" as DB
+
+Admin -> Controller: POST /api/movies\n(title, slug, year, duration)
+Controller -> Service: createMovie(payload)
+Service -> Service: validateBusinessRules()
+Service -> Repo: save(movie)
+Repo -> DB: INSERT movie
+DB --> Repo: movie_id
+Repo --> Service: Movie created
+Service --> Controller: Movie DTO
+Controller --> Admin: 201 Created
+
+note right of Service
+But: expliciter le flux US-02
+Hypothese: donnees valides
+Limite: erreurs non detaillees dans ce diagramme
+end note
+@enduml
