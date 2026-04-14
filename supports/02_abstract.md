@@ -187,6 +187,21 @@ Exemple dans votre dossier de ce que vous devez faire
 
 - Réalisations du candidat comportant les extraits de code les plus significatifs et en les argumentant, y compris pour la sécurité.
 
+- Exemples d'outils / stacks possibles (non imposés).
+
+```txt
+  Le jury n'impose pas une stack unique.
+  Il évalue surtout la cohérence des choix techniques, la maîtrise et les preuves.
+
+  Exemples possibles :
+  - Gestion de projet : Jira, Trello, Notion, Confluence, Gantt.
+  - Développement : Node/TypeScript, Symfony/PHP, Java/Spring, .NET.
+  - Données : PostgreSQL, MySQL, MongoDB, Redis.
+  - Tests / qualité : Jest, PHPUnit, Cypress, SonarQube.
+  - CI/CD : GitHub Actions, GitLab CI, Jenkins, Docker.
+  - Monitoring : ELK/Kibana, Grafana/Loki, Sentry.
+```
+
 - Plan de tests minimal attendu (recommandé pour le dossier).
 
 ```txt
