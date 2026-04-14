@@ -18,8 +18,12 @@
     .glossary-list { margin: 0; padding-left: 20px; }
     .glossary-list li { margin-bottom: 10px; font-size: .68em; line-height: 1.42; color: var(--body); }
     .glossary-list b { color: var(--cyan); }
-    pre { background: #0f1720; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: .55em; color: #e5e7eb; overflow: auto; }
+    pre { background: #0f1720; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: .54em; color: #e5e7eb; overflow: auto; }
     code { font-family: 'JetBrains Mono', monospace; }
+    .note { font-size: .62em; color: #9ca3af; margin-top: 8px; }
+    .evidence-table { width: 100%; border-collapse: collapse; font-size: .62em; }
+    .evidence-table th, .evidence-table td { border: 1px solid var(--border); padding: 8px; vertical-align: top; }
+    .evidence-table th { color: var(--cyan); text-align: left; background: #0f1720; }
 
     .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #1a1a1a; z-index: 100; }
     .global-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--orange)); transition: width .35s ease; }
@@ -36,99 +40,185 @@
       <section>
         <span class="badge">Qualite</span>
         <h1>Glossaire Tests</h1>
-        <p class="lead">Definitions essentielles + exemples JavaScript et PHP.</p>
+        <p class="lead">Definitions utiles et exemples longs, sans repetition.</p>
         <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
       </section>
 
       <section>
-        <h2>Notions de base</h2>
+        <h2>Types de tests (une definition claire)</h2>
         <ul class="glossary-list">
-          <li><b>Test unitaire:</b> teste une unite de code isolee.</li>
-          <li><b>Test d'integration:</b> teste l'interaction entre composants.</li>
-          <li><b>Test fonctionnel:</b> valide un besoin metier observable.</li>
-          <li><b>E2E:</b> scenario complet utilisateur de bout en bout.</li>
-          <li><b>Assertion:</b> verification explicite du resultat attendu.</li>
-          <li><b>Non-regression:</b> garantit qu'une evol ancienne ne casse pas l'existant.</li>
+          <li><b>Test unitaire:</b> verifie une unite de code isolee (fonction, methode, service), sans dependances reelles.</li>
+          <li><b>Test d'integration:</b> verifie la collaboration entre plusieurs composants (service + repository + base, par exemple).</li>
+          <li><b>Test fonctionnel/API:</b> verifie un comportement metier observable via une route HTTP et son contrat (status, JSON, erreurs).</li>
+          <li><b>Test E2E:</b> verifie un parcours utilisateur complet depuis l'interface (navigation, saisie, resultat visible).</li>
+          <li><b>Test de non-regression:</b> rejoue une suite de tests pour s'assurer qu'une modification ne casse pas l'existant.</li>
+        </ul>
+        <p class="note">Regle simple: unitaire = local, integration = assemblage technique, fonctionnel/E2E = valeur utilisateur.</p>
+      </section>
+
+      <section>
+        <h2>Doubles et donnees de test</h2>
+        <ul class="glossary-list">
+          <li><b>Stub:</b> faux objet qui renvoie des valeurs predefinies, sans verification d'appel.</li>
+          <li><b>Mock:</b> faux objet qui permet aussi de verifier les interactions (nombre d'appels, parametres).</li>
+          <li><b>Fake:</b> implementation simplifiee mais executable (ex: repository en memoire).</li>
+          <li><b>Fixture:</b> jeu de donnees stable et reutilisable par plusieurs tests.</li>
+          <li><b>Flaky test:</b> test instable (passe/echoue aleatoirement), a corriger en priorite.</li>
+          <li><b>Pyramide des tests:</b> majorite de tests unitaires, une couche integration, peu de E2E.</li>
         </ul>
       </section>
 
       <section>
-        <h2>Doubles de test</h2>
-        <ul class="glossary-list">
-          <li><b>Mock:</b> objet simule avec comportement et verifications d'appels.</li>
-          <li><b>Stub:</b> objet qui renvoie une valeur fixe predefinie.</li>
-          <li><b>Fixture:</b> jeu de donnees stable pour tests reproductibles.</li>
-          <li><b>Flaky test:</b> test instable (resultat aleatoire), a corriger.</li>
-          <li><b>Pyramide des tests:</b> beaucoup d'unitaires, moins d'integration, peu de E2E.</li>
-          <li><b>Coverage:</b> part de code executee par les tests (indicateur, pas preuve absolue).</li>
-        </ul>
-      </section>
+        <h2>Exemple long JS - test unitaire (Jest/Vitest)</h2>
+        <pre><code class="language-js">export class MovieService {
+  constructor(movieRepository) {
+    this.movieRepository = movieRepository;
+  }
 
-      <section>
-        <h2>Exemples concrets par type</h2>
-        <ul class="glossary-list">
-          <li><b>Unitaire:</b> <code>sum(2,3) === 5</code>.</li>
-          <li><b>Integration:</b> <code>MovieService.count()</code> lit le repository et retourne le bon total.</li>
-          <li><b>Fonctionnel:</b> <code>POST /api/movies</code> avec donnees valides -> <code>201</code>.</li>
-          <li><b>E2E:</b> parcours complet recherche film -> ajout \"A voir\" -> verification liste.</li>
-          <li><b>Smoke:</b> <code>GET /health</code> retourne <code>200</code> apres deploiement.</li>
-          <li><b>Non-regression:</b> doublon titre+annee renvoie toujours <code>409</code>.</li>
-        </ul>
-      </section>
+  async create(input) {
+    if (!input.title || input.title.trim().length < 2) {
+      throw new Error("TITLE_INVALID");
+    }
+    if (!Number.isInteger(input.year) || input.year < 1888) {
+      throw new Error("YEAR_INVALID");
+    }
+    return this.movieRepository.insert({
+      title: input.title.trim(),
+      year: input.year,
+      director: input.director?.trim() ?? null
+    });
+  }
+}
 
-      <section>
-        <h2>Exemple JavaScript (Jest)</h2>
-        <pre><code class="language-js">import { sum } from './sum.js';
+test("create normalise et enregistre un film valide", async () => {
+  const repo = { insert: vi.fn().mockResolvedValue({ id: 1, title: "Stalker" }) };
+  const service = new MovieService(repo);
 
-test('sum additionne deux nombres', () => {
-  expect(sum(2, 3)).toBe(5);
+  const created = await service.create({ title: "  Stalker  ", year: 1979, director: "Tarkovski" });
+
+  expect(repo.insert).toHaveBeenCalledWith({ title: "Stalker", year: 1979, director: "Tarkovski" });
+  expect(created.id).toBe(1);
+});
+
+test("create rejette une annee invalide", async () => {
+  const repo = { insert: vi.fn() };
+  const service = new MovieService(repo);
+  await expect(service.create({ title: "Stalker", year: 1200 })).rejects.toThrow("YEAR_INVALID");
+  expect(repo.insert).not.toHaveBeenCalled();
 });</code></pre>
+        <p class="note">Ce test verifie la logique metier du service sans base reelle.</p>
       </section>
 
       <section>
-        <h2>Exemple JavaScript (mock)</h2>
-        <pre><code class="language-js">import { countMovies } from './movieService.js';
+        <h2>Exemple long JS - test fonctionnel API</h2>
+        <pre><code class="language-js">import request from "supertest";
+import { createApp } from "../src/app.js";
+import { InMemoryMovieRepository } from "../src/repositories/in-memory.js";
 
-test('countMovies utilise le repo', async () => {
-  const repoMock = { findAll: jest.fn().mockResolvedValue([{ id: 1 }, { id: 2 }]) };
-  await expect(countMovies(repoMock)).resolves.toBe(2);
-  expect(repoMock.findAll).toHaveBeenCalledTimes(1);
+describe("POST /api/movies", () => {
+  test("retourne 201 et un JSON conforme", async () => {
+    const repo = new InMemoryMovieRepository();
+    const app = createApp({ movieRepository: repo });
+
+    const response = await request(app)
+      .post("/api/movies")
+      .send({ title: "In the Mood for Love", year: 2000, director: "Wong Kar-wai" })
+      .expect(201);
+
+    expect(response.body).toEqual({
+      id: expect.any(Number),
+      title: "In the Mood for Love",
+      year: 2000,
+      director: "Wong Kar-wai"
+    });
+  });
+
+  test("retourne 400 si le payload est invalide", async () => {
+    const repo = new InMemoryMovieRepository();
+    const app = createApp({ movieRepository: repo });
+
+    const response = await request(app)
+      .post("/api/movies")
+      .send({ title: "", year: 1700 })
+      .expect(400);
+
+    expect(response.body.error).toBe("VALIDATION_ERROR");
+  });
 });</code></pre>
+        <p class="note">Ce test verifie route + validation + contrat JSON, mais pas l'interface graphique.</p>
       </section>
 
       <section>
-        <h2>Exemple PHP (PHPUnit)</h2>
-        <pre><code class="language-php">final class Calculator {
-    public function add(int $a, int $b): int {
-        return $a + $b;
+        <h2>Exemple long PHP - unitaire et fonctionnel</h2>
+        <pre><code class="language-php">final class MovieServiceTest extends TestCase
+{
+    public function testCreateRejectsEmptyTitle(): void
+    {
+        $repo = $this->createMock(MovieRepository::class);
+        $repo->expects($this->never())->method('insert');
+
+        $service = new MovieService($repo);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('TITLE_INVALID');
+        $service->create(['title' => '', 'year' => 2001]);
     }
 }
 
-final class CalculatorTest extends TestCase {
-    public function testAdd(): void {
-        $calculator = new Calculator();
-        $this->assertSame(5, $calculator->add(2, 3));
+final class MovieApiTest extends WebTestCase
+{
+    public function testCreateMovieReturns201(): void
+    {
+        $client = static::createClient();
+        $client->request('POST', '/api/movies', [], [], ['CONTENT_TYPE' => 'application/json'],
+            json_encode(['title' => 'Drive My Car', 'year' => 2021])
+        );
+
+        $this->assertResponseStatusCodeSame(201);
+        $json = json_decode($client->getResponse()->getContent(), true);
+        $this->assertSame('Drive My Car', $json['title']);
     }
 }</code></pre>
+        <p class="note">Unitaire: regles de domaine. Fonctionnel: contrat HTTP et structure de reponse.</p>
       </section>
 
       <section>
-        <h2>Exemple PHP (service + mock)</h2>
-        <pre><code class="language-php">$repo = $this->createMock(MovieRepository::class);
-$repo->method('findAll')->willReturn([['id' => 1], ['id' => 2], ['id' => 3]]);
-
-$service = new MovieService($repo);
-$this->assertSame(3, $service->count());</code></pre>
-      </section>
-
-      <section>
-        <h2>Attendu CDA</h2>
-        <ul class="glossary-list small">
-          <li><b>Jeu d'essai:</b> entree, attendu, obtenu.</li>
-          <li><b>Trace:</b> test lie a une fonctionnalite du projet.</li>
-          <li><b>Lisibilite:</b> test simple, nom explicite, comportement verifiable.</li>
-          <li><b>Limites:</b> indiquer ce qui n'est pas teste.</li>
-        </ul>
+        <h2>Attendu CDA - Jeu d'essai presentable</h2>
+        <table class="evidence-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Entree</th>
+              <th>Attendu</th>
+              <th>Obtenu</th>
+              <th>Preuve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>API fonctionnel</td>
+              <td><code>POST /api/movies</code> avec titre valide</td>
+              <td><code>201</code> + JSON film cree</td>
+              <td><code>201</code> + <code>{id,title,year}</code></td>
+              <td>Capture terminal / rapport CI</td>
+            </tr>
+            <tr>
+              <td>Unitaire</td>
+              <td>annee <code>1700</code></td>
+              <td>exception <code>YEAR_INVALID</code></td>
+              <td>test vert</td>
+              <td>Sortie Jest/PHPUnit</td>
+            </tr>
+            <tr>
+              <td>Non-regression</td>
+              <td>reexecution suite apres refactor</td>
+              <td>0 regression</td>
+              <td>100% tests critiques OK</td>
+              <td>Pipeline CI datee</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">Dans le dossier CDA: lier chaque test a une fonctionnalite du projet et expliciter ce qui n'est pas couvert.</p>
         <div class="end-actions"><a class="menu-button" href="index.html">Retour index</a></div>
       </section>
     </div>
