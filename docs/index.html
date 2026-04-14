@@ -29,9 +29,26 @@
       filter: brightness(1.05);
       text-decoration: none;
     }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+    .brand-logo {
+      height: 44px;
+      width: auto;
+      border-radius: 8px;
+      border: 1px solid #222;
+      background: #fff;
+      padding: 4px 8px;
+    }
   </style>
 </head>
 <body>
+  <div class="brand">
+    <img class="brand-logo" src="assets/logo-campus.png" alt="Logo Campus" />
+  </div>
   <h1>Diaporamas CDA</h1>
   <p class="hint">Slides Reveal.js construits à partir des supports Markdown.</p>
   <a class="repo-button" href="https://github.com/aah-supports/presentation-cda.git" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub</a>
