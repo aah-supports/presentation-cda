@@ -25,7 +25,7 @@ Reference formateur:
 ## Atelier J1 (a faire en premier)
 
 - [11_tp-j1-expression-besoin-lms-cda.md](./11_tp-j1-expression-besoin-lms-cda.md)
-  - Atelier cadrage: transformer l'expression des besoins en livrables projet
+  - Atelier cadrage: transformer l'expression des besoins en livrables projet (cas films d'art et essai)
 - [11_trame-rendu-j1-expression-besoin-lms-cda.md](./11_trame-rendu-j1-expression-besoin-lms-cda.md)
   - Trame de rendu obligatoire (vision, MVP, backlog, risques)
 
