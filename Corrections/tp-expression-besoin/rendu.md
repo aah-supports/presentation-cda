@@ -10,19 +10,19 @@ Référence modèle dossier CDA :
 ## 1. Contexte de départ
 
 - Problème à résoudre : les passionnés de cinéma d'art et essai ont du mal à trouver rapidement des films fiables et adaptés à leurs goûts.
-- Public cible : passionnés de cinéma, utilisateurs occasionnels, formateurs/ciné-clubs.
+- Public cible : passionnés de cinéma, utilisateurs occasionnels intéressés par le cinéma, exploitants de cinéma, ciné-clubs.
 - Valeur attendue : proposer un catalogue clair, consultable et filtrable, avec une liste personnelle "À voir".
-- Résultat attendu : un MVP démontrable qui couvre la découverte de films et la préparation d'un visionnage.
+- Résultat attendu : un `MVP` démontrable qui couvre la découverte de films et la préparation d'un visionnage.
 
 ## 2. Objectifs mesurables
 
 - Objectif 1 : permettre la consultation d'un catalogue initial de 20 films minimum.
-- Objectif 2 : permettre la recherche d'un film par titre, réalisateur ou année.
+- Objectif 2 : permettre la recherche d'un film par titre, mots clés, genre, réalisateur ou année.
 - Objectif 3 : permettre l'ajout d'un film dans une liste "À voir" en moins de 3 actions.
 
 ## 3. Périmètre
 
-### 3.1 MVP (phase 1)
+### 3.1 MVP 
 
 - Fonctionnalités incluses :
   - consulter le catalogue
@@ -32,29 +32,29 @@ Référence modèle dossier CDA :
   - administrer les fiches films (CRUD simple)
 - Critère de succès MVP : un utilisateur trouve un film et l'ajoute à sa liste "À voir" sans assistance.
 
-### 3.2 Hors périmètre (phase 2/3)
+### 3.2 Hors périmètre 
 
 - Fonctionnalités reportées :
   - commentaires et notes publiques
   - recommandations automatiques avancées
   - planning de séances/festivals
   - modération éditoriale avancée
-- Justification : exercice J1 centré sur le cadrage CDC, avec délai court.
+- Justification : propre à cet exercice ... On a qu'une demi-journée ! 
 
 ## 4. Contraintes
 
-- Délai : 1 journée de cadrage (J1).
+- Délai : 1/2 journée de cadrage.
 - Contraintes techniques : aucune conception technique détaillée à ce stade.
-- Ressources / organisation : travail en petite équipe, validation formateur en fin de journée.
+- Ressources / organisation : travail en petite équipe ou individuel, validation formateur en fin de journée.
 
 ## 5. Acteurs et responsabilités
 
 | Acteur | Objectif principal | Actions autorisées |
 |---|---|---|
-| Administrateur éditorial | Maintenir la qualité du catalogue | Créer, modifier, supprimer une fiche film |
+| Administrateur éditorial | Maintenir la qualité du catalogue | Créer, modifier, supprimer une fiche film, taguer un film |
 | Passionné de cinéma | Trouver des films pertinents | Consulter, rechercher, ajouter/retirer de "À voir" |
-| Modérateur (phase 2) | Garantir la qualité des contenus communautaires | Valider ou retirer du contenu utilisateur |
-| Partenaire événementiel (phase 3) | Promouvoir des projections | Proposer des événements liés aux films |
+| Modérateur (plus tard) | Garantir la qualité des contenus communautaires | Valider ou retirer du contenu utilisateur |
+| Partenaire événementiel (plus tard)  | Promouvoir des projections | Proposer des événements liés aux films |
 
 ## 6. Parcours utilisateur principal (5 étapes max)
 
