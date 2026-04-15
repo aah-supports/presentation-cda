@@ -9,7 +9,8 @@ Référence modèle dossier CDA :
 
 ## 1. Contexte de départ
 
-- Problème à résoudre : les passionnés de cinéma d'art et essai ont du mal à trouver rapidement des films fiables et adaptés à leurs goûts.
+- Problème à résoudre : L'offre de films d'art et d'essai est en général peu lisible (sur les plateformes de streaming comme dans les salles de cinéma indépendantes), ce qui complique la recherche et la découverte pour le cinéphile passionné par ce genre.
+
 - Public cible : passionnés de cinéma, utilisateurs occasionnels intéressés par le cinéma, exploitants de cinéma, ciné-clubs.
 - Valeur attendue : proposer un catalogue clair, consultable et filtrable, avec une liste personnelle "À voir".
 - Résultat attendu : un `MVP` démontrable qui couvre la découverte de films et la préparation d'un visionnage.
@@ -18,18 +19,18 @@ Référence modèle dossier CDA :
 
 - Objectif 1 : permettre la consultation d'un catalogue initial de 20 films minimum.
 - Objectif 2 : permettre la recherche d'un film par titre, mots clés, genre, réalisateur ou année.
-- Objectif 3 : permettre l'ajout d'un film dans une liste "À voir" en moins de 3 actions.
+- Objectif 3 : permettre l'ajout d'un film dans une liste "À voir" en moins de 3 clics/actions.
 
 ## 3. Périmètre
 
-### 3.1 MVP 
+### 3.1 MVP (phase 1)
 
 - Fonctionnalités incluses :
   - consulter le catalogue
   - rechercher/filtrer (titre, réalisateur, année)
   - consulter la fiche détaillée d'un film
   - ajouter/retirer un film de la liste "À voir"
-  - administrer les fiches films (CRUD simple)
+  - administrer les fiches films (CRUD)
 - Critère de succès MVP : un utilisateur trouve un film et l'ajoute à sa liste "À voir" sans assistance.
 
 ### 3.2 Hors périmètre 
@@ -39,13 +40,12 @@ Référence modèle dossier CDA :
   - recommandations automatiques avancées
   - planning de séances/festivals
   - modération éditoriale avancée
-- Justification : propre à cet exercice ... On a qu'une demi-journée ! 
 
 ## 4. Contraintes
 
-- Délai : 1/2 journée de cadrage.
+- Délai : 1 semaine de cadrage.
 - Contraintes techniques : aucune conception technique détaillée à ce stade.
-- Ressources / organisation : travail en petite équipe ou individuel, validation formateur en fin de journée.
+- Ressources / organisation : travail en petite équipe ou individuel.
 
 ## 5. Acteurs et responsabilités
 
@@ -53,8 +53,10 @@ Référence modèle dossier CDA :
 |---|---|---|
 | Administrateur éditorial | Maintenir la qualité du catalogue | Créer, modifier, supprimer une fiche film, taguer un film |
 | Passionné de cinéma | Trouver des films pertinents | Consulter, rechercher, ajouter/retirer de "À voir" |
-| Modérateur (plus tard) | Garantir la qualité des contenus communautaires | Valider ou retirer du contenu utilisateur |
-| Partenaire événementiel (plus tard)  | Promouvoir des projections | Proposer des événements liés aux films |
+
+Évolutions possibles :
+- Modérateur : valider ou retirer du contenu utilisateur.
+- Partenaire événementiel : proposer des événements liés aux films.
 
 ## 6. Parcours utilisateur principal (5 étapes max)
 
