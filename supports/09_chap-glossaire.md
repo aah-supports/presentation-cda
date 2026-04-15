@@ -113,18 +113,6 @@ Bien sûr ! Voici d'autres termes que vous pouvez ajouter à votre glossaire pou
 37. **Async/Await**  
     Mécanismes en JavaScript (et dans d'autres langages) permettant de travailler avec des opérations asynchrones de manière plus lisible et plus structurée, en évitant les "callbacks" imbriqués.
 
-38. **CI/CD Pipeline**  
-    Processus automatisé qui permet de tester, déployer et intégrer du code en continu dans des environnements de développement, de test et de production.
-
-39. **Cloud Native**  
-    Architecture et approche qui consiste à concevoir des applications spécifiquement pour fonctionner dans un environnement de cloud computing, en utilisant des microservices, des conteneurs et des API.
-
-40. **Command Line Interface (CLI)**  
-    Interface utilisateur textuelle qui permet d'interagir avec un système via des commandes textuelles.
-
-41. **Container**  
-    Environnement d'exécution léger et isolé pour une application, souvent géré par Docker, qui permet d’exécuter des applications de manière portable et cohérente dans différents environnements.
-
 42. **CORS (Cross-Origin Resource Sharing)**  
     Mécanisme de sécurité qui permet ou bloque l'accès aux ressources d'une application depuis un domaine différent de celui du serveur d'origine.
 
