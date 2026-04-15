@@ -33,3 +33,6 @@ venv/
 
 # Windows
 Thumbs.db
+
+# Office temporary files
+~$*
