@@ -1,0 +1,35 @@
+services:
+  starter-cart:
+    build: .
+    container_name: starter-cart
+    ports:
+      - "3015:3000"
+    volumes:
+      - ./src:/app/src
+    environment:
+      - PORT=3000
+      - STORAGE_DRIVER=${STORAGE_DRIVER:-memory}
+      - DATABASE_URL=${DATABASE_URL:-postgres://cart:cart@postgres:5432/cartdb}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: starter-cart-postgres
+    environment:
+      - POSTGRES_DB=cartdb
+      - POSTGRES_USER=cart
+      - POSTGRES_PASSWORD=cart
+    ports:
+      - "5438:5432"
+    volumes:
+      - starter_cart_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cart -d cartdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  starter_cart_pg_data:

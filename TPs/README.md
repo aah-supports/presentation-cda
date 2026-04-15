@@ -111,6 +111,13 @@ Reference formateur:
   - Exo 2: Panier SOLID
   - Exo 3: PostgreSQL + Doctrine + API Platform (3h)
 
+## Projets Cart TypeScript
+
+- [starter-cart/README.md](../starter-cart/README.md)
+  - `starter-cart`: base etudiante guidee (Docker + server.ts minimal)
+  - tests fonctionnels obligatoires + diagramme UML impose en Draw.io
+  - dual persistance a implementer et switcher via `STORAGE_DRIVER` (memory/postgres)
+
 ## Critere de reussite TP
 
 En fin de TP, l'etudiant doit pouvoir montrer:
