@@ -67,15 +67,15 @@ class InvoicePrinter {
       <section>
         <h2>O - Open/Closed Principle</h2>
         <ul class="glossary-list">
-          <li><b>Definition:</b> ouvert a l'extension, ferme a la modification.</li>
-          <li><b>Objectif:</b> ajouter un nouveau comportement sans re-ecrire la classe existante.</li>
-          <li><b>Lecture pratique:</b> si tu ajoutes `VipDiscount`, tu crees une nouvelle classe, tu ne touches pas `Checkout`.</li>
+          <li><b>Definition:</b> ouvert à l'extension, fermé à la modification.</li>
+          <li><b>Objectif:</b> ajouter un nouveau comportement sans réécrire la classe existante.</li>
+          <li><b>Lecture pratique:</b> si tu ajoutes `VipDiscount`, tu crées une nouvelle classe, tu ne touches pas `Checkout`.</li>
         </ul>
       </section>
 
       <section>
         <h2>O - Exemple TypeScript</h2>
-        <pre><code class="language-ts">// Avant (pas OCP): il faut modifier Checkout a chaque nouveau cas
+        <pre><code class="language-ts">// Avant (pas OCP) : il faut modifier Checkout à chaque nouveau cas
 class CheckoutV1 {
   total(amount: number, customerType: "regular" | "student"): number {
     if (customerType === "student") return amount * 0.9;
@@ -83,7 +83,7 @@ class CheckoutV1 {
   }
 }
 
-// Apres (OCP): on etend avec une nouvelle classe, sans modifier Checkout
+// Après (OCP) : on étend avec une nouvelle classe, sans modifier Checkout
 interface Discount {
   apply(amount: number): number;
 }
@@ -113,8 +113,8 @@ const vipCheckout = new Checkout(new VipDiscount());</code></pre>
         <h2>L - Liskov Substitution Principle</h2>
         <ul class="glossary-list">
           <li><b>Definition:</b> si le code fonctionne avec la classe parent, il doit fonctionner pareil avec n'importe quelle sous-classe.</li>
-          <li><b>Objectif:</b> ne pas surprendre le code appelant (meme contrat, meme comportement attendu).</li>
-          <li><b>Lecture pratique:</b> meme sequence d'appels => meme type de resultat attendu.</li>
+          <li><b>Objectif:</b> ne pas surprendre le code appelant (même contrat, même comportement attendu).</li>
+          <li><b>Lecture pratique:</b> même séquence d'appels => même type de résultat attendu.</li>
         </ul>
       </section>
 
@@ -149,7 +149,7 @@ console.log(r1.area()); // 20
 const r2: Rectangle = new Square(); // substitution
 r2.setWidth(5);
 r2.setHeight(4);
-console.log(r2.area()); // 16 -> resultat inattendu pour le code appelant</code></pre>
+console.log(r2.area()); // 16 -> résultat inattendu pour le code appelant</code></pre>
       </section>
 
       <section>
@@ -174,34 +174,64 @@ class Square implements Shape {
       <section>
         <h2>I - Interface Segregation Principle</h2>
         <ul class="glossary-list">
-          <li><b>Definition:</b> preferer plusieurs petites interfaces specialisees a une grosse interface.</li>
-          <li><b>Objectif:</b> eviter d'imposer des methodes inutiles aux classes.</li>
-          <li><b>Resultat:</b> couplage plus faible et implementations plus simples.</li>
+          <li><b>Definition:</b> une classe ne doit pas dépendre de méthodes qu'elle n'utilise pas.</li>
+          <li><b>Objectif:</b> découper les \"grosses\" interfaces en interfaces métier ciblées.</li>
+          <li><b>Lecture pratique:</b> si une classe contient des `throw new Error(\"NOT_IMPLEMENTED\")`, l'interface est souvent trop large.</li>
         </ul>
       </section>
 
       <section>
         <h2>I - Exemple TypeScript</h2>
-        <pre><code class="language-ts">interface Reader<T> {
-  findAll(): Promise<T[]>;
+        <pre><code class="language-ts">// Avant (mauvais): interface trop large
+interface NotificationService {
+  sendEmail(to: string, message: string): void;
+  sendSms(phone: string, message: string): void;
+  sendPush(deviceId: string, message: string): void;
 }
 
-interface Writer<T> {
-  save(item: T): Promise<void>;
+class EmailNotifier implements NotificationService {
+  sendEmail(to: string, message: string): void {
+    // OK
+  }
+  sendSms(_phone: string, _message: string): void {
+    throw new Error("NOT_IMPLEMENTED");
+  }
+  sendPush(_deviceId: string, _message: string): void {
+    throw new Error("NOT_IMPLEMENTED");
+  }
 }
 
-class ProductQueryService {
-  constructor(private reader: Reader<{ name: string }>) {}
-  list() { return this.reader.findAll(); }
+// Après (ISP) : interfaces séparées
+interface EmailSender {
+  sendEmail(to: string, message: string): void;
+}
+interface SmsSender {
+  sendSms(phone: string, message: string): void;
+}
+interface PushSender {
+  sendPush(deviceId: string, message: string): void;
+}
+
+class SmtpEmailSender implements EmailSender {
+  sendEmail(to: string, message: string): void {
+    // implémentation SMTP
+  }
+}
+
+class PasswordResetService {
+  constructor(private emailSender: EmailSender) {}
+  sendResetLink(email: string): void {
+    this.emailSender.sendEmail(email, "Reset your password");
+  }
 }</code></pre>
       </section>
 
       <section>
         <h2>D - Dependency Inversion Principle</h2>
         <ul class="glossary-list">
-          <li><b>Definition:</b> les modules metier dependent d'abstractions, pas d'implementations concretes.</li>
-          <li><b>Objectif:</b> remplacer facilement les dependances techniques (memoire, SQL, API externe).</li>
-          <li><b>Effet:</b> meilleure testabilite et architecture flexible.</li>
+          <li><b>Definition:</b> les modules métier dépendent d'abstractions, pas d'implémentations concrètes.</li>
+          <li><b>Objectif:</b> remplacer facilement les dépendances techniques (mémoire, SQL, API externe).</li>
+          <li><b>Effet:</b> meilleure testabilité et architecture flexible.</li>
         </ul>
       </section>
 
