@@ -96,30 +96,62 @@ class Checkout {
       <section>
         <h2>L - Liskov Substitution Principle</h2>
         <ul class="glossary-list">
-          <li><b>Definition:</b> une sous-classe doit pouvoir remplacer sa classe de base sans effet de bord.</li>
-          <li><b>Objectif:</b> conserver les contrats et comportements attendus.</li>
-          <li><b>Signal d'alerte:</b> surcharges qui cassent les preconditions/postconditions.</li>
+          <li><b>Definition:</b> si le code fonctionne avec la classe parent, il doit fonctionner pareil avec n'importe quelle sous-classe.</li>
+          <li><b>Objectif:</b> ne pas surprendre le code appelant (meme contrat, meme comportement attendu).</li>
+          <li><b>Signal d'alerte:</b> une sous-classe change les regles sans prevenir (ex: resultat different pour la meme sequence d'appels).</li>
         </ul>
       </section>
 
       <section>
-        <h2>L - Exemple TypeScript</h2>
-        <pre><code class="language-ts">interface Storage {
-  save(key: string, value: string): void;
+        <h2>L - Exemple clair (violation)</h2>
+        <pre><code class="language-ts">class Rectangle {
+  protected width = 0;
+  protected height = 0;
+
+  setWidth(w: number) { this.width = w; }
+  setHeight(h: number) { this.height = h; }
+  area() { return this.width * this.height; }
 }
 
-class MemoryStorage implements Storage {
-  private db = new Map<string, string>();
-  save(key: string, value: string): void { this.db.set(key, value); }
-}
+class Square extends Rectangle {
+  setWidth(w: number) {
+    this.width = w;
+    this.height = w;
+  }
 
-class PostgresStorage implements Storage {
-  save(key: string, value: string): void {
-    // insert/update en base
+  setHeight(h: number) {
+    this.width = h;
+    this.height = h;
   }
 }
 
-function persist(s: Storage) { s.save("cart", "ok"); }</code></pre>
+function areaAfterResize(r: Rectangle): number {
+  r.setWidth(5);
+  r.setHeight(4);
+  return r.area();
+}
+
+console.log(areaAfterResize(new Rectangle())); // 20 (attendu)
+console.log(areaAfterResize(new Square()));    // 16 (surprise) => LSP casse</code></pre>
+      </section>
+
+      <section>
+        <h2>L - Correction simple</h2>
+        <pre><code class="language-ts">interface Shape {
+  area(): number;
+}
+
+class Rectangle implements Shape {
+  constructor(private w: number, private h: number) {}
+  area() { return this.w * this.h; }
+}
+
+class Square implements Shape {
+  constructor(private size: number) {}
+  area() { return this.size * this.size; }
+}
+
+// Ici, pas de substitution dangereuse via setWidth/setHeight.</code></pre>
       </section>
 
       <section>

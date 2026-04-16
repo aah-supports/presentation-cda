@@ -150,7 +150,7 @@ Bien sûr ! Voici d'autres termes que vous pouvez ajouter à votre glossaire pou
     Système de gestion de conteneurs qui permet de déployer, gérer et faire évoluer des applications conteneurisées dans un environnement distribué.
 
 54. **Liskov Substitution Principle (LSP)**  
-    Principe de conception objet qui stipule qu'un objet d'une classe dérivée doit pouvoir être utilisé à la place d'un objet de la classe parente sans altérer les comportements attendus.
+    Principe de conception objet: tout code qui fonctionne avec une classe de base doit continuer a fonctionner avec ses sous-classes. Exemple classique: si une fonction attend un `Rectangle`, lui passer un `Square` ne doit pas changer le resultat attendu.
 
 55. **Load Balancer**  
     Dispositif ou technique permettant de répartir la charge de travail entre plusieurs serveurs ou ressources pour améliorer la performance, la disponibilité et la tolérance aux pannes d'une application.
