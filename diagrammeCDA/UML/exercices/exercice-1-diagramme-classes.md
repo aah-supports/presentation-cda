@@ -1,7 +1,7 @@
 # Exercice 1 - Diagramme de classes (MVC simple)
 
 ## Contexte
-Tu as une API panier en MVC avec les elements suivants:
+Vous avez une API panier en MVC avec les éléments suivants:
 - `CartController`
 - `CartService`
 - `IStorage`
@@ -13,11 +13,11 @@ Tu as une API panier en MVC avec les elements suivants:
 ## Travail demande
 Construire un diagramme de classes UML qui montre:
 1. les classes/interfaces ci-dessus
-2. les principales methodes publiques
-3. les relations (association, dependance, implementation)
+2. les principales méthodes publiques
+3. les relations (association, dépendance, implémentation)
 
 ## Contraintes
-- Montrer que `InMemory` et `PostgresStorage` implementent `IStorage`.
+- Montrer que `InMemory` et `PostgresStorage` implémentent `IStorage`.
 - Montrer que `CartService` depend de `IStorage`.
 - Montrer que `CartController` depend de `CartService`.
 

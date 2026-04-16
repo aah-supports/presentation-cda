@@ -8,10 +8,10 @@ Body:
 ```
 
 ## Travail demande
-Faire un diagramme de sequence pour le scenario nominal:
+Faire un diagramme de séquence pour le scénario nominal:
 1. Client appelle `CartController.addItem`
-2. Le controller recupere le produit via `CartService.getProduct`
-3. Le service verifie le stock via `IStorage.checkStock`
+2. Le controller recupère le produit via `CartService.getProduct`
+3. Le service vérifie le stock via `IStorage.checkStock`
 4. Le service ajoute l'article via `IStorage.addItem`
 5. Reponse HTTP `201`
 

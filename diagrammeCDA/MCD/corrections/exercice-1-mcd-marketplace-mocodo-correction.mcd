@@ -1,0 +1,16 @@
+CLIENT: id_client, email, raison_sociale
+VENDEUR: id_vendeur, nom, siret
+CATEGORIE: id_categorie, libelle
+PRODUIT: id_produit, sku, nom, prix_ht
+COMMANDE: id_commande, date_commande, statut
+LIGNE_COMMANDE: id_ligne, quantite, prix_unitaire_ht
+PAIEMENT: id_paiement, date_paiement, montant_ttc, statut
+EXPEDITION: id_expedition, date_expedition, transporteur, tracking
+
+PASSER, 0N CLIENT, 1N COMMANDE
+CLASSER, 0N CATEGORIE, 1N PRODUIT
+VENDRE, 0N VENDEUR, 1N PRODUIT
+CONTENIR, 1N COMMANDE, 1N LIGNE_COMMANDE
+REFERENCER, 0N PRODUIT, 1N LIGNE_COMMANDE
+REGLER, 01 COMMANDE, 11 PAIEMENT
+LIVRER, 0N COMMANDE, 1N EXPEDITION
