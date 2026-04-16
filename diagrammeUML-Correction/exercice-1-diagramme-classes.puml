@@ -1,0 +1,45 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface IStorage {
+  +addItem(product: Product, quantity: number): StorageItem
+  +listItems(): StorageItem[]
+  +checkStock(productId: string): number
+  +getItem(productId: string): Product
+}
+
+class CartController {
+  -service: CartService
+  +addItem(req, res)
+  +listIems(req, res)
+}
+
+class CartService {
+  -storage: IStorage
+  +addIem(product: Product, quantity: number): StorageItem
+  +listIems(): StorageItem[]
+  +checkStock(productId: string): number
+  +getProduct(productId: string): Product
+}
+
+class InMemory
+class PostgresStorage
+
+class Product {
+  +id: string
+  +name: string
+  +price: number
+}
+
+class StorageItem {
+  +product: Product
+  +quantity: number
+  +total: number
+}
+
+CartController --> CartService
+CartService --> IStorage
+InMemory ..|> IStorage
+PostgresStorage ..|> IStorage
+StorageItem --> Product
+@enduml
