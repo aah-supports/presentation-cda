@@ -1,161 +1,166 @@
-# starter-cart (TypeScript + Express)
+# starter-cart
 
-Objectif: realiser un mini projet panier en couches en partant d'un squelette minimal.
+TP backend TypeScript/Express pour un panier, avec 2 persistances:
+- `memory`
+- `postgres`
 
-## Demarrage Docker
+## Énoncé
+Objectif: implémenter une API panier en couches (`router -> controller -> service -> storage`) qui:
+1. ajoute un produit au panier
+2. vérifie la quantité et le stock
+3. liste le panier
+4. change de persistance via `STORAGE_DRIVER` sans toucher le métier
 
-Configurer d'abord `.env`:
+Routes:
+- `GET /api/products`
+- `POST /api/product`
+- `POST /api/products` (alias)
 
+Body POST:
+```json
+{ "productId": "aa1", "quantity": 2 }
+```
+
+## MCD (PostgreSQL)
+
+![MCD starter-cart](./MCD.png)
+
+Tables utilisées:
+- `products`
+- `inventories`
+- `cart_items`
+
+## Démarrage
+
+`.env`:
 ```env
+PORT=3000
 STORAGE_DRIVER=memory
-# ou
-STORAGE_DRIVER=postgres
+DATABASE_URL=postgres://cart:cart@postgres:5432/cartdb
 ```
 
-Mode memory:
-
+Lancer:
 ```bash
-docker compose up --build
-```
+# memory
+STORAGE_DRIVER=memory docker compose up --build
 
-Mode postgres:
-
-```bash
+# postgres
 STORAGE_DRIVER=postgres docker compose up --build
 ```
 
-URL de base:
+Base URL: `http://localhost:3015/api`
 
-- `http://localhost:3015/api`
-- `http://localhost:3015/api/health`
+## Plan de test (version enrichie CDA)
 
-PostgreSQL (pour le mode `postgres`):
+### 1. Objectif du plan
+Vérifier la conformité fonctionnelle de l'API panier, la robustesse des règles métier, et la cohérence du comportement entre les deux modes de persistance.
 
-- host: `localhost`
-- port: `5438`
-- db: `cartdb`
-- user: `cart`
-- password: `cart`
+### 2. Périmètre
+Inclus:
+- endpoints API du panier
+- règles métier (quantité, stock, existence produit)
+- persistance `memory` et `postgres`
 
-## Etapes a realiser (pas a pas)
+Exclus:
+- test de charge avancé
+- audit sécurité OWASP complet
+- tests UI (pas d'interface front dans ce TP)
 
-1. Creer `src/models/Product.ts`
-- Interface `Product` avec `name`, `price`, `stock`, `inCart`.
+### 3. Exigences de référence
+- `E01` Consulter le panier
+- `E02` Ajouter un produit au panier
+- `E03` Refuser une quantité invalide
+- `E04` Refuser un produit inexistant
+- `E05` Refuser un stock insuffisant
+- `E06` Supporter 2 drivers (`memory`, `postgres`) avec même comportement métier
+- `E07` Conserver les données en mode postgres si le volume Docker est conservé
 
-2. Creer `src/storage/IStorage.ts`
-- Interface de persistance avec les methodes:
-  - `getProducts()`
-  - `addCatalogProduct()`
-  - `addToCart(name, quantity)`
-  - `removeFromCart(name)`
-  - `removeQuantityFromCart(name, quantity)`
-  - `cancelCart()`
-  - `checkout()`
-  - `cartTotal()`
+### 4. Matrice de traçabilité (exigences -> tests)
 
-3. Creer `src/storage/MemoryStorage.ts`
-- Persistance en memoire (tableau de produits), sans base de donnees.
+| Exigence | Tests associés |
+|---|---|
+| E01 | T01, T03 |
+| E02 | T02, T07 |
+| E03 | T04, T05 |
+| E04 | T06 |
+| E05 | T08 |
+| E06 | T01 à T09 en `memory` puis en `postgres` |
+| E07 | T10 |
 
-4. Creer `src/storage/PostgresStorage.ts`
-- Persistance PostgreSQL avec le meme contrat `IStorage`.
-- Creer la table et les donnees initiales si necessaire.
+### 5. Environnement de test
+- Runtime: Node.js 20 (dans Docker)
+- Base de données: PostgreSQL 16
+- Orchestration: Docker Compose
+- Outils: `curl` / Postman
 
-5. Creer `src/storage/createStorage.ts`
-- Factory de selection:
-  - `STORAGE_DRIVER=memory` -> `MemoryStorage`
-  - `STORAGE_DRIVER=postgres` -> `PostgresStorage`
-- Aucun changement metier hors de cette factory.
-
-6. Creer `src/services/CartService.ts`
-- Regles metier:
-  - ajouter un produit avec quantite
-  - retirer un produit
-  - retirer une quantite
-  - annuler un panier
-  - valider une commande (`checkout`)
-  - calculer total panier
-
-7. Creer `src/controllers/CartController.ts`
-- Centraliser les actions d'achat:
-  - `addItem`
-  - `decreaseItem`
-  - `removeItem`
-  - `cancelCart`
-  - `checkout`
-  - `getCartTotal`
-
-8. Completer `src/router.ts`
-- `GET /api/products`
-- `POST /api/products`
-- `GET /api/cart`
-- `GET /api/cart/total`
-- `POST /api/cart/items` (body: `{ "name": "apple", "quantity": 2 }`)
-- `PATCH /api/cart/items/:name/decrease` (body: `{ "quantity": 1 }`)
-- `DELETE /api/cart/items/:name`
-- `POST /api/cart/cancel`
-- `POST /api/cart/checkout`
-
-9. Brancher la factory dans `src/server.ts`
-- Le serveur doit creer le storage via `createStorage()`.
-
-## Attendu final
-
-- API operationnelle en TypeScript pur
-- architecture simple en couches
-- **deux persistances implementees** (`MemoryStorage` + `PostgresStorage`)
-- **switch de persistance sans toucher au metier** (via `STORAGE_DRIVER`)
-- execution complete via Docker
-
-## Tests fonctionnels obligatoires (avant rendu)
-
-1. `GET /api/health` retourne `200`.
-2. `GET /api/products` retourne les produits initiaux.
-3. `POST /api/products` cree un produit valide (`201`).
-4. Doublon produit retourne `400 PRODUCT_ALREADY_EXISTS`.
-5. `POST /api/cart/items` ajoute un produit (`201`).
-6. Quantite invalide retourne `400 QUANTITY_INVALID`.
-7. Stock insuffisant retourne `400 STOCK_NOT_ENOUGH`.
-8. `GET /api/cart` retourne `items` + `total`.
-9. `GET /api/cart/total` retourne le meme total.
-10. `PATCH /api/cart/items/:name/decrease` retire une quantite.
-11. Retrait trop grand retourne `400 BAD_QUANTITY`.
-12. `DELETE /api/cart/items/:name` retourne `204`.
-13. `POST /api/cart/cancel` vide le panier.
-14. `POST /api/cart/checkout` retourne `400 CART_EMPTY` sur panier vide.
-15. `POST /api/cart/checkout` sur panier rempli retourne `orderId`, `finalTotal`, `status`.
-16. Toute la suite passe en `STORAGE_DRIVER=memory`.
-17. Toute la suite passe en `STORAGE_DRIVER=postgres`.
-18. En mode postgres, apres restart API, les donnees persistent.
-
-## Diagramme de classes obligatoire (Draw.io)
-
-Vous devez livrer un diagramme de classes UML realise avec **Draw.io**:
-
-- outil impose: `https://app.diagrams.net/`
-- format source impose: `.drawio`
-- chemin impose: `diagrammes/cart-class-diagram.drawio`
-- export recommande pour lecture GitHub: `diagrammes/cart-class-diagram.svg`
-- lien direct source: [diagrammes/cart-class-diagram.drawio](./diagrammes/cart-class-diagram.drawio)
-- lien direct export: [diagrammes/cart-class-diagram.svg](./diagrammes/cart-class-diagram.svg)
-
-Le diagramme doit montrer au minimum:
-
-- `Product`
-- `IStorage`
-- `MemoryStorage`
-- `PostgresStorage`
-- `createStorage` (factory)
-- `CartService`
-- `CartController`
-- les relations entre ces classes/interfaces
-
-### Apercu du diagramme
-
-![Diagramme de classes Cart](./diagrammes/cart-class-diagram.svg)
-
-
+Initialisation propre recommandée:
 ```bash
-curl -X POST http://localhost:3015/api/product \
-  -H "Content-Type: application/json" \
-  -d '{"name":"apple", "price": 10.5, "stock": 20, "quantity":2}'
+docker compose down -v --remove-orphans
 ```
+
+### 6. Critères d'entrée / sortie
+Critères d'entrée:
+- Docker opérationnel
+- ports libres (`3015`, `5438`, `8081`)
+- image reconstruite (`docker compose up --build`)
+
+Critères de sortie:
+- 100% des tests critiques passés
+- 0 anomalie bloquante
+- 0 anomalie majeure ouverte sur le flux nominal
+
+### 7. Jeux de tests fonctionnels
+
+| ID | Priorité | Cas | Requête | Résultat attendu |
+|---|---|---|---|---|
+| T01 | Critique | Lecture panier initial | `GET /api/products` | `200`, JSON valide |
+| T02 | Critique | Ajout nominal | `POST /api/product` avec `aa1,2` | `201`, stock décrémenté |
+| T03 | Critique | Vérifier panier après ajout | `GET /api/products` | ligne `aa1`, `quantity=2` |
+| T04 | Critique | Quantité nulle | `POST /api/product` qty `0` | `400`, `QUANTITY_INVALID` |
+| T05 | Critique | Quantité négative | `POST /api/product` qty `-1` | `400`, `QUANTITY_INVALID` |
+| T06 | Critique | Produit inconnu | `POST /api/product` `productId=zzz` | `400`, `PRODUCT_NOT_FOUND` |
+| T07 | Majeure | Route alias | `POST /api/products` | même comportement que `/api/product` |
+| T08 | Critique | Stock insuffisant | `POST /api/product` qty `999` | `400`, `STOCK_NOT_ENOUGH` |
+| T09 | Majeure | Type invalide | `POST /api/product` qty `"2"` | `400`, `QUANTITY_INVALID` |
+| T10 | Critique | Persistance postgres | restart app sans `-v` | données conservées |
+
+### 8. Tests non fonctionnels minimum
+- `NF01` Robustesse payload: body manquant ou mal formé -> réponse 4xx, pas de crash
+- `NF02` Disponibilité démarrage: app prête < 30s après `docker compose up`
+- `NF03` Cohérence transactionnelle (postgres): pas de stock négatif après erreurs
+
+### 9. Procédure d'exécution
+1. Exécuter T01 à T09 en mode `memory`
+2. Exécuter T01 à T10 en mode `postgres`
+3. Archiver les résultats (OK/KO) dans un tableau de recette
+
+Exemple de commandes:
+```bash
+curl -s http://localhost:3015/api/products
+
+curl -s -X POST http://localhost:3015/api/product \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"aa1","quantity":2}'
+
+curl -s -X POST http://localhost:3015/api/product \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"aa1","quantity":0}'
+```
+
+### 10. Modèle de suivi d'anomalie
+Pour chaque anomalie:
+- ID
+- contexte / prérequis
+- étapes de reproduction
+- résultat attendu
+- résultat observé
+- gravité (`Bloquante`, `Majeure`, `Mineure`)
+- statut (`Ouverte`, `En cours`, `Corrigée`)
+
+### 11. PV de recette (résumé attendu)
+- Date de campagne
+- Version testée
+- Nombre de cas exécutés
+- Nombre de cas OK / KO
+- Liste des anomalies restantes
+- Décision finale: `GO` / `NO GO`
