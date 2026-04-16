@@ -127,6 +127,8 @@ Vous devez livrer un diagramme de classes UML realise avec **Draw.io**:
 - format source impose: `.drawio`
 - chemin impose: `diagrammes/cart-class-diagram.drawio`
 - export recommande pour lecture GitHub: `diagrammes/cart-class-diagram.svg`
+- lien direct source: [diagrammes/cart-class-diagram.drawio](./diagrammes/cart-class-diagram.drawio)
+- lien direct export: [diagrammes/cart-class-diagram.svg](./diagrammes/cart-class-diagram.svg)
 
 Le diagramme doit montrer au minimum:
 
@@ -138,3 +140,14 @@ Le diagramme doit montrer au minimum:
 - `CartService`
 - `CartController`
 - les relations entre ces classes/interfaces
+
+### Apercu du diagramme
+
+![Diagramme de classes Cart](./diagrammes/cart-class-diagram.svg)
+
+
+```bash
+curl -X POST http://localhost:3015/api/product \
+  -H "Content-Type: application/json" \
+  -d '{"name":"apple", "price": 10.5, "stock": 20, "quantity":2}'
+```
