@@ -68,14 +68,23 @@ class InvoicePrinter {
         <h2>O - Open/Closed Principle</h2>
         <ul class="glossary-list">
           <li><b>Definition:</b> ouvert a l'extension, ferme a la modification.</li>
-          <li><b>Objectif:</b> ajouter un comportement sans casser le code existant.</li>
-          <li><b>Technique:</b> passer par des interfaces et du polymorphisme.</li>
+          <li><b>Objectif:</b> ajouter un nouveau comportement sans re-ecrire la classe existante.</li>
+          <li><b>Lecture pratique:</b> si tu ajoutes `VipDiscount`, tu crees une nouvelle classe, tu ne touches pas `Checkout`.</li>
         </ul>
       </section>
 
       <section>
         <h2>O - Exemple TypeScript</h2>
-        <pre><code class="language-ts">interface Discount {
+        <pre><code class="language-ts">// Avant (pas OCP): il faut modifier Checkout a chaque nouveau cas
+class CheckoutV1 {
+  total(amount: number, customerType: "regular" | "student"): number {
+    if (customerType === "student") return amount * 0.9;
+    return amount;
+  }
+}
+
+// Apres (OCP): on etend avec une nouvelle classe, sans modifier Checkout
+interface Discount {
   apply(amount: number): number;
 }
 
@@ -87,10 +96,17 @@ class StudentDiscount implements Discount {
   apply(amount: number): number { return amount * 0.9; }
 }
 
+class VipDiscount implements Discount {
+  apply(amount: number): number { return amount * 0.8; }
+}
+
 class Checkout {
   constructor(private discount: Discount) {}
   total(amount: number): number { return this.discount.apply(amount); }
-}</code></pre>
+}
+
+const studentCheckout = new Checkout(new StudentDiscount());
+const vipCheckout = new Checkout(new VipDiscount());</code></pre>
       </section>
 
       <section>
@@ -98,12 +114,12 @@ class Checkout {
         <ul class="glossary-list">
           <li><b>Definition:</b> si le code fonctionne avec la classe parent, il doit fonctionner pareil avec n'importe quelle sous-classe.</li>
           <li><b>Objectif:</b> ne pas surprendre le code appelant (meme contrat, meme comportement attendu).</li>
-          <li><b>Signal d'alerte:</b> une sous-classe change les regles sans prevenir (ex: resultat different pour la meme sequence d'appels).</li>
+          <li><b>Lecture pratique:</b> meme sequence d'appels => meme type de resultat attendu.</li>
         </ul>
       </section>
 
       <section>
-        <h2>L - Exemple clair (violation)</h2>
+        <h2>L - Exemple concret</h2>
         <pre><code class="language-ts">class Rectangle {
   protected width = 0;
   protected height = 0;
@@ -125,14 +141,15 @@ class Square extends Rectangle {
   }
 }
 
-function areaAfterResize(r: Rectangle): number {
-  r.setWidth(5);
-  r.setHeight(4);
-  return r.area();
-}
+const r1: Rectangle = new Rectangle();
+r1.setWidth(5);
+r1.setHeight(4);
+console.log(r1.area()); // 20
 
-console.log(areaAfterResize(new Rectangle())); // 20 (attendu)
-console.log(areaAfterResize(new Square()));    // 16 (surprise) => LSP casse</code></pre>
+const r2: Rectangle = new Square(); // substitution
+r2.setWidth(5);
+r2.setHeight(4);
+console.log(r2.area()); // 16 -> resultat inattendu pour le code appelant</code></pre>
       </section>
 
       <section>
