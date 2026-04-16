@@ -4,10 +4,18 @@ Objectif: realiser un mini projet panier en couches en partant d'un squelette mi
 
 ## Demarrage Docker
 
+Configurer d'abord `.env`:
+
+```env
+STORAGE_DRIVER=memory
+# ou
+STORAGE_DRIVER=postgres
+```
+
 Mode memory:
 
 ```bash
-STORAGE_DRIVER=memory docker compose up --build
+docker compose up --build
 ```
 
 Mode postgres:
