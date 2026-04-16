@@ -1,20 +1,14 @@
-import { Router, Request, Response } from "express";
-import { CartController } from "./controllers/CartController.js";
-import { CartService } from "./services/CartService.js";
-import { InMemory } from "./storage/InMemory.js";
+import { Router } from "express";
+import { CartController } from "./controllers/CartController";
 
-export const router = Router();
-const storage = new InMemory();
-const service = new CartService(storage);
-const controller = new CartController(service);
+export function createRouter(controller: CartController) {
+  const router = Router();
 
-router.get("/", (_req : Request, res: Response) => {
-  res.json({
-    message: "Starter cart TypeScript",
-    nextStep: "Implementer les routes /api/products et /api/cart"
-  });
-});
+  // Liste le contenu actuel du panier.
+  router.get("/products", controller.listIems);
+  // Deux routes POST pour rester compatible avec les appels historiques du TP.
+  router.post("/product", controller.addItem);
+  router.post("/products", controller.addItem);
 
-
-router.get("/products", async (req: Request, res: Response) => controller.listIems(req, res));
-router.post("/product", async (req: Request, res: Response) => controller.addItem(req, res));
+  return router;
+}

@@ -1,54 +1,60 @@
 import { Request, Response} from "express";
-import { Product } from "../models/Product.js";
-import { CartService } from "../services/CartService.js";
+import { CartService } from "../services/CartService";
 
 export class CartController{
 
-    constructor(private readonly service: CartService){}
+    constructor(private readonly service: CartService){
+        this.addItem = this.addItem.bind(this);
+        this.listIems = this.listIems.bind(this);
+    }
 
     async addItem(req: Request, res: Response): Promise<Response> {
-        const { name, price, stock, quantity } = req.body as {
-          name?: string;
-          price?: number;
-          stock?: number;
+        const { productId, quantity } = req.body as {
+          productId?: string;
           quantity?: number;
         };
-    
-        if (typeof name !== "string" || !name.trim()) {
-          return res.status(400).json({ error: "NAME_REQUIRED" });
+
+        // Validation HTTP en entree avant d'appeler la couche metier.
+        if (typeof productId !== "string" ) {
+          return res.status(400).json({ error: "PRODUCT_ID_REQUIRED" });
         }
 
-        if (typeof price !== "number" || price <= 0) {
-          return res.status(400).json({ error: "PRICE_INVALID" });
-        }
-
-        if (typeof stock !== "number" || stock < 0) {
-          return res.status(400).json({ error: "STOCK_INVALID" });
-        }
-
-        if (quantity !== undefined && (typeof quantity !== "number" || quantity < 0)) {
+        if (typeof quantity !== "number" || !Number.isInteger(quantity) || quantity <= 0) {
           return res.status(400).json({ error: "QUANTITY_INVALID" });
         }
 
-        const product: Product = {
-          name: name.trim(),
-          price,
-          stock,
-          quantity: 0
-        };
+        try {
+          // 1) Recuperer le produit
+          // 2) Ajouter la quantite au panier
+          // 3) Renvoyer le stock restant
+          const product = await this.service.getProduct(productId);
+          const addedItem = await this.service.addIem(product, quantity);
+          const remainingStock = await this.service.checkStock(productId);
 
-        const initialQuantity = quantity ?? 0;
-        await this.service.addIem(product, initialQuantity);
-
-        return res.status(201).json({
-          name: product.name,
-          price: product.price,
-          stock: product.stock,
-          quantity: initialQuantity
-        });
+          return res.status(201).json({
+            id: product.id,
+            name: addedItem.product.name,
+            price: addedItem.product.price,
+            stock: remainingStock,
+            quantity: addedItem.quantity
+          });
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "INTERNAL_ERROR";
+          // Les erreurs metier connues sont exposees en 400.
+          if (
+            message === "PRODUCT_NOT_FOUND" ||
+            message === "INVENTORY_NOT_FOUND" ||
+            message === "STOCK_NOT_ENOUGH" ||
+            message === "QUANTITY_INVALID"
+          ) {
+            return res.status(400).json({ error: message });
+          }
+          return res.status(500).json({ error: "INTERNAL_ERROR" });
+        }
     }
 
     async listIems(_req: Request, res: Response):Promise<Response>{
+        // Snapshot du panier courant.
         const products = await this.service.listIems();
         return res.status(200).json({ storage: products });
     }

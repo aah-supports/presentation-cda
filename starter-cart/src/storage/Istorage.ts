@@ -1,6 +1,11 @@
-import { Product } from "../models/Product.js";
+import { Product } from "../models/Product";
+import { StorageItem } from "../models/StorageItem";
 
+// Contrat commun de persistance.
+// Le service metier depend de cette interface, pas d'une classe concrete.
 export interface Istorage{
-     addProduct(product: Product, quantity: number):Promise<void>;
-     listProducts(): Promise<Product[]>;
+     addItem(product: Product, quantity: number):Promise<StorageItem>;
+     listItems(): Promise<StorageItem[]>;
+     checkStock(productId: string):Promise<number>;
+     getItem(productId : string): Promise<Product>;
 }
