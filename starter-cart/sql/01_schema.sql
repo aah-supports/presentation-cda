@@ -10,26 +10,26 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS customers;
 
 CREATE TABLE customers (
-  id BIGSERIAL PRIMARY KEY,
-  full_name TEXT NOT NULL,
-  email TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   CONSTRAINT uq_customers_email UNIQUE (email)
 );
 
 CREATE TABLE categories (
-  id BIGSERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  slug TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  slug VARCHAR(100) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   CONSTRAINT uq_categories_name UNIQUE (name),
   CONSTRAINT uq_categories_slug UNIQUE (slug)
 );
 
 CREATE TABLE products (
-  id BIGSERIAL PRIMARY KEY,
-  category_id BIGINT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  category_id INTEGER NOT NULL,
   sku TEXT NOT NULL,
   name TEXT NOT NULL,
   price NUMERIC(10, 2) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE products (
 );
 
 CREATE TABLE orders (
-  id BIGSERIAL PRIMARY KEY,
-  customer_id BIGINT NOT NULL,
-  order_number TEXT NOT NULL,
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER NOT NULL,
+  order_number VARCHAR(100) NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending',
   ordered_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   CONSTRAINT uq_orders_order_number UNIQUE (order_number),
@@ -58,8 +58,8 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_items (
-  order_id BIGINT NOT NULL,
-  product_id BIGINT NOT NULL,
+  order_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
   quantity INTEGER NOT NULL,
   unit_price NUMERIC(10, 2) NOT NULL,
   CONSTRAINT pk_order_items PRIMARY KEY (order_id, product_id),
