@@ -610,10 +610,6 @@ MVC est une architecture en couches pragmatique adaptée à la majorité des pro
 
 Les architectures 🍣 (Clean et Hexagonal) permettent une meilleure séparation du domaine et une plus grande maintenabilité, au prix d’une complexité plus élevée.
 
-Oui — mais ce que j’ai ajouté, c’est plus **une implémentation de tests** qu’un vrai **plan de test structuré**.
-
-👉 Je te fais maintenant une version **propre et complète : plan de test + stratégie + exemples**.
-
 ---
 
 # Plan de test
