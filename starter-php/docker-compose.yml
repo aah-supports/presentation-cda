@@ -1,0 +1,10 @@
+services:
+  psysh:
+    build:
+      context: .
+    container_name: psy
+    working_dir: /app
+    volumes:
+      - ./:/app
+    stdin_open: true
+    tty: true
