@@ -12,7 +12,7 @@ export class ProductRepository {
     return result.rows.map((row) => ({
       id: row.id,
       name: row.name,
-      priceCents: row.price
+      price: row.price
     }));
   }
 
@@ -31,7 +31,7 @@ export class ProductRepository {
     return {
       id: row.id,
       name: row.name,
-      priceCents: row.price
+      price: row.price
     };
   }
 }

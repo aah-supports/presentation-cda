@@ -903,7 +903,7 @@ Le plan de test valide l’application à tous les niveaux :
 
 1. `ProductRepository.findAll()` retourne les produits seedés.
 2. `InventoryRepository.findByProductId(1)` retourne un stock existant.
-3. Les assertions valident le mapping (`priceCents`, `onHand`, etc.).
+3. Les assertions valident le mapping (`price`, `onHand`, etc.).
 
 ### E2E
 

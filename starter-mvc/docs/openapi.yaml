@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: Starter MVC API
+  version: 1.0.0
+  description: Documentation REST pour les endpoints produits.
+servers:
+  - url: /
+paths:
+  /products:
+    get:
+      summary: Récupérer la liste des produits
+      responses:
+        "200":
+          description: Liste des produits
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+  /products/{id}:
+    get:
+      summary: Récupérer un produit par son id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: Produit trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Product"
+        "400":
+          description: id invalide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: PRODUCT_ID_REQUIRED
+        "404":
+          description: produit introuvable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: PRODUCT_NOT_FOUND
+  /products/{id}/stock:
+    get:
+      summary: Calculer le stock courant d'un produit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        "200":
+          description: Snapshot de stock
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ProductStock"
+        "400":
+          description: id invalide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: PRODUCT_ID_REQUIRED
+        "404":
+          description: produit ou stock introuvable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: PRODUCT_OR_STOCK_NOT_FOUND
+  /products/{id}/stock/projection:
+    post:
+      summary: Simuler une projection de stock
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StockProjectionInput"
+      responses:
+        "200":
+          description: Snapshot projeté
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ProductStock"
+        "400":
+          description: id ou payload invalide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_id:
+                  value:
+                    error: PRODUCT_ID_REQUIRED
+                invalid_projection:
+                  value:
+                    error: INVALID_STOCK_PROJECTION
+        "404":
+          description: produit ou stock introuvable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                error: PRODUCT_OR_STOCK_NOT_FOUND
+components:
+  schemas:
+    Product:
+      type: object
+      required: [id, name, price]
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Tapis de souris XXL
+        price:
+          type: integer
+          example: 1900
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          example: Internal Server Error
+    Stock:
+      type: object
+      required: [onHand, reserved, available, reorderPoint, status]
+      properties:
+        onHand:
+          type: integer
+          example: 120
+        reserved:
+          type: integer
+          example: 20
+        available:
+          type: integer
+          example: 100
+        reorderPoint:
+          type: integer
+          example: 30
+        status:
+          type: string
+          enum: [OUT_OF_STOCK, LOW_STOCK, OK]
+          example: OK
+    ProductStock:
+      type: object
+      required: [product, stock]
+      properties:
+        product:
+          $ref: "#/components/schemas/Product"
+        stock:
+          $ref: "#/components/schemas/Stock"
+    StockProjectionInput:
+      type: object
+      properties:
+        incoming:
+          type: integer
+          minimum: 0
+          example: 10
+        outgoing:
+          type: integer
+          minimum: 0
+          example: 3
+        reserve:
+          type: integer
+          minimum: 0
+          example: 5
+        release:
+          type: integer
+          minimum: 0
+          example: 2
+        adjust:
+          type: integer
+          example: -1
