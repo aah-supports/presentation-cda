@@ -45,6 +45,94 @@ docker compose up -d --build
 
 * API : [http://localhost:3003](http://localhost:3003)
 * Products : [http://localhost:3003/products](http://localhost:3003/products)
+* Swagger UI (après ajout) : [http://localhost:3003/api-docs](http://localhost:3003/api-docs)
+
+---
+
+## Documentation API avec Swagger (OpenAPI)
+
+Objectif : documenter proprement l'endpoint du TP pour qu'il soit lisible et testable dans Swagger UI.
+Consigne TP : les étudiants doivent tout faire eux-mêmes (installation des dépendances + fichier OpenAPI + branchement serveur). Rien n'est préconfiguré.
+
+### 1. Installer les dépendances
+
+```bash
+npm install swagger-ui-express yamljs
+npm install -D @types/swagger-ui-express
+```
+
+### 2. Créer le fichier OpenAPI
+
+Créer `docs/openapi.yaml` avec un contenu minimal adapté au TP :
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Starter MVC API
+  version: 1.0.0
+  description: Documentation de l'API du TP MVC
+servers:
+  - url: http://localhost:3003
+paths:
+  /products:
+    get:
+      summary: Récupérer la liste des produits
+      description: Retourne les produits présents en base PostgreSQL.
+      responses:
+        "200":
+          description: Liste des produits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+              example:
+                - id: 1
+                  name: Burger
+                  price: 9.9
+                - id: 2
+                  name: Pizza
+                  price: 12.5
+components:
+  schemas:
+    Product:
+      type: object
+      required: [id, name, price]
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Burger
+        price:
+          type: number
+          format: float
+          example: 9.9
+```
+
+### 3. Brancher Swagger dans le serveur
+
+Exemple (dans `src/server.ts`) :
+
+```ts
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+
+const swaggerDocument = YAML.load("./docs/openapi.yaml");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+```
+
+### 4. Vérifier
+
+1. Lancer l'application (`docker compose up -d --build` ou `npm run dev`)
+2. Ouvrir `http://localhost:3003/api-docs`
+3. Tester `GET /products` directement dans l'interface Swagger
+
+Bonnes pratiques :
+- Renseigner `summary`, `description`, `responses` et `example` pour chaque endpoint.
+- Éviter les commentaires YAML (`# ...`) pour la documentation utilisateur : Swagger UI ne les affiche pas.
 
 ---
 
