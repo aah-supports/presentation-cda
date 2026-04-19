@@ -236,6 +236,18 @@ Résumé:
    - impose des entiers positifs là où c'est attendu
    - refuse les champs inattendus (`strict()`)
 
+### Matrice de validation par endpoint
+
+| Endpoint | Validation | Erreur 400 |
+| --- | --- | --- |
+| `GET /products/:id` | `params.id` doit être un UUID | `PRODUCT_ID_INVALID` |
+| `GET /products/:id/stock` | `params.id` doit être un UUID | `PRODUCT_ID_INVALID` |
+| `POST /products/:id/stock/projection` | `params.id` UUID + `body` validé par `stockProjectionBodySchema` | `PRODUCT_ID_INVALID` ou `INVALID_STOCK_PROJECTION` |
+
+Notes:
+1. `INVALID_STOCK_PROJECTION` peut venir de la validation Zod (format payload) **ou** du service métier (invariants de stock).
+2. La validation est exécutée avant le controller via middleware.
+
 ### Middleware utilisé
 
 1. `validateParams(schema, errorCode)`
