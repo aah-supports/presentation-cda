@@ -248,6 +248,37 @@ Notes:
 1. `INVALID_STOCK_PROJECTION` peut venir de la validation Zod (format payload) **ou** du service métier (invariants de stock).
 2. La validation est exécutée avant le controller via middleware.
 
+### Endpoint métier: `POST /products/:id/stock/projection` (explication complète)
+
+Cet endpoint sert à **simuler** un futur état de stock.
+
+Ce qu'il fait:
+1. lit l'état actuel du stock en base (`onHand`, `reserved`, `reorderPoint`)
+2. applique les variations du payload (`incoming`, `outgoing`, `reserve`, `release`, `adjust`)
+3. calcule un snapshot projeté (`onHand`, `reserved`, `available`, `status`)
+4. retourne le résultat au client
+
+Ce qu'il ne fait pas:
+1. il **ne modifie pas** la base de données
+2. il **ne crée pas** de commande
+3. il **ne réserve pas** réellement le stock
+
+Formules utilisées:
+1. `onHand = onHand + incoming - outgoing + adjust`
+2. `reserved = reserved + reserve - release`
+3. `available = onHand - reserved`
+
+Règles d'incohérence métier:
+1. `onHand < 0` -> `INVALID_STOCK_PROJECTION`
+2. `reserved < 0` -> `INVALID_STOCK_PROJECTION`
+3. `reserved > onHand` -> `INVALID_STOCK_PROJECTION`
+
+Exemple pédagogique:
+1. état actuel: `onHand=40`, `reserved=8`
+2. payload: `{ "incoming": 10, "outgoing": 5, "reserve": 3 }`
+3. projection: `onHand=45`, `reserved=11`, `available=34`
+4. statut calculé selon `available` et `reorderPoint`
+
 ### Middleware utilisé
 
 1. `validateParams(schema, errorCode)`
