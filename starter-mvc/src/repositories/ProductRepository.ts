@@ -16,7 +16,7 @@ export class ProductRepository {
     }));
   }
 
-  async findById(id: number): Promise<Product | null> {
+  async findById(id: string): Promise<Product | null> {
     const result = await pool.query<ProductRow>(
       "SELECT id, name, price FROM products WHERE id = $1",
       [id]

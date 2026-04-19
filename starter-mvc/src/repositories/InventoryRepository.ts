@@ -3,7 +3,7 @@ import { Inventory } from "@/models/types";
 import { InventoryRow } from "@/repositories/types";
 
 export class InventoryRepository {
-  async findByProductId(productId: number): Promise<Inventory | null> {
+  async findByProductId(productId: string): Promise<Inventory | null> {
     const result = await pool.query<InventoryRow>(
       "SELECT product_id, on_hand, reserved, reorder_point FROM inventories WHERE product_id = $1",
       [productId]

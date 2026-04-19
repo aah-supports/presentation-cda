@@ -33,6 +33,177 @@ retourne les 3 produits en JSON
 
 ---
 
+## Structure recommandée (lecture CDA)
+
+Ordre de lecture conseillé pour un dossier CDA:
+1. Product Backlog (vision et priorités)
+2. Architecture MVC + API REST
+3. Plan de tests (unitaire, fonctionnel, intégration, E2E)
+4. Observabilité (Grafana, Loki, Alloy)
+
+---
+
+## Product Backlog (CDA)
+
+Objectif produit:
+1. Exposer une API produits simple, testable, documentée et observable.
+
+### Epic 1 — Catalogue produits
+
+1. `PBI-01` (Must): En tant qu'utilisateur API, je veux lister les produits via `GET /products`.
+Critères d'acceptation:
+1. réponse `200`
+2. payload JSON `{ data: Product[] }`
+3. produits ordonnés par `id`
+
+2. `PBI-02` (Must): En tant qu'utilisateur API, je veux consulter un produit via `GET /products/:id` (`:id` est un UUID).
+Critères d'acceptation:
+1. `200` si trouvé
+2. `404 PRODUCT_NOT_FOUND` si absent
+3. `400 PRODUCT_ID_INVALID` si id invalide
+
+### Epic 2 — Gestion de stock
+
+3. `PBI-03` (Must): En tant que gestionnaire, je veux voir l'état du stock d'un produit via `GET /products/:id/stock` (`:id` UUID).
+Critères d'acceptation:
+1. calcul `available = onHand - reserved`
+2. statut `OUT_OF_STOCK | LOW_STOCK | OK`
+3. `404` si produit ou inventaire absent
+
+4. `PBI-04` (Should): En tant que gestionnaire, je veux simuler une projection de stock via `POST /products/:id/stock/projection` (`:id` UUID).
+Critères d'acceptation:
+1. prise en compte `incoming`, `outgoing`, `reserve`, `release`, `adjust`
+2. rejet des états incohérents (`INVALID_STOCK_PROJECTION`)
+3. réponse `200` avec snapshot projeté si données valides
+
+### Epic 3 — Qualité logicielle
+
+5. `PBI-05` (Must): En tant qu'équipe technique, je veux une stratégie de tests complète.
+Critères d'acceptation:
+1. unitaires: logique `StockService`
+2. fonctionnels: contrat HTTP des routes
+3. intégration: SQL réel repository + PostgreSQL
+4. E2E: API démarrée + Swagger accessible
+
+6. `PBI-06` (Should): En tant qu'équipe technique, je veux des mocks réutilisables pour isoler la logique.
+Critères d'acceptation:
+1. factories de mocks repositories
+2. tests unitaires indépendants de la DB
+
+### Epic 4 — Documentation API
+
+7. `PBI-07` (Must): En tant qu'utilisateur API, je veux une documentation Swagger exploitable.
+Critères d'acceptation:
+1. `GET /api-docs` accessible
+2. endpoints produits + stock décrits
+3. exemples d'erreurs documentés
+
+### Epic 5 — Exploitation / Observabilité
+
+8. `PBI-08` (Should): En tant qu'exploitant, je veux des logs structurés corrélables.
+Critères d'acceptation:
+1. logs JSON avec `service`, `env`, `level`, `request_id`
+2. logs consultables dans Grafana via Loki
+
+9. `PBI-09` (Could): En tant qu'exploitant, je veux une alerte simple sur dérive d'erreurs.
+Critères d'acceptation:
+1. alerte Grafana si erreurs > seuil sur 5 min
+2. règle versionnée dans le repo
+
+### Priorisation release (exemple)
+
+Release 1 (MVP):
+1. `PBI-01`, `PBI-02`, `PBI-03`, `PBI-05`, `PBI-07`
+
+Release 2:
+1. `PBI-04`, `PBI-06`, `PBI-08`
+
+Release 3:
+1. `PBI-09`
+
+### Définition de Done (DoD) commune
+
+1. code relu et compréhensible
+2. tests associés passants
+3. documentation README et OpenAPI à jour
+4. logs exploitables en environnement Docker
+
+### Sprint Backlog (exemple)
+
+## Sprint 1 — MVP API produits
+
+Objectif:
+1. livrer un socle API utilisable avec documentation minimale.
+
+PBIs embarqués:
+1. `PBI-01`
+2. `PBI-02`
+3. `PBI-07` (partie produits)
+
+Tâches techniques:
+1. implémenter `GET /products` et `GET /products/:id`
+2. gérer les statuts `200`, `400`, `404`, `500`
+3. documenter les endpoints produits dans OpenAPI
+4. vérifier manuellement via Swagger UI et `curl`
+
+Critères de sortie du sprint:
+1. endpoints produits opérationnels
+2. Swagger accessible sur `/api-docs`
+3. tests de non-régression de base passants
+
+## Sprint 2 — Gestion de stock + qualité
+
+Objectif:
+1. ajouter la logique métier de stock avec validations robustes.
+
+PBIs embarqués:
+1. `PBI-03`
+2. `PBI-04`
+3. `PBI-05`
+4. `PBI-06`
+
+Tâches techniques:
+1. implémenter `StockService` (`snapshot`, `projection`, statuts)
+2. brancher `GET /products/:id/stock` et `POST /products/:id/stock/projection`
+3. ajouter tests unitaires et fonctionnels
+4. ajouter tests d'intégration repositories et tests E2E API
+5. factoriser les mocks repositories
+
+Critères de sortie du sprint:
+1. routes stock opérationnelles
+2. erreurs métier gérées (`INVALID_STOCK_PROJECTION`)
+3. suites de tests définies et exécutables
+
+## Sprint 3 — Observabilité et exploitation
+
+Objectif:
+1. rendre l'application observable et pilotable en exploitation.
+
+PBIs embarqués:
+1. `PBI-08`
+2. `PBI-09`
+
+Tâches techniques:
+1. structurer les logs JSON avec Pino (`service`, `env`, `level`, `request_id`)
+2. collecter via Alloy et stocker dans Loki
+3. provisionner Grafana (datasource + dashboard)
+4. créer une alerte simple `error logs > seuil sur 5 min`
+5. documenter la procédure de diagnostic dans le README
+
+Critères de sortie du sprint:
+1. dashboard Grafana exploitable
+2. alerte visible dans Grafana Alerting
+3. procédure de vérification reproductible
+
+### Cadence et pilotage (proposition)
+
+1. sprint de 1 semaine (format pédagogique)
+2. daily court: 10 minutes
+3. revue de sprint: démo API + tests + dashboard
+4. rétrospective: axes d'amélioration techniques et organisationnels
+
+---
+
 ## Commandes
 
 ```bash
@@ -84,7 +255,7 @@ docker compose up -d --build
 
 ```bash
 curl http://localhost:3003/products
-curl -X POST http://localhost:3003/products/1/stock/projection \
+curl -X POST http://localhost:3003/products/11111111-1111-4111-8111-111111111111/stock/projection \
   -H "content-type: application/json" \
   -d '{"incoming":10,"outgoing":2}'
 ```
@@ -868,8 +1039,8 @@ Le plan de test valide l’application à tous les niveaux :
 
 ## A.1 Périmètre couvert
 
-1. API produits: `GET /products`, `GET /products/:id`
-2. API stock: `GET /products/:id/stock`, `POST /products/:id/stock/projection`
+1. API produits: `GET /products`, `GET /products/:id` (`:id` UUID)
+2. API stock: `GET /products/:id/stock`, `POST /products/:id/stock/projection` (`:id` UUID)
 3. Documentation: `GET /api-docs/`
 4. Couches internes: `StockService`, `StockModel`, repositories SQL
 
@@ -1042,7 +1213,7 @@ docker compose ps
 
 # Générer du trafic
 curl http://localhost:3003/products
-curl http://localhost:3003/products/1/stock
+curl http://localhost:3003/products/11111111-1111-4111-8111-111111111111/stock
 
 # Lire logs applicatifs
 docker compose logs --tail=100 app
@@ -1075,3 +1246,140 @@ docker compose logs --tail=200 loki
 ```
 
 Puis vérifier que les logs applicatifs sont bien générés.
+
+---
+
+# Addendum CDA — Grafana (détaillé) et utilité pour le dossier CDA
+
+## C.1 Pourquoi Grafana dans un projet CDA
+
+Dans un dossier CDA, on ne valide pas uniquement que "le code marche".
+On valide aussi la capacité à:
+1. superviser une application,
+2. détecter un incident,
+3. analyser la cause probable,
+4. prioriser une action corrective.
+
+Grafana sert précisément à démontrer ces compétences en rendant les métriques/logs lisibles et actionnables.
+
+## C.2 Ce que Grafana apporte concrètement ici
+
+Avec la stack en place (`Grafana + Loki + Alloy`), Grafana joue 3 rôles:
+1. **Visualisation**: dashboard des logs de l'API (niveau, volume, erreurs).
+2. **Investigation**: exploration fine via LogQL (filtrer service, niveau, fenêtre de temps).
+3. **Alerting**: déclenchement d'une alerte sur un seuil de logs `error`.
+
+Autrement dit:
+1. Loki stocke les logs,
+2. Alloy les collecte et les structure,
+3. Grafana les transforme en information utile pour décider.
+
+## C.3 Compétences CDA couvertes
+
+Cette partie peut être rattachée aux attendus:
+1. **Mettre en qualité / sécuriser l'application**:
+   - détection proactive d'erreurs répétées,
+   - réduction du MTTR (temps moyen de résolution).
+2. **Exploiter et maintenir**:
+   - supervision continue,
+   - procédures de diagnostic reproductibles.
+3. **Documenter une solution technique**:
+   - dashboard lisible,
+   - règles d'alerte explicites,
+   - mode opératoire de vérification.
+
+## C.4 Lecture d'un dashboard Grafana (méthode)
+
+Quand un incident est suspecté:
+1. Vérifier le panel "error logs (5m)".
+2. Regarder l'évolution des niveaux (`info/warn/error`) sur la même période.
+3. Ouvrir le panel des logs bruts.
+4. Filtrer par `request_id` pour suivre une requête de bout en bout.
+5. Croiser l'heure de l'anomalie avec les actions utilisateur (ou tests).
+
+Cette méthode montre une vraie démarche d'exploitation, attendue en CDA.
+
+## C.5 Exemple d'investigation type 
+
+Symptôme:
+1. hausse soudaine des `error`.
+
+Démarche:
+1. Grafana Alerting signale le dépassement de seuil.
+2. Explore: requête `{service="starter-mvc", level="error"}`.
+3. Lecture des messages: endpoint concerné + contexte.
+4. Isolation d'un `request_id` précis.
+5. Vérification applicative (payload, route, règle métier).
+6. Correctif + revalidation via baisse du volume d'erreurs.
+
+Résultat attendu dans le dossier:
+1. capture du dashboard avant/après,
+2. requête LogQL utilisée,
+3. conclusion technique (cause racine + action).
+
+## C.6 Bonnes pratiques de dashboard pour un rendu CDA
+
+1. Nommer les panels avec un vocabulaire métier simple.
+2. Afficher des fenêtres temporelles courtes (5 à 15 min) pour l'incident.
+3. Garder des labels stables (`service`, `env`, `level`).
+4. Limiter le bruit: distinguer `warn` et `error`.
+5. Lier chaque alerte à une action concrète (qui fait quoi, où regarder).
+
+## C.7 Ce que le jury peut attendre en soutenance
+
+Démonstration minimale solide:
+1. lancer la stack,
+2. générer du trafic normal puis une erreur,
+3. montrer l'impact dans Grafana,
+4. exécuter une requête LogQL ciblée,
+5. expliquer la règle d'alerte et sa finalité.
+
+Message clé:
+1. "Je ne surveille pas pour avoir des graphs, je surveille pour décider plus vite."
+
+## C.8 Limites actuelles et pistes d'amélioration (niveau pro)
+
+Limites de cette version:
+1. observabilité centrée logs (pas de métriques métier dédiées),
+2. une alerte simple (seuil fixe),
+3. pas de notifications externes (mail/Slack/PagerDuty).
+
+Améliorations réalistes:
+1. ajouter des métriques applicatives (`latence`, `taux d'erreur`, `throughput`),
+2. créer un dashboard SLA/SLO,
+3. brancher un canal de notification,
+4. versionner la stratégie d'alerte par environnement (`dev`, `preprod`, `prod`).
+
+## C.9 Requêtes LogQL utiles (prêtes à l'emploi)
+
+Tous les logs du service:
+
+```logql
+{service="starter-mvc"}
+```
+
+Erreurs seulement:
+
+```logql
+{service="starter-mvc", level="error"}
+```
+
+Volume d'erreurs sur 5 min:
+
+```logql
+sum(count_over_time({service="starter-mvc", level="error"}[5m]))
+```
+
+Recherche d'une requête corrélée:
+
+```logql
+{service="starter-mvc"} |= "request_id"
+```
+
+## C.10 Valeur finale pour le dossier CDA
+
+L'apport de Grafana dans ce projet est démontrable et défendable:
+1. supervision opérationnelle basique mais complète,
+2. outillage concret pour diagnostic rapide,
+3. documentation exploitable par un tiers,
+4. posture "run" cohérente avec un profil concepteur développeur.

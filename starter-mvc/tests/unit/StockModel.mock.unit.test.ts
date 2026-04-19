@@ -6,10 +6,12 @@ import {
 } from "../mocks/repositoryMocks";
 
 describe("StockModel (with mocks)", () => {
+  const productId = "11111111-1111-4111-8111-111111111111";
+
   it("returns null when product is missing", async () => {
     const productRepository = createProductRepositoryMock([]);
     const inventoryRepository = createInventoryRepositoryMock([
-      { productId: 1, onHand: 10, reserved: 1, reorderPoint: 5 }
+      { productId, onHand: 10, reserved: 1, reorderPoint: 5 }
     ]);
     const model = new StockModel(
       productRepository as never,
@@ -17,18 +19,18 @@ describe("StockModel (with mocks)", () => {
       new StockService()
     );
 
-    const result = await model.getByProductId(1);
+    const result = await model.getByProductId(productId);
 
     expect(result).toBeNull();
-    expect(productRepository.findById).toHaveBeenCalledWith(1);
+    expect(productRepository.findById).toHaveBeenCalledWith(productId);
   });
 
   it("projects stock using mocked repositories", async () => {
     const productRepository = createProductRepositoryMock([
-      { id: 1, name: "Keyboard", price: 8900 }
+      { id: productId, name: "Keyboard", price: 8900 }
     ]);
     const inventoryRepository = createInventoryRepositoryMock([
-      { productId: 1, onHand: 50, reserved: 10, reorderPoint: 15 }
+      { productId, onHand: 50, reserved: 10, reorderPoint: 15 }
     ]);
     const model = new StockModel(
       productRepository as never,
@@ -36,12 +38,12 @@ describe("StockModel (with mocks)", () => {
       new StockService()
     );
 
-    const result = await model.projectByProductId(1, {
+    const result = await model.projectByProductId(productId, {
       outgoing: 20,
       release: 5
     });
 
-    expect(result?.product.id).toBe(1);
+    expect(result?.product.id).toBe(productId);
     expect(result?.stock.available).toBe(25);
     expect(result?.stock.status).toBe("OK");
   });

@@ -14,7 +14,7 @@ export class StockModel {
     private readonly stockService: StockService
   ) {}
 
-  async getByProductId(productId: number): Promise<ProductStock | null> {
+  async getByProductId(productId: string): Promise<ProductStock | null> {
     // Chargement parallèle: réduit le temps de réponse quand DB OK.
     const [product, inventory] = await Promise.all([
       this.productRepository.findById(productId),
@@ -32,7 +32,7 @@ export class StockModel {
   }
 
   async projectByProductId(
-    productId: number,
+    productId: string,
     input: StockProjectionInput
   ): Promise<ProductStock | null> {
     // Même stratégie: récupération des dépendances métier avant calcul.

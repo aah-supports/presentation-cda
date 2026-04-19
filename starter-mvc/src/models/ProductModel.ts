@@ -9,7 +9,7 @@ export class ProductModel {
     return this.repository.findAll();
   }
 
-  async findById(id: number): Promise<Product | null> {
+  async findById(id: string): Promise<Product | null> {
     return this.repository.findById(id);
   }
 }

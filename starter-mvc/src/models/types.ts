@@ -1,12 +1,12 @@
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   price: number;
 };
 
 export type Inventory = {
-  productId: number;
+  productId: string;
   onHand: number;
   reserved: number;
   reorderPoint: number;

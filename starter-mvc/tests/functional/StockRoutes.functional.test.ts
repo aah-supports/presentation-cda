@@ -6,17 +6,19 @@ import { ProductModel } from "@/models/ProductModel";
 import { StockModel } from "@/models/StockModel";
 
 describe("Stock routes (functional)", () => {
+  const productId = "11111111-1111-4111-8111-111111111111";
+
   const productModel: Partial<ProductModel> = {
-    findAll: async () => [{ id: 1, name: "Mouse", price: 2500 }],
-    findById: async (id: number) =>
-      id === 1 ? { id: 1, name: "Mouse", price: 2500 } : null
+    findAll: async () => [{ id: productId, name: "Mouse", price: 2500 }],
+    findById: async (id: string) =>
+      id === productId ? { id: productId, name: "Mouse", price: 2500 } : null
   };
 
   const stockModel: Partial<StockModel> = {
-    getByProductId: async (id: number) =>
-      id === 1
+    getByProductId: async (id: string) =>
+      id === productId
         ? {
-            product: { id: 1, name: "Mouse", price: 2500 },
+            product: { id: productId, name: "Mouse", price: 2500 },
             stock: {
               onHand: 10,
               reserved: 2,
@@ -26,10 +28,10 @@ describe("Stock routes (functional)", () => {
             }
           }
         : null,
-    projectByProductId: async (id: number) =>
-      id === 1
+    projectByProductId: async (id: string) =>
+      id === productId
         ? {
-            product: { id: 1, name: "Mouse", price: 2500 },
+            product: { id: productId, name: "Mouse", price: 2500 },
             stock: {
               onHand: 9,
               reserved: 2,
@@ -47,7 +49,7 @@ describe("Stock routes (functional)", () => {
   );
 
   it("GET /products/:id/stock returns snapshot", async () => {
-    const response = await request(app).get("/products/1/stock");
+    const response = await request(app).get(`/products/${productId}/stock`);
 
     expect(response.status).toBe(200);
     expect(response.body.data.stock.available).toBe(8);
@@ -55,7 +57,7 @@ describe("Stock routes (functional)", () => {
 
   it("POST /products/:id/stock/projection returns projected snapshot", async () => {
     const response = await request(app)
-      .post("/products/1/stock/projection")
+      .post(`/products/${productId}/stock/projection`)
       .send({ outgoing: 1 });
 
     expect(response.status).toBe(200);
