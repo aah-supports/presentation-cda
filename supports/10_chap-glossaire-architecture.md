@@ -24,10 +24,10 @@ Format de donnees retourne pour une ressource (souvent JSON).
 Verbes `GET`, `POST`, `PUT`, `PATCH`, `DELETE` utilises pour agir sur les ressources.
 
 8. **Idempotence**  
-Operation qui peut etre rejouee sans changer le resultat final (exemple: `PUT`, `DELETE` en theorie).
+Operation qui peut etre rejouée sans changer le resultat final (exemple: `PUT`, `DELETE` en théorie).
 
 9. **Content Negotiation**  
-Mecanisme permettant de choisir le format de reponse (exemple via `Accept`).
+Mécanisme permettant de choisir le format de réponse (exemple via `Accept`).
 
 10. **HATEOAS**  
 Contrainte REST optionnelle souvent absente en projet simple; la reponse inclut des liens d'actions possibles.
@@ -68,16 +68,16 @@ Couche intermediaire pour regles metier et orchestration (souvent ajoutee dans u
 Abstraction de l'acces aux donnees (memoire, SQL, NoSQL) sans exposer les details de stockage.
 
 22. **Clean Architecture**  
-Architecture orientee dependances vers le coeur metier (domain), separee de l'infrastructure.
+Architecture orientée dépendances vers le coeur métier (domain), séparée de l'infrastructure.
 
 23. **Use Case**  
-Action metier applicative (exemple: "ajouter un film") isolee de la technique.
+Action métier applicative (exemple: "ajouter un film") isolee de la technique.
 
 24. **Entities (Clean)**  
-Objets metier centraux, stables, independants des frameworks.
+Objets métier centraux, stables, indépendants des frameworks.
 
 25. **Dependency Rule**  
-Les couches externes dependent des couches internes, jamais l'inverse.
+Les couches externes dépendent des couches internes, jamais l'inverse.
 
 26. **Ports and Adapters (Hexagonal)**  
 Variante proche de Clean: ports (interfaces) + adapters (implementations techniques).
@@ -103,42 +103,42 @@ Pages generees a la build puis servies statiquement.
 Regeneration progressive de pages statiques apres deploiement.
 
 33. **Micro-frontend**  
-Decoupage du front en sous-applications independantes.
+Découpage du front en sous-applications indépendantes.
 
 34. **BFF (Backend For Frontend)**  
-Backend dedie a un type de front (web/mobile) pour adapter les donnees.
+Backend dédié à un type de front (web/mobile) pour adapter les données.
 
 35. **Component-based Architecture**  
-UI construite a partir de composants reutilisables.
+`UI` construite à partir de composants réutilisables.
 
 ## 4. Middleware et pipeline
 
 36. **Middleware**  
-Fonction intermediaire executee entre requete et reponse (auth, logs, validation, erreurs).
+Fonction intermediaire exécutée entre requête et reponse (auth, logs, validation, erreurs).
 
 37. **Middleware Pipeline**  
-Chaine ordonnee de middlewares executes successivement.
+Chaine ordonnée de middlewares executes successivement.
 
 38. **Global Error Handler**  
 Middleware final qui centralise la gestion des erreurs et la forme des reponses.
 
 39. **Authentication Middleware**  
-Middleware verifiant identite et droits avant acces a une route.
+Middleware vérifiant identité et droits avant accès à une route.
 
 40. **Validation Middleware**  
-Middleware qui valide les donnees d'entree avant passage au controller.
+Middleware qui valide les données d'entrée avant passage au controller.
 
 41. **CORS Middleware**  
-Middleware qui applique les regles d'acces cross-origin.
+Middleware qui applique les règles d'acces cross-origin.
 
 42. **Rate Limiting Middleware**  
 Limite le nombre de requetes pour proteger l'API.
 
 43. **Logging Middleware**  
-Trace les requetes/reponses pour le debug et l'exploitation.
+Trace les requêtes/reponses pour le debug et l'exploitation.
 
 44. **Body Parsing Middleware**  
-Transforme le corps de requete (JSON, form-data) en objet exploitable.
+Transforme le corps de rêquete (JSON, form-data) en objet exploitable.
 
 45. **Chain of Responsibility**  
-Principe de delegation en chaine, applique naturellement dans un pipeline middleware.
+Principe de délégation en chaine, applique naturellement dans un pipeline middleware.

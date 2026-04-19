@@ -40,7 +40,7 @@ Dans ce TP, vous rédigez un extrait directement réutilisable dans le dossier C
 - section **Périmètre**
 - section **Contraintes**
 
-Référence : `annexes/DossierProjet-CDA-modele-pro.md`
+Référence : `annexes/DossierCDA.md`
 
 ## 3. Production attendue en fin de J1
 
@@ -102,4 +102,4 @@ Sortie : rendu final J1 prêt dossier.
 
 ## 7. Glossaire recommandé
 
-- `TPs/12_glossaire-technique-gestion-projet.md`
+- `supports/07_chap-outils-gestion-projet.md`

@@ -5,10 +5,10 @@ Projet :
 Date :
 
 Référence modèle dossier CDA :
-- `annexes/DossierProjet-CDA-modele-pro.md`
+- `annexes/DossierCDA.md`
 
 Référence glossaire :
-- `TPs/12_glossaire-technique-gestion-projet.md`
+- `supports/07_chap-outils-gestion-projet.md`
 
 ## 1. Contexte de départ
 

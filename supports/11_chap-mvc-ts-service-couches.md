@@ -47,8 +47,8 @@ En 2 heures, realiser une mini application API en **architecture en couches** po
 
 Sujet pratique associe:
 
-- `TPs/08_sujet-mvc-pur-typescript-2h.md`
+- `supports/11_chap-mvc-ts-service-couches.md`
 
 Starter etudiant:
 
-- `stater/`
+- `stater-mvc/`

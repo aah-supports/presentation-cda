@@ -5,7 +5,7 @@ Projet : Mini application web Films d'art et essai
 Date : 14/04/2026
 
 Référence modèle dossier CDA :
-- `annexes/DossierProjet-CDA-modele-pro.md`
+- `annexes/DossierCDA.md`
 
 ## 1. Contexte de départ
 
