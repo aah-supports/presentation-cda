@@ -1,15 +1,17 @@
-# Exercice — MVC
+# Exercice — MVC 
 
 ## Objectif
 
 Compléter un endpoint `GET /products` dans une structure MVC.
+
+Ce projet, dimensionné pour découvrir MVC from scratch et volontairement réduit dans ses fonctionnalitées, est rédigé en respectant un certains nombres de contraintes du titre CDA.
 
 ---
 
 ## Environnement fourni
 
 * Stack : Node.js + TypeScript + PostgreSQL
-* Table `products` déjà créée et remplie
+* Table `products` déjà créée et remplie, il y a d'autres tables, voir le fichier `init.sql` dans le dossier `sql` pour permettre de faire des tests cohérents.
 * Routing MVC déjà en place
 
 ---
@@ -33,7 +35,7 @@ retourne les 3 produits en JSON
 
 ---
 
-## Structure recommandée (lecture CDA)
+## Structure recommandée 
 
 Ordre de lecture conseillé pour un dossier CDA:
 1. Product Backlog (vision et priorités)
@@ -43,7 +45,7 @@ Ordre de lecture conseillé pour un dossier CDA:
 
 ---
 
-## Product Backlog (CDA)
+## Product Backlog 
 
 Objectif produit:
 1. Exposer une API produits simple, testable, documentée et observable.
@@ -201,6 +203,75 @@ Critères de sortie du sprint:
 2. daily court: 10 minutes
 3. revue de sprint: démo API + tests + dashboard
 4. rétrospective: axes d'amélioration techniques et organisationnels
+
+---
+
+## Validation Runtime avec Zod (chapitre étudiant)
+
+### Pourquoi ajouter Zod alors qu'on a TypeScript
+
+1. TypeScript vérifie le code au **compile-time**.
+2. Les données HTTP (`req.params`, `req.body`) arrivent de l'extérieur au **runtime**.
+3. Zod protège la frontière API: si les données sont invalides, on répond `400` avant la logique métier.
+
+Résumé:
+1. TS protège le code interne.
+2. Zod protège les entrées externes.
+
+### Ce qu'on a mis en place dans ce projet
+
+1. Schémas Zod:
+   - `src/schemas/apiSchemas.ts`
+2. Middleware de validation:
+   - `src/middlewares/validation.ts`
+3. Branchement dans les routes:
+   - `src/routes/productRoutes.ts`
+
+### Schémas validés
+
+1. `productIdParamsSchema`
+   - valide `:id` au format UUID
+2. `stockProjectionBodySchema`
+   - valide le payload de projection (`incoming`, `outgoing`, `reserve`, `release`, `adjust`)
+   - impose des entiers positifs là où c'est attendu
+   - refuse les champs inattendus (`strict()`)
+
+### Middleware utilisé
+
+1. `validateParams(schema, errorCode)`
+2. `validateBody(schema, errorCode)`
+
+Comportement:
+1. parse via `safeParse`
+2. si invalide -> `400` + code d'erreur + détails
+3. si valide -> `next()` vers le controller
+
+### Exemple de flux sur une route
+
+```txt
+POST /products/:id/stock/projection
+-> validateParams(productIdParamsSchema, "PRODUCT_ID_INVALID")
+-> validateBody(stockProjectionBodySchema, "INVALID_STOCK_PROJECTION")
+-> StockController.projectByProductId()
+-> StockModel -> StockService
+```
+
+### Impact sur les controllers
+
+1. moins de `if` de validation manuelle
+2. controllers plus lisibles (focus HTTP + orchestration)
+3. validation centralisée et réutilisable
+
+### Quand passer à un middleware (et quand éviter)
+
+Utiliser middleware si:
+1. plusieurs routes partagent les mêmes validations
+2. on veut des erreurs homogènes
+3. on veut réduire la duplication
+
+Garder inline dans controller si:
+1. projet très petit
+2. objectif pédagogique débutant sans abstraction
 
 ---
 

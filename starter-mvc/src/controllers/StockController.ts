@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { getRequestId, logger } from "@/lib/logger";
-import { isUuid } from "@/lib/uuid";
 import { StockModel } from "@/models/StockModel";
-import { StockProjectionInput } from "@/models/types";
+import { StockProjectionBodyDto } from "@/schemas/apiSchemas";
 
 export class StockController {
   constructor(private readonly model: StockModel) {}
@@ -10,12 +9,6 @@ export class StockController {
   getByProductId = async (req: Request, res: Response): Promise<void> => {
     try {
       const productId = req.params.id;
-
-      // On valide l'identifiant avant tout accès modèle/repository.
-      if (!isUuid(productId)) {
-        res.status(400).json({ error: "PRODUCT_ID_INVALID" });
-        return;
-      }
 
       const data = await this.model.getByProductId(productId);
 
@@ -37,13 +30,9 @@ export class StockController {
   projectByProductId = async (req: Request, res: Response): Promise<void> => {
     try {
       const productId = req.params.id;
-      if (!isUuid(productId)) {
-        res.status(400).json({ error: "PRODUCT_ID_INVALID" });
-        return;
-      }
 
-      // Payload libre: la validation métier est portée par StockService.
-      const input = req.body as StockProjectionInput;
+      // Le payload est déjà validé par middleware Zod avant d'arriver ici.
+      const input = req.body as StockProjectionBodyDto;
       const data = await this.model.projectByProductId(productId, input);
 
       if (!data) {

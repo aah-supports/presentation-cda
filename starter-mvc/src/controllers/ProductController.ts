@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { getRequestId, logger } from "@/lib/logger";
-import { isUuid } from "@/lib/uuid";
 import { ProductModel } from "@/models/ProductModel";
 
 export class ProductController {
@@ -23,12 +22,6 @@ export class ProductController {
   getById = async (req: Request, res: Response): Promise<void> => {
     try {
       const id = req.params.id;
-
-      // Validation d'entrée minimale: utile pour retourner un 400 explicite.
-      if (!isUuid(id)) {
-        res.status(400).json({ error: "PRODUCT_ID_INVALID" });
-        return;
-      }
 
       const product = await this.model.findById(id);
 
